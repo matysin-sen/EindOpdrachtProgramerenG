@@ -1,0 +1,12 @@
+C:\Users\matys\source\repos\hogent 25-26 programeren basis\programeren gevorderd\Examen\EindOpdrachtProgramerenG\ExamenMeerKeuzeQuizSolution\MeerKeuzeBL\bin\Debug\net10.0\MeerKeuzeBL.deps.json
+C:\Users\matys\source\repos\hogent 25-26 programeren basis\programeren gevorderd\Examen\EindOpdrachtProgramerenG\ExamenMeerKeuzeQuizSolution\MeerKeuzeBL\bin\Debug\net10.0\MeerKeuzeBL.dll
+C:\Users\matys\source\repos\hogent 25-26 programeren basis\programeren gevorderd\Examen\EindOpdrachtProgramerenG\ExamenMeerKeuzeQuizSolution\MeerKeuzeBL\bin\Debug\net10.0\MeerKeuzeBL.pdb
+C:\Users\matys\source\repos\hogent 25-26 programeren basis\programeren gevorderd\Examen\EindOpdrachtProgramerenG\ExamenMeerKeuzeQuizSolution\MeerKeuzeBL\obj\Debug\net10.0\MeerKeuzeBL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\matys\source\repos\hogent 25-26 programeren basis\programeren gevorderd\Examen\EindOpdrachtProgramerenG\ExamenMeerKeuzeQuizSolution\MeerKeuzeBL\obj\Debug\net10.0\MeerKeuzeBL.AssemblyInfoInputs.cache
+C:\Users\matys\source\repos\hogent 25-26 programeren basis\programeren gevorderd\Examen\EindOpdrachtProgramerenG\ExamenMeerKeuzeQuizSolution\MeerKeuzeBL\obj\Debug\net10.0\MeerKeuzeBL.AssemblyInfo.cs
+C:\Users\matys\source\repos\hogent 25-26 programeren basis\programeren gevorderd\Examen\EindOpdrachtProgramerenG\ExamenMeerKeuzeQuizSolution\MeerKeuzeBL\obj\Debug\net10.0\MeerKeuzeBL.csproj.CoreCompileInputs.cache
+C:\Users\matys\source\repos\hogent 25-26 programeren basis\programeren gevorderd\Examen\EindOpdrachtProgramerenG\ExamenMeerKeuzeQuizSolution\MeerKeuzeBL\obj\Debug\net10.0\MeerKeuzeBL.sourcelink.json
+C:\Users\matys\source\repos\hogent 25-26 programeren basis\programeren gevorderd\Examen\EindOpdrachtProgramerenG\ExamenMeerKeuzeQuizSolution\MeerKeuzeBL\obj\Debug\net10.0\MeerKeuzeBL.dll
+C:\Users\matys\source\repos\hogent 25-26 programeren basis\programeren gevorderd\Examen\EindOpdrachtProgramerenG\ExamenMeerKeuzeQuizSolution\MeerKeuzeBL\obj\Debug\net10.0\refint\MeerKeuzeBL.dll
+C:\Users\matys\source\repos\hogent 25-26 programeren basis\programeren gevorderd\Examen\EindOpdrachtProgramerenG\ExamenMeerKeuzeQuizSolution\MeerKeuzeBL\obj\Debug\net10.0\MeerKeuzeBL.pdb
+C:\Users\matys\source\repos\hogent 25-26 programeren basis\programeren gevorderd\Examen\EindOpdrachtProgramerenG\ExamenMeerKeuzeQuizSolution\MeerKeuzeBL\obj\Debug\net10.0\ref\MeerKeuzeBL.dll

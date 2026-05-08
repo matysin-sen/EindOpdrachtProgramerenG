@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="ExamenMeerKeuzeQuiz/ExamenMeerKeuzeQuiz.csproj" />
+  <Project Path="MeerKeuzeBL/MeerKeuzeBL.csproj" />
+  <Project Path="MeerKeuzeDL/MeerKeuzeDL.csproj" />
+</Solution>
