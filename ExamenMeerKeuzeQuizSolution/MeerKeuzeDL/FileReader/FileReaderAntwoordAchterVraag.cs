@@ -10,7 +10,7 @@ namespace MeerKeuzeDL.FileReader
     {
         public List<Vragen> Read(string pad)
         {
-            bool Lezer = false;
+            
             int CurrentLijn = 0;
             List<Vragen> vragen = new List<Vragen>();
             Vragen huidigeVraag = null;
@@ -23,18 +23,18 @@ namespace MeerKeuzeDL.FileReader
                     string Lijn = sr.ReadLine();
                     if (string.IsNullOrWhiteSpace(Lijn)) 
                     { 
-                        Lezer = false;
+                      
                         continue;
 					}
-                    if(char.IsDigit(Lijn[0]) && Lijn[1] == '.')
+                    if(char.IsDigit(Lijn[0]) && (Lijn[1] == '.' || char.IsDigit(Lijn[1])))//leest maar tot 99 vragen niet meer
                     {
                         vraagText = Lijn.Substring(3);
-                        huidigeVraag = new Vragen { VraagTekst = vraagText, Antwoorden = new List<Antwoorden>() };
+                        huidigeVraag = new Vragen (vraagText, new List<Antwoorden>());
                         vragen.Add(huidigeVraag);
-						Lezer = true;
+						
                         CurrentLijn++;
                     }
-                    else if(Lezer && (char.IsLetter(Lijn[0]) && Lijn[1] == '.'))
+                    else if((char.IsLetter(Lijn[0]) && Lijn[1] == '.'))
                     {
                       string antwoordText = Lijn.Substring(2).Trim();
                       string letter = Lijn[0].ToString().ToUpper();

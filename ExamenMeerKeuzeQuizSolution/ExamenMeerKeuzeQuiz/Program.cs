@@ -9,9 +9,9 @@ namespace ExamenMeerKeuzeQuiz
         {
             Console.WriteLine("Hello, World!");
 
-            string pad = @"C:\Users\matys\source\repos\hogent 25-26 programeren basis\programeren gevorderd\Examen\c_1.txt";
+            string pad = @"C:\Users\matys\source\repos\hogent 25-26 programeren basis\programeren gevorderd\Examen\Geo1.txt";
 
-            var reader = new FileReaderAntwoordAchterVraag();
+            var reader = new FileReaderAntwoordOnder();
             List<Vragen> vragenLijst = reader.Read(pad);
 
             foreach (var vraag in vragenLijst)
