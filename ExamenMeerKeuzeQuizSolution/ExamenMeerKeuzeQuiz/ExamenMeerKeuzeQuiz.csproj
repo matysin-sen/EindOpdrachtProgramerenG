@@ -8,6 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient.Extensions.Abstractions" Version="1.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="11.0.0-preview.4.26230.115" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="11.0.0-preview.4.26230.115" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="11.0.0-preview.4.26230.115" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="11.0.0-preview.4.26230.115" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MeerKeuzeBL\MeerKeuzeBL.csproj" />
     <ProjectReference Include="..\MeerKeuzeDL\MeerKeuzeDL.csproj" />
   </ItemGroup>

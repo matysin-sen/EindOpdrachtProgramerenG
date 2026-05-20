@@ -1,0 +1,77 @@
+-- 1. ONDERWERPEN
+CREATE TABLE ONDERWERPEN (
+    IDOnderwerp INT  PRIMARY KEY IDENTITY(1,1),
+    Onderwerpnaam VARCHAR(255)
+);
+
+-- 2. VRAGEN
+CREATE TABLE VRAGEN (
+    IDVraag INT PRIMARY KEY IDENTITY(1,1) ,
+    OnderwerpID INT,
+    Vraagzin TEXT,
+    MoeilijkheidsCategorie VARCHAR(50),
+    FOREIGN KEY (OnderwerpID) REFERENCES ONDERWERPEN(IDOnderwerp)
+);
+
+-- 3. ANTWOORDEN
+CREATE TABLE ANTWOORDEN (
+    IDAntwoord INT  PRIMARY KEY IDENTITY(1,1),
+    VraagID INT,
+    AntwoordZin TEXT,
+    IsCorrect BIT,
+    FOREIGN KEY (VraagID) REFERENCES VRAGEN(IDVraag)
+);
+
+-- 4. TESTEN
+CREATE TABLE TESTEN (
+    IDTest INT  PRIMARY KEY IDENTITY(1,1),
+    TestOmschrijving VARCHAR(255),
+    DatumCreatie DATETIME
+);
+
+-- 5. TESTVRAGEN
+CREATE TABLE TESTVRAGEN (
+    IDTestVraag INT  PRIMARY KEY IDENTITY(1,1),
+    TestID INT,
+    VraagID INT,
+    Volgnummer INT,
+    FOREIGN KEY (TestID) REFERENCES TESTEN(IDTest),
+    FOREIGN KEY (VraagID) REFERENCES VRAGEN(IDVraag)
+);
+
+-- 6. TESTANTWOORDEN
+CREATE TABLE TESTANTWOORDEN (
+    IDTestAntwoord INT  PRIMARY KEY IDENTITY(1,1),
+    AntwoordID INT,
+    TestVraagID INT,
+    Antwoordletteroptie CHAR(1), -- Bijv. 'A', 'B', 'C'
+    FOREIGN KEY (AntwoordID) REFERENCES ANTWOORDEN(IDAntwoord),
+    FOREIGN KEY (TestVraagID) REFERENCES TESTVRAGEN(IDTestVraag)
+);
+
+-- 7. USERS
+CREATE TABLE USERS (
+    IDUser INT  PRIMARY KEY IDENTITY(1,1),
+    Naam VARCHAR(100),
+    Voornaam VARCHAR(100)
+);
+
+-- 8. GEMAAKTETESTEN
+CREATE TABLE GEMAAKTETESTEN (
+    IDGemaakteTest INT  PRIMARY KEY IDENTITY(1,1),
+    UserID INT,
+    DatumGemaakt DATETIME,
+    Score DECIMAL(5,2), -- Bijv. voor een score met 2 decimalen, of maak er INT van
+    FOREIGN KEY (UserID) REFERENCES USERS(IDUser),
+    
+);
+
+-- 9. USERTESTANTWOORDEN
+CREATE TABLE USERTESTANTWOORDEN (
+    IDGegevenAntwoord INT  PRIMARY KEY IDENTITY(1,1),
+    GemaakteTestID INT,
+    TestVraagID INT,
+    GekozenLetter CHAR(1),
+    FOREIGN KEY (GemaakteTestID) REFERENCES GEMAAKTETESTEN(IDGemaakteTest),
+    FOREIGN KEY (TestVraagID) REFERENCES TESTVRAGEN(IDTestVraag)
+);

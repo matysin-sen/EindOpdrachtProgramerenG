@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "brQtddojPGQ=",
+  "dgSpecHash": "GThPIYWMrFg=",
   "success": true,
   "projectFilePath": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\ExamenMeerKeuzeQuiz\\ExamenMeerKeuzeQuiz.csproj",
   "expectedPackageFiles": [
@@ -11,10 +11,17 @@
     "C:\\Users\\matys\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\6.0.2\\microsoft.data.sqlclient.sni.runtime.6.0.2.nupkg.sha512",
     "C:\\Users\\matys\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\9.0.13\\microsoft.extensions.caching.abstractions.9.0.13.nupkg.sha512",
     "C:\\Users\\matys\\.nuget\\packages\\microsoft.extensions.caching.memory\\9.0.13\\microsoft.extensions.caching.memory.9.0.13.nupkg.sha512",
+    "C:\\Users\\matys\\.nuget\\packages\\microsoft.extensions.configuration\\11.0.0-preview.4.26230.115\\microsoft.extensions.configuration.11.0.0-preview.4.26230.115.nupkg.sha512",
+    "C:\\Users\\matys\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\11.0.0-preview.4.26230.115\\microsoft.extensions.configuration.abstractions.11.0.0-preview.4.26230.115.nupkg.sha512",
+    "C:\\Users\\matys\\.nuget\\packages\\microsoft.extensions.configuration.fileextensions\\11.0.0-preview.4.26230.115\\microsoft.extensions.configuration.fileextensions.11.0.0-preview.4.26230.115.nupkg.sha512",
+    "C:\\Users\\matys\\.nuget\\packages\\microsoft.extensions.configuration.json\\11.0.0-preview.4.26230.115\\microsoft.extensions.configuration.json.11.0.0-preview.4.26230.115.nupkg.sha512",
     "C:\\Users\\matys\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\10.0.0\\microsoft.extensions.dependencyinjection.abstractions.10.0.0.nupkg.sha512",
+    "C:\\Users\\matys\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\11.0.0-preview.4.26230.115\\microsoft.extensions.fileproviders.abstractions.11.0.0-preview.4.26230.115.nupkg.sha512",
+    "C:\\Users\\matys\\.nuget\\packages\\microsoft.extensions.fileproviders.physical\\11.0.0-preview.4.26230.115\\microsoft.extensions.fileproviders.physical.11.0.0-preview.4.26230.115.nupkg.sha512",
+    "C:\\Users\\matys\\.nuget\\packages\\microsoft.extensions.filesystemglobbing\\11.0.0-preview.4.26230.115\\microsoft.extensions.filesystemglobbing.11.0.0-preview.4.26230.115.nupkg.sha512",
     "C:\\Users\\matys\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\10.0.0\\microsoft.extensions.logging.abstractions.10.0.0.nupkg.sha512",
     "C:\\Users\\matys\\.nuget\\packages\\microsoft.extensions.options\\9.0.13\\microsoft.extensions.options.9.0.13.nupkg.sha512",
-    "C:\\Users\\matys\\.nuget\\packages\\microsoft.extensions.primitives\\9.0.13\\microsoft.extensions.primitives.9.0.13.nupkg.sha512",
+    "C:\\Users\\matys\\.nuget\\packages\\microsoft.extensions.primitives\\11.0.0-preview.4.26230.115\\microsoft.extensions.primitives.11.0.0-preview.4.26230.115.nupkg.sha512",
     "C:\\Users\\matys\\.nuget\\packages\\microsoft.identitymodel.abstractions\\8.16.0\\microsoft.identitymodel.abstractions.8.16.0.nupkg.sha512",
     "C:\\Users\\matys\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\8.16.0\\microsoft.identitymodel.jsonwebtokens.8.16.0.nupkg.sha512",
     "C:\\Users\\matys\\.nuget\\packages\\microsoft.identitymodel.logging\\8.16.0\\microsoft.identitymodel.logging.8.16.0.nupkg.sha512",
@@ -25,8 +32,11 @@
     "C:\\Users\\matys\\.nuget\\packages\\system.configuration.configurationmanager\\9.0.13\\system.configuration.configurationmanager.9.0.13.nupkg.sha512",
     "C:\\Users\\matys\\.nuget\\packages\\system.diagnostics.eventlog\\9.0.13\\system.diagnostics.eventlog.9.0.13.nupkg.sha512",
     "C:\\Users\\matys\\.nuget\\packages\\system.identitymodel.tokens.jwt\\8.16.0\\system.identitymodel.tokens.jwt.8.16.0.nupkg.sha512",
+    "C:\\Users\\matys\\.nuget\\packages\\system.io.pipelines\\11.0.0-preview.4.26230.115\\system.io.pipelines.11.0.0-preview.4.26230.115.nupkg.sha512",
     "C:\\Users\\matys\\.nuget\\packages\\system.security.cryptography.pkcs\\9.0.13\\system.security.cryptography.pkcs.9.0.13.nupkg.sha512",
-    "C:\\Users\\matys\\.nuget\\packages\\system.security.cryptography.protecteddata\\9.0.13\\system.security.cryptography.protecteddata.9.0.13.nupkg.sha512"
+    "C:\\Users\\matys\\.nuget\\packages\\system.security.cryptography.protecteddata\\9.0.13\\system.security.cryptography.protecteddata.9.0.13.nupkg.sha512",
+    "C:\\Users\\matys\\.nuget\\packages\\system.text.encodings.web\\11.0.0-preview.4.26230.115\\system.text.encodings.web.11.0.0-preview.4.26230.115.nupkg.sha512",
+    "C:\\Users\\matys\\.nuget\\packages\\system.text.json\\11.0.0-preview.4.26230.115\\system.text.json.11.0.0-preview.4.26230.115.nupkg.sha512"
   ],
   "logs": []
 }

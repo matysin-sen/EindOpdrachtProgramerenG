@@ -1,6 +1,6 @@
 ﻿namespace MeerKeuzeBL
 {
-    public class Class1
+    public class ImportManager
     {
 
     }
