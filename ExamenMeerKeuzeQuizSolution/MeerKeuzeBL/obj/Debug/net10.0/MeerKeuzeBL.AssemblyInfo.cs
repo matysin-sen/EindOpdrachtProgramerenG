@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MeerKeuzeBL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+835b711f97282344724ad9a5662f75bf1055e4a4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a07b7e0d8fdfa842d1f549e1cda455b434300744")]
 [assembly: System.Reflection.AssemblyProductAttribute("MeerKeuzeBL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MeerKeuzeBL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

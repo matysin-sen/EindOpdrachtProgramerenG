@@ -70,7 +70,78 @@ namespace MeerKeuzeDL.Repository
                     }
                 }
             }
+        public Onderwerpen VoegOnderwerpToe(string onderwerpNaam)
+        {
+            int id;
+            Onderwerpen onderwerp = null;
+
+            // De query is aangepast naar jouw tabelnaam en kolomnamen uit SQLQueryQuizMaken.sql
+            const string query = "INSERT INTO ONDERWERPEN (Onderwerpnaam) OUTPUT INSERTED.IDOnderwerp VALUES (@Onderwerpnaam)";
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlCommand cmd = conn.CreateCommand())
+            {
+                cmd.CommandText = query;
+                cmd.Parameters.AddWithValue("@Onderwerpnaam", onderwerpNaam);
+
+                conn.Open();
+                try
+                {
+                    // ExecuteScalar voert de INSERT uit en pakt de OUTPUT INSERTED.IDOnderwerp direct vast
+                    id = (int)cmd.ExecuteScalar();
+
+                    // We maken een nieuw object van jouw Domeinklasse
+                    onderwerp = new Onderwerpen(id, onderwerpNaam);
+                }
+                catch (Exception ex)
+                {
+                    // Fouten netjes opvangen en doorgeven naar de UI zodat je weet wát er misging
+                    throw new Exception("Fout bij het toevoegen van het onderwerp: " + ex.Message);
+                }
+            }
+
+            return onderwerp;
         }
+        public List<Onderwerpen> GeefAlleOnderwerpen()
+        {
+            List<Onderwerpen> onderwerpenLijst = new List<Onderwerpen>();
+
+            // We selecteren beide kolommen uit de tabel en sorteren ze alfabetisch
+            string query = "SELECT IDOnderwerp, Onderwerpnaam FROM ONDERWERPEN ORDER BY Onderwerpnaam ASC";
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    try
+                    {
+                        conn.Open();
+
+                        // Gebruik een SqlDataReader om meerdere rijen uit te lezen
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                // Haal de data uit de huidige rij
+                                int id = (int)reader["IDOnderwerp"];
+                                string naam = reader["Onderwerpnaam"].ToString();
+
+                                // Maak een nieuw C# object aan en voeg toe aan de lijst
+                                Onderwerpen onderwerp = new Onderwerpen(id, naam);
+                                onderwerpenLijst.Add(onderwerp);
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("Fout bij het ophalen van de onderwerpen: " + ex.Message);
+                    }
+                }
+            }
+
+            return onderwerpenLijst;
+        }
+    }
 }
 
 
