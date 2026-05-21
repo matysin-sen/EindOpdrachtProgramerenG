@@ -1,7 +1,11 @@
-﻿using MeerKeuzeBL.Domein;
+﻿using MeerKeuzeBL;
+using MeerKeuzeBL.Domein;
+using MeerKeuzeBL.Interface;
 using MeerKeuzeDL.FileReader;
+using MeerKeuzeDL.Repository;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using QuizUtil;
 
 namespace ExamenMeerKeuzeQuiz
 {
@@ -29,9 +33,41 @@ namespace ExamenMeerKeuzeQuiz
             string errorLogPath = config.GetSection("FileSettings")["errorLogPath"];
             string sourceFileType = config.GetSection("FileSettings")["sourceFileType"];
             string databaseType = config.GetSection("FileSettings")["databaseType"];
+            string TxtAchter = "TXT_ACHTER";
+            string TxtOnder = "TXT_ONDER";
 
 
-            //var loginconnection = new SqlConnection(loginconnectionString);
+            var databaseConnection = new SqlConnection(connectionString);
+            IVragenRepository vragenRepository = RepositoryFactory.CreateVragenRepository(databaseType, connectionString);
+
+            IFileReader fileReader = FileReaderFactory.CreateFileReader(sourceFilePathc_1, TxtAchter, errorLogPath);
+            IFileReader fileReaderGeo1 = FileReaderFactory.CreateFileReader(sourceFilePathGeo1, TxtOnder, errorLogPath);
+            IFileReader fileReaderGeo2 = FileReaderFactory.CreateFileReader(sourceFilePathGeo2, TxtOnder, errorLogPath);
+            IFileReader fileReaderMuziek1 = FileReaderFactory.CreateFileReader(sourceFilePathMuziek1, TxtOnder, errorLogPath);
+            IFileReader fileReaderMuziek80s1 = FileReaderFactory.CreateFileReader(sourceFilePathMuziek80s1, TxtOnder, errorLogPath);
+            IFileReader fileReaderMuziek80s2 = FileReaderFactory.CreateFileReader(sourceFilePathMuziek80s2, TxtOnder, errorLogPath);
+            IFileReader fileReaderSQL_Beg = FileReaderFactory.CreateFileReader(sourceFilePathSQL_Beg, TxtOnder, errorLogPath);
+            IFileReader fileReaderSQL_Beg2 = FileReaderFactory.CreateFileReader(sourceFilePathSQL_Beg2, TxtOnder, errorLogPath);
+            IFileReader fileReaderSQL_Ex = FileReaderFactory.CreateFileReader(sourceFilePathSQL_Ex, TxtOnder, errorLogPath);
+
+            ImportManager importManager = new ImportManager(vragenRepository, fileReader);
+            ImportManager importManagerGeo1 = new ImportManager(vragenRepository, fileReaderGeo1);
+            ImportManager importManagerGeo2 = new ImportManager(vragenRepository, fileReaderGeo2);
+            ImportManager importManagerMuziek1 = new ImportManager(vragenRepository, fileReaderMuziek1);
+            ImportManager importManagerMuziek80s1 = new ImportManager(vragenRepository, fileReaderMuziek80s1);
+            ImportManager importManagerMuziek80s2 = new ImportManager(vragenRepository, fileReaderMuziek80s2);
+            ImportManager importManagerSQL_Beg = new ImportManager(vragenRepository, fileReaderSQL_Beg);
+            ImportManager importManagerSQL_Beg2 = new ImportManager(vragenRepository, fileReaderSQL_Beg2);
+            ImportManager importManagerSQL_Ex = new ImportManager(vragenRepository, fileReaderSQL_Ex);
+            importManager.ImporteerBestand(sourceFilePathc_1);
+            importManagerGeo1.ImporteerBestand(sourceFilePathGeo1);
+            importManagerGeo2.ImporteerBestand(sourceFilePathGeo2);
+            importManagerMuziek1.ImporteerBestand(sourceFilePathMuziek1);
+            importManagerMuziek80s1.ImporteerBestand(sourceFilePathMuziek80s1);
+            importManagerMuziek80s2.ImporteerBestand(sourceFilePathMuziek80s2);
+            importManagerSQL_Beg.ImporteerBestand(sourceFilePathSQL_Beg);
+            importManagerSQL_Beg2.ImporteerBestand(sourceFilePathSQL_Beg2);
+            importManagerSQL_Ex.ImporteerBestand(sourceFilePathSQL_Ex);
         }
         
     }

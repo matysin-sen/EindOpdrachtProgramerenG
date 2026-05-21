@@ -5,19 +5,22 @@ namespace MeerKeuzeBL
 {
     public class ImportManager
     {
-        private readonly IVragenRepoistory _repository;
+        private readonly IVragenRepository _repository;
+        private readonly IFileReader _fileReader;
 
         // Constructor: we geven de repository interface mee
-        public ImportManager(IVragenRepoistory repository)
+        public ImportManager(IVragenRepository repository, IFileReader fileReader)
         {
             _repository = repository;
+            _fileReader = fileReader;
         }
 
         // De hoofdmethode die het inlezen en opslaan coördineert
-        public void ImporteerBestand(string pad, IFileReader fileReader)
+        public void ImporteerBestand(string pad)
         {
+            
             // 1. Lees het bestand in met de gekozen strategie (bijv. FileReaderAntwoordOnder)
-            List<Vragen> ingelezenVragen = fileReader.Read(pad);
+            List<Vragen> ingelezenVragen = _fileReader.Read(pad);
 
             if (ingelezenVragen == null || ingelezenVragen.Count == 0)
             {
@@ -32,4 +35,4 @@ namespace MeerKeuzeBL
         }
     }
 }
-}
+

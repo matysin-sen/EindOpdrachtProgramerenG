@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MeerKeuzeBL.Interface
 {
-    public interface IVragenRepoistory
+    public interface IVragenRepository
     {
         public void VoegVraagToe(Vragen vraag);
     }

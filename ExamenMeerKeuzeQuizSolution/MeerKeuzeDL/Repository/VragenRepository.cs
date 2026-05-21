@@ -1,11 +1,12 @@
 ﻿using MeerKeuzeBL.Domein;
+using MeerKeuzeBL.Interface;
 using Microsoft.Data.SqlClient;
 
 namespace MeerKeuzeDL.Repository
 {
 
-        public class VragenRepository
-        {
+        public class VragenRepository : IVragenRepository
+    {
             private readonly string _connectionString;
 
             // Geef de connection string mee via de constructor
@@ -17,8 +18,8 @@ namespace MeerKeuzeDL.Repository
             public void VoegVraagToe(Vragen vraag)
             {
             // OUTPUT INSERTED.VraagID geeft meteen het nieuwe ID terug dat de database heeft verzonnen
-            string sqlVraag = "INSERT INTO Vragen (Vraagzin) OUTPUT INSERTED.VraagID VALUES (@VraagTekst)";
-            string sqlAntwoord = "INSERT INTO Antwoorden (VraagID, AntwoordZin, IsCorrect) VALUES (@VraagID, @AntwoordTekst, @IsCorrect)";
+            string sqlVraag = "INSERT INTO VRAGEN (Vraagzin) OUTPUT INSERTED.IDVraag VALUES (@Vraagzin)";
+            string sqlAntwoord = "INSERT INTO ANTWOORDEN (VraagID, AntwoordZin, IsCorrect) VALUES (@VraagID, @Antwoordzin, @IsCorrect)";
 
                 using (SqlConnection conn = new SqlConnection(_connectionString))
                 {

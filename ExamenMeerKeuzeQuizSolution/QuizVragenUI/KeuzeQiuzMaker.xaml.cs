@@ -15,11 +15,26 @@ namespace QuizVragenUI
     /// <summary>
     /// Interaction logic for Window1.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class KeuzeQuizMaker : Window
     {
-        public Window1()
+        public KeuzeQuizMaker()
         {
             InitializeComponent();
+        }
+
+        private void btnNieuweVraag_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnQuizSpelen_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnScore_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -1,0 +1,9 @@
+C:\Users\matys\source\repos\hogent 25-26 programeren basis\programeren gevorderd\Examen\EindOpdrachtProgramerenG\ExamenMeerKeuzeQuizSolution\QuizVragenUI\obj\Debug\net10.0-windows\QuizVragenUI.csproj.AssemblyReference.cache
+C:\Users\matys\source\repos\hogent 25-26 programeren basis\programeren gevorderd\Examen\EindOpdrachtProgramerenG\ExamenMeerKeuzeQuizSolution\QuizVragenUI\obj\Debug\net10.0-windows\KeuzeQiuzMaker.g.cs
+C:\Users\matys\source\repos\hogent 25-26 programeren basis\programeren gevorderd\Examen\EindOpdrachtProgramerenG\ExamenMeerKeuzeQuizSolution\QuizVragenUI\obj\Debug\net10.0-windows\MainWindow.g.cs
+C:\Users\matys\source\repos\hogent 25-26 programeren basis\programeren gevorderd\Examen\EindOpdrachtProgramerenG\ExamenMeerKeuzeQuizSolution\QuizVragenUI\obj\Debug\net10.0-windows\QuizOptiesxaml.g.cs
+C:\Users\matys\source\repos\hogent 25-26 programeren basis\programeren gevorderd\Examen\EindOpdrachtProgramerenG\ExamenMeerKeuzeQuizSolution\QuizVragenUI\obj\Debug\net10.0-windows\ScoreBekijken.g.cs
+C:\Users\matys\source\repos\hogent 25-26 programeren basis\programeren gevorderd\Examen\EindOpdrachtProgramerenG\ExamenMeerKeuzeQuizSolution\QuizVragenUI\obj\Debug\net10.0-windows\VraagToevoegen.g.cs
+C:\Users\matys\source\repos\hogent 25-26 programeren basis\programeren gevorderd\Examen\EindOpdrachtProgramerenG\ExamenMeerKeuzeQuizSolution\QuizVragenUI\obj\Debug\net10.0-windows\App.g.cs
+C:\Users\matys\source\repos\hogent 25-26 programeren basis\programeren gevorderd\Examen\EindOpdrachtProgramerenG\ExamenMeerKeuzeQuizSolution\QuizVragenUI\obj\Debug\net10.0-windows\QuizVragenUI_MarkupCompile.cache
+C:\Users\matys\source\repos\hogent 25-26 programeren basis\programeren gevorderd\Examen\EindOpdrachtProgramerenG\ExamenMeerKeuzeQuizSolution\QuizVragenUI\obj\Debug\net10.0-windows\QuizVragenUI_MarkupCompile.lref

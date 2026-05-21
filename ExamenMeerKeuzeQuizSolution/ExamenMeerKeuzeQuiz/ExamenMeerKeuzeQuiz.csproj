@@ -18,6 +18,15 @@
   <ItemGroup>
     <ProjectReference Include="..\MeerKeuzeBL\MeerKeuzeBL.csproj" />
     <ProjectReference Include="..\MeerKeuzeDL\MeerKeuzeDL.csproj" />
+    <ProjectReference Include="..\QuizUtil\QuizUtil.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>

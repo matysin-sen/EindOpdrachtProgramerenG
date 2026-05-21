@@ -685,6 +685,20 @@
         "runtime": {
           "bin/placeholder/MeerKeuzeDL.dll": {}
         }
+      },
+      "QuizUtil/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "MeerKeuzeBL": "1.0.0",
+          "MeerKeuzeDL": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/QuizUtil.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/QuizUtil.dll": {}
+        }
       }
     }
   },
@@ -1726,6 +1740,11 @@
       "type": "project",
       "path": "../MeerKeuzeDL/MeerKeuzeDL.csproj",
       "msbuildProject": "../MeerKeuzeDL/MeerKeuzeDL.csproj"
+    },
+    "QuizUtil/1.0.0": {
+      "type": "project",
+      "path": "../QuizUtil/QuizUtil.csproj",
+      "msbuildProject": "../QuizUtil/QuizUtil.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -1736,7 +1755,8 @@
       "Microsoft.Extensions.Configuration >= 11.0.0-preview.4.26230.115",
       "Microsoft.Extensions.Configuration.Abstractions >= 11.0.0-preview.4.26230.115",
       "Microsoft.Extensions.Configuration.FileExtensions >= 11.0.0-preview.4.26230.115",
-      "Microsoft.Extensions.Configuration.Json >= 11.0.0-preview.4.26230.115"
+      "Microsoft.Extensions.Configuration.Json >= 11.0.0-preview.4.26230.115",
+      "QuizUtil >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -1778,6 +1798,9 @@
             },
             "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\MeerKeuzeDL\\MeerKeuzeDL.csproj": {
               "projectPath": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\MeerKeuzeDL\\MeerKeuzeDL.csproj"
+            },
+            "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizUtil\\QuizUtil.csproj": {
+              "projectPath": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizUtil\\QuizUtil.csproj"
             }
           }
         }
