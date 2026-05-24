@@ -53,7 +53,7 @@ namespace QuizVragenUI {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/QuizVragenUI;component/scorebekijken.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/QuizVragenUI;V1.0.0.0;component/scorebekijken.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\ScoreBekijken.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
