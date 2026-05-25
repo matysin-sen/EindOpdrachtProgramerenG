@@ -21,10 +21,10 @@
         <StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,-3,0">
             
                 <TextBlock>Welk Onderwerp wil je kiezen?</TextBlock>
-                <ComboBox  FontSize="20" x:Name="cmbBoxOnderwerp" Width="200"/>
+                <ComboBox  FontSize="20" x:Name="cmbBoxOnderwerp" Width="200" SelectionChanged="cmbBoxOnderwerp_SelectionChanged"/>
                 <TextBlock>Hoeveel vragen wil je spelen?</TextBlock>
-                <xctk:IntegerUpDown Minimum="1" Maximum="99" Value="1" />
-
+                <xctk:IntegerUpDown Minimum="1" Maximum="99" Value="1" x:Name="AantalVragen" />
+                <Button x:Name="btnStartQuiz" Click="btnStartQuiz_Click">Start Quiz</Button>
 
         </StackPanel>
            

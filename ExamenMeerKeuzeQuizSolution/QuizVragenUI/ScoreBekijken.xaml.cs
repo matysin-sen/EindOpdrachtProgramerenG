@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MeerKeuzeBL.Managers;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -17,9 +18,11 @@ namespace QuizVragenUI
     /// </summary>
     public partial class ScoreBekijken : Window
     {
-        public ScoreBekijken()
+        private Manager Manager;
+        public ScoreBekijken(Manager manager)
         {
             InitializeComponent();
+            this.Manager = manager;
         }
     }
 }

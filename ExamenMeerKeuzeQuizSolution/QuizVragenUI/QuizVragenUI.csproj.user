@@ -8,6 +8,9 @@
     <Compile Update="QuizOptiesxaml.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="QuizSpelen.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="ScoreBekijken.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

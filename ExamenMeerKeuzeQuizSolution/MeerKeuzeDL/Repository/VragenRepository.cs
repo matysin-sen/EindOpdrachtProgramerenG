@@ -141,7 +141,45 @@ namespace MeerKeuzeDL.Repository
 
             return onderwerpenLijst;
         }
+
+        public void voegUserToe(string naam,string achternaam)
+        {
+            // 1. Schrijf de SQL query (Pas 'GEBRUIKERS', 'Naam' en 'Achternaam' aan naar jouw echte tabel- en kolomnamen)
+            string query = "INSERT INTO USERS (Naam, Voornaam) VALUES (@Naam, @Voornaam)";
+
+            // 2. Maak verbinding met de databank
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                // 3. Maak het SQL commando klaar
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    // 4. Koppel de parameters aan de veilige @-variabelen om SQL-injectie te voorkomen
+                    cmd.Parameters.AddWithValue("@Naam", achternaam);
+                    cmd.Parameters.AddWithValue("@Voornaam", naam);
+
+                    try
+                    {
+                        // 5. Open de verbinding en voer de query uit
+                        conn.Open();
+
+                        // ExecuteNonQuery gebruiken we voor INSERT, UPDATE of DELETE (als we geen ID terug hoeven)
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        // Fouten opvangen en duidelijk doorgeven
+                        throw new Exception("Fout bij het toevoegen van de user: " + ex.Message);
+                    }
+                }
+            }
+        }
+
+        public List<Vragen> GeefVragenVoorOnderwerp(int onderwerpID)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
+
 
 

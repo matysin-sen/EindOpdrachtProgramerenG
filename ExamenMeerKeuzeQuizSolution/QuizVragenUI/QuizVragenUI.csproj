@@ -10,6 +10,16 @@
 
   <ItemGroup>
     <PackageReference Include="Extended.Wpf.Toolkit" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="7.1.0-preview1.26124.5" />
+    <PackageReference Include="Microsoft.Data.SqlClient.Extensions.Abstractions" Version="1.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="11.0.0-preview.4.26230.115" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="11.0.0-preview.4.26230.115" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="11.0.0-preview.4.26230.115" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MeerKeuzeBL\MeerKeuzeBL.csproj" />
+    <ProjectReference Include="..\QuizUtil\QuizUtil.csproj" />
   </ItemGroup>
 
   <ItemGroup>

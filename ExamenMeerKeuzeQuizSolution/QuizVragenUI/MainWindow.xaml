@@ -21,7 +21,7 @@
 
         <StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,-3,0">
             <StackPanel>
-                <TextBlock>Gebruiker (naam):</TextBlock>
+                <TextBlock><Run Text="Gebruiker (naam + achternaam)"/></TextBlock>
                 <TextBox Width="155" x:Name="txtBoxNaam"></TextBox>
             </StackPanel>
 

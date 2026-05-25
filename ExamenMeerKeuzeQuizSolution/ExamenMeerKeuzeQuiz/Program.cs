@@ -1,6 +1,6 @@
-﻿using MeerKeuzeBL;
-using MeerKeuzeBL.Domein;
+﻿using MeerKeuzeBL.Domein;
 using MeerKeuzeBL.Interface;
+using MeerKeuzeBL.Managers;
 using MeerKeuzeDL.FileReader;
 using MeerKeuzeDL.Repository;
 using Microsoft.Data.SqlClient;
@@ -68,6 +68,12 @@ namespace ExamenMeerKeuzeQuiz
             importManagerSQL_Beg.ImporteerBestand(sourceFilePathSQL_Beg);
             importManagerSQL_Beg2.ImporteerBestand(sourceFilePathSQL_Beg2);
             importManagerSQL_Ex.ImporteerBestand(sourceFilePathSQL_Ex);
+
+
+            importManager.voegonderwerpToe("Alles");
+            importManager.voegonderwerpToe("Muziek - 80's");
+            importManager.voegonderwerpToe("Sql");
+            importManager.voegonderwerpToe("Geografie");
         }
         
     }

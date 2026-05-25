@@ -11,5 +11,10 @@ namespace MeerKeuzeBL.Interface
 
         public List<Onderwerpen> GeefAlleOnderwerpen();
         public Onderwerpen VoegOnderwerpToe(string onderwerpNaam);
+
+        public List<Vragen> GeefVragenVoorOnderwerp(int onderwerpID);
+
+        public void voegUserToe(string naam, string achternaam);
+
     }
 }
