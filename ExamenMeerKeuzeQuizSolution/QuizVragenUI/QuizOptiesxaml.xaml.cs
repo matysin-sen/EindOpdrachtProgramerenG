@@ -33,20 +33,31 @@ namespace QuizVragenUI
 
         private void btnStartQuiz_Click(object sender, RoutedEventArgs e)
         {
-            string onderwerp = cmbBoxOnderwerp.SelectedItem.ToString();
-           int aantalvragen = AantalVragen.Value.HasValue ? (int)AantalVragen.Value.Value : 0;
-            if (string.IsNullOrEmpty(onderwerp))
+            if (cmbBoxOnderwerp.SelectedItem == null)
             {
-                MessageBox.Show("Selecteer een onderwerp.");
+                MessageBox.Show("Selecteer eerst een onderwerp.");
                 return;
             }
+
+            // 2. Nu kunnen we het veilig omzetten (casten) naar een écht Onderwerpen object
+            Onderwerpen gekozenOnderwerp = (Onderwerpen)cmbBoxOnderwerp.SelectedItem;
+
+            // 3. Haal het aantal vragen op
+            int aantalvragen = AantalVragen.Value.HasValue ? (int)AantalVragen.Value.Value : 0;
+
             if (aantalvragen <= 0)
             {
-                MessageBox.Show("Voer een geldig aantal vragen in.");
+                MessageBox.Show("Voer een geldig aantal vragen in (groter dan 0).");
                 return;
             }
-            QuizSpelen quizSpelen = new QuizSpelen(manager, onderwerp, aantalvragen);
+
+            // 4. Open het nieuwe scherm en geef het échte object door in plaats van een string
+            // Let op: pas de constructor in QuizSpelen.xaml.cs aan zodat hij een 'Onderwerpen' object verwacht!
+            QuizSpelen quizSpelen = new QuizSpelen(manager, gekozenOnderwerp, aantalvragen);
             quizSpelen.Show();
+
+            // Optioneel: sluit dit huidige keuzescherm af
+            this.Close();
         }
 
         private void cmbBoxOnderwerp_SelectionChanged(object sender, SelectionChangedEventArgs e)

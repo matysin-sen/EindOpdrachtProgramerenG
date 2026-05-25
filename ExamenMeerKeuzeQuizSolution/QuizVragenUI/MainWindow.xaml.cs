@@ -49,6 +49,7 @@ namespace QuizVragenUI
             string TxtOnder = "TXT_ONDER";
             importManager = new ImportManager(new VragenRepository(connectionString), new FileReaderAntwoordOnder());
             manager = new Manager(new VragenRepository(connectionString));
+            
         }
 
       

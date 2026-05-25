@@ -20,8 +20,9 @@ namespace MeerKeuzeDL.Repository
             // OUTPUT INSERTED.VraagID geeft meteen het nieuwe ID terug dat de database heeft verzonnen
             string sqlVraag = "INSERT INTO VRAGEN (Vraagzin) OUTPUT INSERTED.IDVraag VALUES (@Vraagzin)";
             string sqlAntwoord = "INSERT INTO ANTWOORDEN (VraagID, AntwoordZin, IsCorrect) VALUES (@VraagID, @Antwoordzin, @IsCorrect)";
-
-                using (SqlConnection conn = new SqlConnection(_connectionString))
+            // --- NIEUW: Query voor de tussentabel ---
+            string sqlTussentabel = "INSERT INTO VRAGEN_ONDERWERPEN (VraagID, OnderwerpID) VALUES (@VraagID, @OnderwerpID)";
+            using (SqlConnection conn = new SqlConnection(_connectionString))
                 {
                     conn.Open();
 
@@ -57,9 +58,22 @@ namespace MeerKeuzeDL.Repository
                                     }
                                 }
                             }
+                        // --- 3. NIEUW: Sla de koppeling met onderwerpen op in de tussentabel ---
+                        if (vraag.Onderwerp != null)
+                        {
+                            foreach (var onderwerp in vraag.Onderwerp)
+                            {
+                                using (SqlCommand cmdTussen = new SqlCommand(sqlTussentabel, conn, transaction))
+                                {
+                                    cmdTussen.Parameters.AddWithValue("@VraagID", nieuwVraagID);
+                                    cmdTussen.Parameters.AddWithValue("@OnderwerpID", onderwerp.OnderwerpID); // Zorg dat dit klopt met de property naam in je klasse Onderwerpen!
 
-                            // Alles is goed gegaan, sla de wijzigingen definitief op in de databank
-                            transaction.Commit();
+                                    cmdTussen.ExecuteNonQuery();
+                                }
+                            }
+                        }
+                        // Alles is goed gegaan, sla de wijzigingen definitief op in de databank
+                        transaction.Commit();
                         }
                         catch (Exception ex)
                         {
@@ -174,9 +188,66 @@ namespace MeerKeuzeDL.Repository
             }
         }
 
-        public List<Vragen> GeefVragenVoorOnderwerp(int onderwerpID)
+        public List<Vragen> GeefRandomVragenVoorOnderwerp(int onderwerpId, int aantalVragen)
         {
-            throw new NotImplementedException();
+            List<Vragen> quizVragen = new List<Vragen>();
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+
+                // 1. Haal random vragen op via de tussentabel (ORDER BY NEWID() zorgt voor randomisatie)
+                string sqlVragen = @"
+            SELECT TOP (@Aantal) v.IDVraag, v.Vraagzin 
+            FROM VRAGEN v
+            INNER JOIN VRAGEN_ONDERWERPEN vo ON v.IDVraag = vo.VraagID
+            WHERE vo.OnderwerpID = @OnderwerpID
+            ORDER BY NEWID()";
+
+                using (SqlCommand cmd = new SqlCommand(sqlVragen, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Aantal", aantalVragen);
+                    cmd.Parameters.AddWithValue("@OnderwerpID", onderwerpId);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int vraagId = Convert.ToInt32(reader["IDVraag"]);
+                            string vraagZin = reader["Vraagzin"].ToString();
+
+                            // Maak de vraag alvast aan
+                            Vragen vraag = new Vragen(vraagId, vraagZin, new List<Antwoorden>(), new List<Onderwerpen>());
+                            quizVragen.Add(vraag);
+                        }
+                    }
+                }
+
+                // 2. We hebben nu de vragen, maar we moeten ook hun antwoorden ophalen!
+                string sqlAntwoorden = "SELECT IDAntwoord, AntwoordZin, IsCorrect FROM ANTWOORDEN WHERE VraagID = @VraagID";
+
+                foreach (var vraag in quizVragen)
+                {
+                    using (SqlCommand cmdAntw = new SqlCommand(sqlAntwoorden, conn))
+                    {
+                        cmdAntw.Parameters.AddWithValue("@VraagID", vraag.VraagID);
+                        using (SqlDataReader readerAntw = cmdAntw.ExecuteReader())
+                        {
+                            while (readerAntw.Read())
+                            {
+                                string antwZin = readerAntw["AntwoordZin"].ToString();
+                                bool isCorrect = Convert.ToBoolean(readerAntw["IsCorrect"]);
+
+                                // Voeg het antwoord toe aan de lijst van deze specifieke vraag
+                                vraag.Antwoorden.Add(new Antwoorden( isCorrect, antwZin));
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Geef de complete lijst (vragen mét antwoorden) terug aan je Manager
+            return quizVragen;
         }
     }
 }
