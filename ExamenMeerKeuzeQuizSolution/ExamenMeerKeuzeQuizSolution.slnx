@@ -2,6 +2,7 @@
   <Project Path="ExamenMeerKeuzeQuiz/ExamenMeerKeuzeQuiz.csproj" />
   <Project Path="MeerKeuzeBL/MeerKeuzeBL.csproj" />
   <Project Path="MeerKeuzeDL/MeerKeuzeDL.csproj" />
+  <Project Path="QuizUnitTest/QuizUnitTest.csproj" Id="f7c5a068-cb08-4087-b024-b685217dfc8a" />
   <Project Path="QuizUtil/QuizUtil.csproj" Id="15a292ad-5f7c-4f3c-9a40-55759b560fcb" />
   <Project Path="QuizVragenUI/QuizVragenUI.csproj" Id="37a99f20-888f-4380-8527-fd9780c1ba56" />
 </Solution>

@@ -16,34 +16,7 @@ namespace MeerKeuzeBL.Managers
             _fileReader = fileReader;
         }
 
-        // De hoofdmethode die het inlezen en opslaan coördineert
-        /*
-        public void ImporteerBestand(string pad)
-        {
-            List<Onderwerpen> alleOnderwerpen = _repository.GeefAlleOnderwerpen();
-            // 1.BEPAAL HET ONDERWERP VIA JE NIEUWE METHODE
-            Onderwerpen match = BepaalOnderwerpViaBestand(pad, alleOnderwerpen);
-
-            if (match == null) 
-            {
-                throw new Exception("Geen overeenkomend onderwerp gevonden voor dit bestand.");
-            }
-            // 2. Lees het bestand in met de gekozen strategie (bijv. FileReaderAntwoordOnder)
-            List<Vragen> ingelezenVragen = _fileReader.Read(pad);
-
-            if (ingelezenVragen == null || ingelezenVragen.Count == 0)
-            {
-                throw new Exception("Geen vragen gevonden of het bestand is leeg.");
-            }
-
-            // 3. Loop door alle gevonden vragen en sla ze op in de databank
-            foreach (Vragen vraag in ingelezenVragen)
-            {
-                vraag.Onderwerp = new List<Onderwerpen> { match };// Koppel het berekende onderwerp aan de vraag
-                _repository.VoegVraagToe(vraag);
-            }
-        }*/
-        // In ImportManager.cs
+     
         public void ImporteerBestand(string pad,IFileReader reader, Onderwerpen gekozenOnderwerp)
         {
             // 1. Maak de juiste reader aan via de factory
@@ -64,6 +37,7 @@ namespace MeerKeuzeBL.Managers
             _repository.VoegOnderwerpToe(onderwerpNaam);
         }
 
+        /*
         public Onderwerpen BepaalOnderwerpViaBestand(string bestandsPad, List<Onderwerpen> alleOnderwerpen)
         {
             // Dit haalt "Geo1.txt" of "Muziek80s1.txt" uit de lange C:\... mapstructuur
@@ -90,11 +64,11 @@ namespace MeerKeuzeBL.Managers
                 gezochteNaam = "algemeen";
                 
             }
-
+               // ik vond dit nog een leuke manier om het te doen maar het was niet de meest efficiënte, dus ik heb het uiteindelijk niet gebruikt.
             // 2. Zoek in de lijst uit de database naar het object met de juiste naam
             // .FirstOrDefault() geeft null terug als de naam niet in de DB staat
             return alleOnderwerpen.FirstOrDefault(o => o.OnderwerpNaam.Equals(gezochteNaam, StringComparison.OrdinalIgnoreCase));
-        }
+        }*/
     }
 }
 

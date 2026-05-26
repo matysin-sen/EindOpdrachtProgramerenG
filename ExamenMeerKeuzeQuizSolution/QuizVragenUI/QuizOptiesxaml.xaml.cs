@@ -70,9 +70,6 @@ namespace QuizVragenUI
         }
         
 
-        private void cmbBoxOnderwerp_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            
-        }
+      
     }
 }

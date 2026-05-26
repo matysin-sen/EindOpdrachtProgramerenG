@@ -15,7 +15,7 @@ namespace MeerKeuzeBL.Domein
         {
             AntwoordObject = antwoordObject;
             Letter = letter;
-            AntwoordenID = antwoordObject.AntwoordID; // ← dit toevoegen
+            AntwoordenID = antwoordObject.AntwoordID; 
             IsCorrect = antwoordObject.IsCorrect;
         }
 

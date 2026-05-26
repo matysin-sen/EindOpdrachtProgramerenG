@@ -82,9 +82,6 @@ namespace QuizVragenUI
 
         }
 
-        private void btnOnderwerpToevoegen_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
     }
 }

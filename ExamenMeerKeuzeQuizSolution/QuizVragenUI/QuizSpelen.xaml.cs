@@ -118,11 +118,10 @@ namespace QuizVragenUI
             }
             else
             {
-                // --- HIER GAAT HET MIS: QUIZ OPSLAAN ---
-                // 1. Eerst de quiz opslaan in DB om het ID te krijgen
-                //int opgeslagenQuizId = _manager.BewaarQuiz(_actieveQuiz);
+              
+               
 
-                // 2. Nu pas de antwoorden opslaan met het ID
+                // 1. Nu pas de antwoorden opslaan met het ID
                 _manager.SlaQuizEnAntwoordenOp(_actieveQuiz, userId);
 
                 MessageBox.Show($"Einde quiz! Score: {_actieveQuiz.Score}");

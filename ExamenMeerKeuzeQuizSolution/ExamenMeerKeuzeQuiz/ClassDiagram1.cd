@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ExamenMeerKeuzeQuiz.Program">
+    <Position X="10.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MeerKeuzeBL.Domein.Antwoorden">
+    <Position X="13.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="MeerKeuzeBL.Domein.GegevenAntwoorden">
+    <Position X="15.25" Y="4" Width="1.5" />
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="AntwoordObject" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MeerKeuzeBL.Domein.GemaakteTest">
+    <Position X="13.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="MeerKeuzeBL.Domein.Onderwerpen">
+    <Position X="17.5" Y="4" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="MeerKeuzeBL.Domein.QuizOpstellen">
+    <Position X="13.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="MeerKeuzeBL.Domein.Vragen">
+    <Position X="11.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="MeerKeuzeBL.Managers.ImportManager">
+    <Position X="16.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="MeerKeuzeBL.Managers.Manager">
+    <Position X="8.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="MeerKeuzeDL.FileReader.FileReaderAntwoordAchterVraag" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MeerKeuzeDL.FileReader.FileReaderAntwoordOnder" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MeerKeuzeDL.Repository.VragenRepository" BaseTypeListCollapsed="true">
+    <Position X="6.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="QuizUtil.FileReaderFactory">
+    <Position X="8" Y="2.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="QuizUtil.RepositoryFactory">
+    <Position X="10" Y="2.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Interface Name="MeerKeuzeBL.Interface.IFileReader">
+    <Position X="1" Y="3.75" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="MeerKeuzeBL.Interface.IVragenRepository">
+    <Position X="2.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

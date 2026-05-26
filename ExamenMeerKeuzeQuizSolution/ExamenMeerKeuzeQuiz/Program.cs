@@ -59,15 +59,7 @@ namespace ExamenMeerKeuzeQuiz
             ImportManager importManagerSQL_Beg = new ImportManager(vragenRepository, fileReaderSQL_Beg);
             ImportManager importManagerSQL_Beg2 = new ImportManager(vragenRepository, fileReaderSQL_Beg2);
             ImportManager importManagerSQL_Ex = new ImportManager(vragenRepository, fileReaderSQL_Ex);
-            importManager.ImporteerBestand(sourceFilePathc_1);
-            importManagerGeo1.ImporteerBestand(sourceFilePathGeo1);
-            importManagerGeo2.ImporteerBestand(sourceFilePathGeo2);
-            importManagerMuziek1.ImporteerBestand(sourceFilePathMuziek1);
-            importManagerMuziek80s1.ImporteerBestand(sourceFilePathMuziek80s1);
-            importManagerMuziek80s2.ImporteerBestand(sourceFilePathMuziek80s2);
-            importManagerSQL_Beg.ImporteerBestand(sourceFilePathSQL_Beg);
-            importManagerSQL_Beg2.ImporteerBestand(sourceFilePathSQL_Beg2);
-            importManagerSQL_Ex.ImporteerBestand(sourceFilePathSQL_Ex);
+         
 
 
         }

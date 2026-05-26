@@ -25,7 +25,7 @@
             <ComboBox  FontSize="20" x:Name="cmbBoxOnderwerp" Width="200" SelectionChanged="cmbBoxOnderwerp_SelectionChanged"/>
 
             <Button x:Name="btnImporteerQuiz" Click="btnStartQuiz_Click">importeer Quiz</Button>
-            <Button x:Name="btnOnderwerpToevoegen" Click="btnOnderwerpToevoegen_Click">Onderwerp Toevoegen</Button>
+            
             </StackPanel>
     </Grid>
 </Window>
