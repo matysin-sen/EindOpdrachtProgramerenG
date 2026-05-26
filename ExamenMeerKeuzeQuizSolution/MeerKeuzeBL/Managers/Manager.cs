@@ -77,5 +77,22 @@ namespace MeerKeuzeBL.Managers
             // 6. Geef de quiz terug zodat de UI hem kan gebruiken
             return nieuweQuiz;
         }
+
+        public void BeantwoordVraag(QuizOpstellen quiz, Vragen vraag, string gekozenLetter, int antwoordId)
+        {
+            // Zoek het antwoord object op
+            var antwoordObj = vraag.Antwoorden.FirstOrDefault(a => a.AntwoordID == antwoordId);
+
+            // Maak het resultaat object
+            GegevenAntwoorden resultaat = new GegevenAntwoorden
+            {
+                AntwoordenID = antwoordId,
+                GekozenLetter = gekozenLetter,
+                IsCorrect = antwoordObj != null && antwoordObj.IsCorrect // Controleer direct in de data
+            };
+
+            // Sla op in de dictionary van de quiz
+            quiz.IngevuldeAntwoorden[vraag] = resultaat;
+        }
     }
 }

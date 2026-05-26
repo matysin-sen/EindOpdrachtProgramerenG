@@ -1,21 +1,26 @@
 ﻿using MeerKeuzeBL.Domein;
 using MeerKeuzeBL.Interface;
 using Microsoft.Data.SqlClient;
+using System.Data.Common;
 
 namespace MeerKeuzeDL.Repository
 {
 
         public class VragenRepository : IVragenRepository
     {
-            private readonly string _connectionString;
+            private  string _connectionString;
 
             // Geef de connection string mee via de constructor
             public VragenRepository(string connectionString)
             {
                 _connectionString = connectionString;
             }
+         private SqlConnection GetConnection()
+         {
+             return new SqlConnection(_connectionString);
+          }
 
-            public void VoegVraagToe(Vragen vraag)
+        public void VoegVraagToe(Vragen vraag)
             {
             // OUTPUT INSERTED.VraagID geeft meteen het nieuwe ID terug dat de database heeft verzonnen
             string sqlVraag = "INSERT INTO VRAGEN (Vraagzin) OUTPUT INSERTED.IDVraag VALUES (@Vraagzin)";
@@ -348,7 +353,53 @@ namespace MeerKeuzeDL.Repository
 
             return nieuwQuizId;
         }
+        public void BewaarAntwoorden(int quizId, Dictionary<Vragen, GegevenAntwoorden> antwoorden)
+        {
+            // Queries
+            string selectQuery = "SELECT TestVraagId FROM TESTVRAGEN WHERE TestID = @TestId AND VraagId = @VraagId";
+
+            string insertQuery = @"INSERT INTO TESTANTWOORDEN (TestVraagID, AntwoordLetteroptie,AntwoordID) 
+                           VALUES (@TestVraagId, @AntwoordLetteroptie, @AntwoordID)";
+
+            // Gebruik een 'using' block voor de connectie om geheugenlekken te voorkomen
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+
+                foreach (var item in antwoorden)
+                {
+                    int testVraagId = 0;
+
+                    // 1. Haal het TestVraagId op
+                    using (SqlCommand cmdSelect = new SqlCommand(selectQuery, conn))
+                    {
+                        cmdSelect.Parameters.AddWithValue("@TestId", quizId);
+                        cmdSelect.Parameters.AddWithValue("@VraagId", item.Key.VraagID);
+
+                        object result = cmdSelect.ExecuteScalar();
+                        if (result != null)
+                        {
+                            testVraagId = (int)result;
+                        }
+                    }
+
+                    // 2. Sla het antwoord op als we een geldig TestVraagId hebben gevonden
+                    if (testVraagId > 0)
+                    {
+                        using (SqlCommand cmdInsert = new SqlCommand(insertQuery, conn))
+                        {
+                            cmdInsert.Parameters.AddWithValue("@TestVraagId", testVraagId);
+                            cmdInsert.Parameters.AddWithValue("@AntwoordLetteroptie", item.Value.GekozenLetter);
+                            cmdInsert.Parameters.AddWithValue("@AntwoordID", item.Value.AntwoordenID);
+
+                            cmdInsert.ExecuteNonQuery();
+                        }
+                    }
+                }
+            }
+        }
     }
+    
 }
 
 

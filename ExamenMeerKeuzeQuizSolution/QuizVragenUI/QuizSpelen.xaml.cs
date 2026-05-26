@@ -60,16 +60,16 @@ namespace QuizVragenUI
             if (huidigeVraag.Antwoorden.Count >= 4)
             {
                 rbOptieA.Content = "A. " + huidigeVraag.Antwoorden[0].AntwoordTekst;
-                rbOptieA.Tag = huidigeVraag.Antwoorden[0];
+                rbOptieA.Tag = huidigeVraag.Antwoorden[0].AntwoordID;
 
                 rbOptieB.Content = "B. " + huidigeVraag.Antwoorden[1].AntwoordTekst;
-                rbOptieB.Tag = huidigeVraag.Antwoorden[1];
+                rbOptieB.Tag = huidigeVraag.Antwoorden[1].AntwoordID;
 
                 rbOptieC.Content = "C. " + huidigeVraag.Antwoorden[2].AntwoordTekst;
-                rbOptieC.Tag = huidigeVraag.Antwoorden[2];
+                rbOptieC.Tag = huidigeVraag.Antwoorden[2].AntwoordID;
 
                 rbOptieD.Content = "D. " + huidigeVraag.Antwoorden[3].AntwoordTekst;
-                rbOptieD.Tag = huidigeVraag.Antwoorden[3];
+                rbOptieD.Tag = huidigeVraag.Antwoorden[3].AntwoordID;
             }
         }
 
@@ -82,22 +82,30 @@ namespace QuizVragenUI
                 return;
             }
 
-            // 1. Bepaal welk antwoord en welke letter is gekozen
-            Antwoorden gekozenAntwoord = null;
-            string gekozenLetter = "";
+            // 1. Vind de geselecteerde radiobutton
+            RadioButton geselecteerde = null;
+            if (rbOptieA.IsChecked == true) geselecteerde = rbOptieA;
+            else if (rbOptieB.IsChecked == true) geselecteerde = rbOptieB;
+            else if (rbOptieC.IsChecked == true) geselecteerde = rbOptieC;
+            else if (rbOptieD.IsChecked == true) geselecteerde = rbOptieD;
 
-            if (rbOptieA.IsChecked == true) { gekozenAntwoord = (Antwoorden)rbOptieA.Tag; gekozenLetter = "A"; }
-            else if (rbOptieB.IsChecked == true) { gekozenAntwoord = (Antwoorden)rbOptieB.Tag; gekozenLetter = "B"; }
-            else if (rbOptieC.IsChecked == true) { gekozenAntwoord = (Antwoorden)rbOptieC.Tag; gekozenLetter = "C"; }
-            else if (rbOptieD.IsChecked == true) { gekozenAntwoord = (Antwoorden)rbOptieD.Tag; gekozenLetter = "D"; }
-
-            // 2. Haal de huidige vraag op
+            if (geselecteerde == null)
+            {
+                MessageBox.Show("Selecteer een antwoord!");
+                return;
+            }
             Vragen huidigeVraag = _actieveQuiz.VragenLijst[_huidigeVraagIndex];
+            // 2. Haal het AntwoordId uit de Tag (de index van je lijst)
+            int index = int.Parse(geselecteerde.Tag.ToString());
+            var gekozenAntwoordObj = huidigeVraag.Antwoorden[index];
 
-            // 3. JOUW MOOIE KLASSE AANROEPEN:
-            // Dit regelt automatisch de score en het opslaan in de Dictionary!
-            _actieveQuiz.BeantwoordVraag(huidigeVraag, gekozenAntwoord, gekozenLetter);
+            // 3. Bepaal de letter (bijv. 'A' als index 0 is)
+            string gekozenLetter = ((char)('A' + index)).ToString();
 
+            // 4. Stuur naar de manager
+            _manager.BeantwoordVraag(_actieveQuiz, huidigeVraag, gekozenLetter, gekozenAntwoordObj.AntwoordID);
+
+     
             // 4. Ga naar de volgende vraag
             _huidigeVraagIndex++;
 

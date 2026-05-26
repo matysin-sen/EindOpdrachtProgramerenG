@@ -3,28 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A41AB3A7-10DF-9E60-0543-B4EAA21E2248}|MeerKeuzeBL\\MeerKeuzeBL.csproj|c:\\users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\examen\\eindopdrachtprogramereng\\examenmeerkeuzequizsolution\\meerkeuzebl\\domein\\quizopstellen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A41AB3A7-10DF-9E60-0543-B4EAA21E2248}|MeerKeuzeBL\\MeerKeuzeBL.csproj|solutionrelative:meerkeuzebl\\domein\\quizopstellen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7BDE0D2E-6777-1BF8-7B5A-4B73166A6BE7}|MeerKeuzeDL\\MeerKeuzeDL.csproj|c:\\users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\examen\\eindopdrachtprogramereng\\examenmeerkeuzequizsolution\\meerkeuzedl\\repository\\vragenrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BDE0D2E-6777-1BF8-7B5A-4B73166A6BE7}|MeerKeuzeDL\\MeerKeuzeDL.csproj|solutionrelative:meerkeuzedl\\repository\\vragenrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A41AB3A7-10DF-9E60-0543-B4EAA21E2248}|MeerKeuzeBL\\MeerKeuzeBL.csproj|c:\\users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\examen\\eindopdrachtprogramereng\\examenmeerkeuzequizsolution\\meerkeuzebl\\managers\\manager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A41AB3A7-10DF-9E60-0543-B4EAA21E2248}|MeerKeuzeBL\\MeerKeuzeBL.csproj|solutionrelative:meerkeuzebl\\managers\\manager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A41AB3A7-10DF-9E60-0543-B4EAA21E2248}|MeerKeuzeBL\\MeerKeuzeBL.csproj|c:\\users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\examen\\eindopdrachtprogramereng\\examenmeerkeuzequizsolution\\meerkeuzebl\\interface\\ivragenrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A41AB3A7-10DF-9E60-0543-B4EAA21E2248}|MeerKeuzeBL\\MeerKeuzeBL.csproj|solutionrelative:meerkeuzebl\\interface\\ivragenrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{A41AB3A7-10DF-9E60-0543-B4EAA21E2248}|MeerKeuzeBL\\MeerKeuzeBL.csproj|c:\\users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\examen\\eindopdrachtprogramereng\\examenmeerkeuzequizsolution\\meerkeuzebl\\managers\\importmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A41AB3A7-10DF-9E60-0543-B4EAA21E2248}|MeerKeuzeBL\\MeerKeuzeBL.csproj|solutionrelative:meerkeuzebl\\managers\\importmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7BDE0D2E-6777-1BF8-7B5A-4B73166A6BE7}|MeerKeuzeDL\\MeerKeuzeDL.csproj|c:\\users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\examen\\eindopdrachtprogramereng\\examenmeerkeuzequizsolution\\meerkeuzedl\\repository\\vragenrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BDE0D2E-6777-1BF8-7B5A-4B73166A6BE7}|MeerKeuzeDL\\MeerKeuzeDL.csproj|solutionrelative:meerkeuzedl\\repository\\vragenrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A41AB3A7-10DF-9E60-0543-B4EAA21E2248}|MeerKeuzeBL\\MeerKeuzeBL.csproj|c:\\users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\examen\\eindopdrachtprogramereng\\examenmeerkeuzequizsolution\\meerkeuzebl\\domein\\onderwerpen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A41AB3A7-10DF-9E60-0543-B4EAA21E2248}|MeerKeuzeBL\\MeerKeuzeBL.csproj|solutionrelative:meerkeuzebl\\domein\\onderwerpen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{37A99F20-888F-4380-8527-FD9780C1BA56}|QuizVragenUI\\QuizVragenUI.csproj|c:\\users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\examen\\eindopdrachtprogramereng\\examenmeerkeuzequizsolution\\quizvragenui\\quizoptiesxaml.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{37A99F20-888F-4380-8527-FD9780C1BA56}|QuizVragenUI\\QuizVragenUI.csproj|solutionrelative:quizvragenui\\quizoptiesxaml.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{37A99F20-888F-4380-8527-FD9780C1BA56}|QuizVragenUI\\QuizVragenUI.csproj|c:\\users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\examen\\eindopdrachtprogramereng\\examenmeerkeuzequizsolution\\quizvragenui\\quizspelen.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{37A99F20-888F-4380-8527-FD9780C1BA56}|QuizVragenUI\\QuizVragenUI.csproj|solutionrelative:quizvragenui\\quizspelen.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A41AB3A7-10DF-9E60-0543-B4EAA21E2248}|MeerKeuzeBL\\MeerKeuzeBL.csproj|c:\\users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\examen\\eindopdrachtprogramereng\\examenmeerkeuzequizsolution\\meerkeuzebl\\domein\\gegevenantwoorden.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A41AB3A7-10DF-9E60-0543-B4EAA21E2248}|MeerKeuzeBL\\MeerKeuzeBL.csproj|solutionrelative:meerkeuzebl\\domein\\gegevenantwoorden.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A41AB3A7-10DF-9E60-0543-B4EAA21E2248}|MeerKeuzeBL\\MeerKeuzeBL.csproj|c:\\users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\examen\\eindopdrachtprogramereng\\examenmeerkeuzequizsolution\\meerkeuzebl\\domein\\antwoorden.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -35,16 +39,20 @@
       "RelativeMoniker": "D:0:0:{A41AB3A7-10DF-9E60-0543-B4EAA21E2248}|MeerKeuzeBL\\MeerKeuzeBL.csproj|solutionrelative:meerkeuzebl\\domein\\vragen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A41AB3A7-10DF-9E60-0543-B4EAA21E2248}|MeerKeuzeBL\\MeerKeuzeBL.csproj|c:\\users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\examen\\eindopdrachtprogramereng\\examenmeerkeuzequizsolution\\meerkeuzebl\\managers\\manager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A41AB3A7-10DF-9E60-0543-B4EAA21E2248}|MeerKeuzeBL\\MeerKeuzeBL.csproj|solutionrelative:meerkeuzebl\\managers\\manager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{37A99F20-888F-4380-8527-FD9780C1BA56}|QuizVragenUI\\QuizVragenUI.csproj|c:\\users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\examen\\eindopdrachtprogramereng\\examenmeerkeuzequizsolution\\quizvragenui\\quizspelen.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{37A99F20-888F-4380-8527-FD9780C1BA56}|QuizVragenUI\\QuizVragenUI.csproj|solutionrelative:quizvragenui\\quizspelen.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{37A99F20-888F-4380-8527-FD9780C1BA56}|QuizVragenUI\\QuizVragenUI.csproj|c:\\users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\examen\\eindopdrachtprogramereng\\examenmeerkeuzequizsolution\\quizvragenui\\quizoptiesxaml.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{37A99F20-888F-4380-8527-FD9780C1BA56}|QuizVragenUI\\QuizVragenUI.csproj|solutionrelative:quizvragenui\\quizoptiesxaml.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{37A99F20-888F-4380-8527-FD9780C1BA56}|QuizVragenUI\\QuizVragenUI.csproj|c:\\users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\examen\\eindopdrachtprogramereng\\examenmeerkeuzequizsolution\\quizvragenui\\quizspelen.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{37A99F20-888F-4380-8527-FD9780C1BA56}|QuizVragenUI\\QuizVragenUI.csproj|solutionrelative:quizvragenui\\quizspelen.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{37A99F20-888F-4380-8527-FD9780C1BA56}|QuizVragenUI\\QuizVragenUI.csproj|c:\\users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\examen\\eindopdrachtprogramereng\\examenmeerkeuzequizsolution\\quizvragenui\\quizoptiesxaml.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{37A99F20-888F-4380-8527-FD9780C1BA56}|QuizVragenUI\\QuizVragenUI.csproj|solutionrelative:quizvragenui\\quizoptiesxaml.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A41AB3A7-10DF-9E60-0543-B4EAA21E2248}|MeerKeuzeBL\\MeerKeuzeBL.csproj|c:\\users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\examen\\eindopdrachtprogramereng\\examenmeerkeuzequizsolution\\meerkeuzebl\\domein\\quizopstellen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A41AB3A7-10DF-9E60-0543-B4EAA21E2248}|MeerKeuzeBL\\MeerKeuzeBL.csproj|solutionrelative:meerkeuzebl\\domein\\quizopstellen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{37A99F20-888F-4380-8527-FD9780C1BA56}|QuizVragenUI\\QuizVragenUI.csproj|c:\\users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\examen\\eindopdrachtprogramereng\\examenmeerkeuzequizsolution\\quizvragenui\\onderwerpentoevoegen.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -79,19 +87,11 @@
       "RelativeMoniker": "D:0:0:{15A292AD-5F7C-4F3C-9A40-55759B560FCB}|QuizUtil\\QuizUtil.csproj|solutionrelative:quizutil\\filereaderfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A41AB3A7-10DF-9E60-0543-B4EAA21E2248}|MeerKeuzeBL\\MeerKeuzeBL.csproj|c:\\users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\examen\\eindopdrachtprogramereng\\examenmeerkeuzequizsolution\\meerkeuzebl\\managers\\importmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A41AB3A7-10DF-9E60-0543-B4EAA21E2248}|MeerKeuzeBL\\MeerKeuzeBL.csproj|solutionrelative:meerkeuzebl\\managers\\importmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{34D7F958-10E6-8D96-B180-913CCB5271CD}|ExamenMeerKeuzeQuiz\\ExamenMeerKeuzeQuiz.csproj|c:\\users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\examen\\eindopdrachtprogramereng\\examenmeerkeuzequizsolution\\examenmeerkeuzequiz\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{34D7F958-10E6-8D96-B180-913CCB5271CD}|ExamenMeerKeuzeQuiz\\ExamenMeerKeuzeQuiz.csproj|solutionrelative:examenmeerkeuzequiz\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\matys\\AppData\\Local\\Temp\\.vsdbgsrc\\ba71154a7b44d057354e94bf9136ff00912660e0c8e1435d76b141387af3b90b\\XamlReader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A41AB3A7-10DF-9E60-0543-B4EAA21E2248}|MeerKeuzeBL\\MeerKeuzeBL.csproj|c:\\users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\examen\\eindopdrachtprogramereng\\examenmeerkeuzequizsolution\\meerkeuzebl\\domein\\gegevenantwoorden.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A41AB3A7-10DF-9E60-0543-B4EAA21E2248}|MeerKeuzeBL\\MeerKeuzeBL.csproj|solutionrelative:meerkeuzebl\\domein\\gegevenantwoorden.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{37A99F20-888F-4380-8527-FD9780C1BA56}|QuizVragenUI\\QuizVragenUI.csproj|c:\\users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\examen\\eindopdrachtprogramereng\\examenmeerkeuzequizsolution\\quizvragenui\\vraagtoevoegen.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -149,28 +149,15 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "QuizOptiesxaml.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizVragenUI\\QuizOptiesxaml.xaml.cs",
-              "RelativeDocumentMoniker": "QuizVragenUI\\QuizOptiesxaml.xaml.cs",
-              "ToolTip": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizVragenUI\\QuizOptiesxaml.xaml.cs",
-              "RelativeToolTip": "QuizVragenUI\\QuizOptiesxaml.xaml.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAmwDQAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-21T15:30:04.398Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "IVragenRepository.cs",
               "DocumentMoniker": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\MeerKeuzeBL\\Interface\\IVragenRepository.cs",
               "RelativeDocumentMoniker": "MeerKeuzeBL\\Interface\\IVragenRepository.cs",
               "ToolTip": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\MeerKeuzeBL\\Interface\\IVragenRepository.cs",
               "RelativeToolTip": "MeerKeuzeBL\\Interface\\IVragenRepository.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABUAAAAyAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABYAAABjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-20T15:21:48.749Z",
+              "WhenOpened": "2026-05-26T17:05:54.079Z",
               "EditorCaption": ""
             },
             {
@@ -181,27 +168,27 @@
               "RelativeDocumentMoniker": "QuizVragenUI\\QuizSpelen.xaml.cs",
               "ToolTip": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizVragenUI\\QuizSpelen.xaml.cs",
               "RelativeToolTip": "QuizVragenUI\\QuizSpelen.xaml.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAADgv0YAAABOAAAAAAAAAA==",
+              "ViewState": "AgIAAEwAAAAAAAAAAAAAAEcAAABEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-25T14:22:58.544Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "VragenRepository.cs",
               "DocumentMoniker": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\MeerKeuzeDL\\Repository\\VragenRepository.cs",
               "RelativeDocumentMoniker": "MeerKeuzeDL\\Repository\\VragenRepository.cs",
               "ToolTip": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\MeerKeuzeDL\\Repository\\VragenRepository.cs",
               "RelativeToolTip": "MeerKeuzeDL\\Repository\\VragenRepository.cs",
-              "ViewState": "AgIAAFQBAAAAAAAAAAAqwEQBAAA8AAAAAAAAAA==",
+              "ViewState": "AgIAAF8BAAAAAAAAAAAmwGMBAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-07T13:18:58.489Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Onderwerpen.cs",
               "DocumentMoniker": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\MeerKeuzeBL\\Domein\\Onderwerpen.cs",
               "RelativeDocumentMoniker": "MeerKeuzeBL\\Domein\\Onderwerpen.cs",
@@ -214,32 +201,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 0,
               "Title": "Manager.cs",
               "DocumentMoniker": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\MeerKeuzeBL\\Managers\\Manager.cs",
               "RelativeDocumentMoniker": "MeerKeuzeBL\\Managers\\Manager.cs",
               "ToolTip": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\MeerKeuzeBL\\Managers\\Manager.cs",
               "RelativeToolTip": "MeerKeuzeBL\\Managers\\Manager.cs",
-              "ViewState": "AgIAADQAAAAAAAAAAAAmwEkAAAA1AAAAAAAAAA==",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAowFkAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-25T13:10:29.802Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "QuizOptiesxaml.xaml",
-              "DocumentMoniker": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizVragenUI\\QuizOptiesxaml.xaml",
-              "RelativeDocumentMoniker": "QuizVragenUI\\QuizOptiesxaml.xaml",
-              "ToolTip": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizVragenUI\\QuizOptiesxaml.xaml",
-              "RelativeToolTip": "QuizVragenUI\\QuizOptiesxaml.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-05-14T19:16:42.311Z",
+              "DocumentIndex": 11,
+              "Title": "QuizOptiesxaml.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizVragenUI\\QuizOptiesxaml.xaml.cs",
+              "RelativeDocumentMoniker": "QuizVragenUI\\QuizOptiesxaml.xaml.cs",
+              "ToolTip": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizVragenUI\\QuizOptiesxaml.xaml.cs",
+              "RelativeToolTip": "QuizVragenUI\\QuizOptiesxaml.xaml.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAmwDQAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-21T15:30:04.398Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 9,
               "Title": "QuizSpelen.xaml",
               "DocumentMoniker": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizVragenUI\\QuizSpelen.xaml",
               "RelativeDocumentMoniker": "QuizVragenUI\\QuizSpelen.xaml",
@@ -251,108 +239,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "OnderwerpenToevoegen.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizVragenUI\\OnderwerpenToevoegen.xaml.cs",
-              "RelativeDocumentMoniker": "QuizVragenUI\\OnderwerpenToevoegen.xaml.cs",
-              "ToolTip": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizVragenUI\\OnderwerpenToevoegen.xaml.cs",
-              "RelativeToolTip": "QuizVragenUI\\OnderwerpenToevoegen.xaml.cs",
-              "ViewState": "AgIAAEEAAAAAAAAAAAAawE0AAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-26T09:02:19.074Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizVragenUI\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "QuizVragenUI\\MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizVragenUI\\MainWindow.xaml.cs",
-              "RelativeToolTip": "QuizVragenUI\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAvwHsAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-14T18:57:52.723Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "KeuzeQiuzMaker.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizVragenUI\\KeuzeQiuzMaker.xaml.cs",
-              "RelativeDocumentMoniker": "QuizVragenUI\\KeuzeQiuzMaker.xaml.cs",
-              "ToolTip": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizVragenUI\\KeuzeQiuzMaker.xaml.cs",
-              "RelativeToolTip": "QuizVragenUI\\KeuzeQiuzMaker.xaml.cs",
-              "ViewState": "AgIAADUAAAAAAAAAAIA1wEAAAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-21T15:29:31.233Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "KeuzeQiuzMaker.xaml",
-              "DocumentMoniker": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizVragenUI\\KeuzeQiuzMaker.xaml",
-              "RelativeDocumentMoniker": "QuizVragenUI\\KeuzeQiuzMaker.xaml",
-              "ToolTip": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizVragenUI\\KeuzeQiuzMaker.xaml",
-              "RelativeToolTip": "QuizVragenUI\\KeuzeQiuzMaker.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-05-14T19:05:19.452Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "VraagToevoegen.xaml",
-              "DocumentMoniker": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizVragenUI\\VraagToevoegen.xaml",
-              "RelativeDocumentMoniker": "QuizVragenUI\\VraagToevoegen.xaml",
-              "ToolTip": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizVragenUI\\VraagToevoegen.xaml",
-              "RelativeToolTip": "QuizVragenUI\\VraagToevoegen.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-05-14T19:16:23.833Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "OnderwerpenToevoegen.xaml",
-              "DocumentMoniker": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizVragenUI\\OnderwerpenToevoegen.xaml",
-              "RelativeDocumentMoniker": "QuizVragenUI\\OnderwerpenToevoegen.xaml",
-              "ToolTip": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizVragenUI\\OnderwerpenToevoegen.xaml",
-              "RelativeToolTip": "QuizVragenUI\\OnderwerpenToevoegen.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-05-26T08:53:42.964Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "FileReaderAntwoordAchterVraag.cs",
-              "DocumentMoniker": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\MeerKeuzeDL\\FileReader\\FileReaderAntwoordAchterVraag.cs",
-              "RelativeDocumentMoniker": "MeerKeuzeDL\\FileReader\\FileReaderAntwoordAchterVraag.cs",
-              "ToolTip": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\MeerKeuzeDL\\FileReader\\FileReaderAntwoordAchterVraag.cs",
-              "RelativeToolTip": "MeerKeuzeDL\\FileReader\\FileReaderAntwoordAchterVraag.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAEwCAAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-07T14:30:15.104Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "FileReaderFactory.cs",
-              "DocumentMoniker": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizUtil\\FileReaderFactory.cs",
-              "RelativeDocumentMoniker": "QuizUtil\\FileReaderFactory.cs",
-              "ToolTip": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizUtil\\FileReaderFactory.cs",
-              "RelativeToolTip": "QuizUtil\\FileReaderFactory.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-21T14:35:16.919Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 2,
               "Title": "ImportManager.cs",
               "DocumentMoniker": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\MeerKeuzeBL\\Managers\\ImportManager.cs",
               "RelativeDocumentMoniker": "MeerKeuzeBL\\Managers\\ImportManager.cs",
@@ -365,7 +252,112 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "QuizOptiesxaml.xaml",
+              "DocumentMoniker": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizVragenUI\\QuizOptiesxaml.xaml",
+              "RelativeDocumentMoniker": "QuizVragenUI\\QuizOptiesxaml.xaml",
+              "ToolTip": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizVragenUI\\QuizOptiesxaml.xaml",
+              "RelativeToolTip": "QuizVragenUI\\QuizOptiesxaml.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-05-14T19:16:42.311Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "OnderwerpenToevoegen.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizVragenUI\\OnderwerpenToevoegen.xaml.cs",
+              "RelativeDocumentMoniker": "QuizVragenUI\\OnderwerpenToevoegen.xaml.cs",
+              "ToolTip": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizVragenUI\\OnderwerpenToevoegen.xaml.cs",
+              "RelativeToolTip": "QuizVragenUI\\OnderwerpenToevoegen.xaml.cs",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAawE0AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-26T09:02:19.074Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizVragenUI\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "QuizVragenUI\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizVragenUI\\MainWindow.xaml.cs",
+              "RelativeToolTip": "QuizVragenUI\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAvwHsAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-14T18:57:52.723Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "KeuzeQiuzMaker.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizVragenUI\\KeuzeQiuzMaker.xaml.cs",
+              "RelativeDocumentMoniker": "QuizVragenUI\\KeuzeQiuzMaker.xaml.cs",
+              "ToolTip": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizVragenUI\\KeuzeQiuzMaker.xaml.cs",
+              "RelativeToolTip": "QuizVragenUI\\KeuzeQiuzMaker.xaml.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAIA1wEAAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-21T15:29:31.233Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "KeuzeQiuzMaker.xaml",
+              "DocumentMoniker": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizVragenUI\\KeuzeQiuzMaker.xaml",
+              "RelativeDocumentMoniker": "QuizVragenUI\\KeuzeQiuzMaker.xaml",
+              "ToolTip": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizVragenUI\\KeuzeQiuzMaker.xaml",
+              "RelativeToolTip": "QuizVragenUI\\KeuzeQiuzMaker.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-05-14T19:05:19.452Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "VraagToevoegen.xaml",
+              "DocumentMoniker": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizVragenUI\\VraagToevoegen.xaml",
+              "RelativeDocumentMoniker": "QuizVragenUI\\VraagToevoegen.xaml",
+              "ToolTip": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizVragenUI\\VraagToevoegen.xaml",
+              "RelativeToolTip": "QuizVragenUI\\VraagToevoegen.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-05-14T19:16:23.833Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "OnderwerpenToevoegen.xaml",
+              "DocumentMoniker": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizVragenUI\\OnderwerpenToevoegen.xaml",
+              "RelativeDocumentMoniker": "QuizVragenUI\\OnderwerpenToevoegen.xaml",
+              "ToolTip": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizVragenUI\\OnderwerpenToevoegen.xaml",
+              "RelativeToolTip": "QuizVragenUI\\OnderwerpenToevoegen.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-05-26T08:53:42.964Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "FileReaderAntwoordAchterVraag.cs",
+              "DocumentMoniker": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\MeerKeuzeDL\\FileReader\\FileReaderAntwoordAchterVraag.cs",
+              "RelativeDocumentMoniker": "MeerKeuzeDL\\FileReader\\FileReaderAntwoordAchterVraag.cs",
+              "ToolTip": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\MeerKeuzeDL\\FileReader\\FileReaderAntwoordAchterVraag.cs",
+              "RelativeToolTip": "MeerKeuzeDL\\FileReader\\FileReaderAntwoordAchterVraag.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAEwCAAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-07T14:30:15.104Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 20,
+              "Title": "FileReaderFactory.cs",
+              "DocumentMoniker": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizUtil\\FileReaderFactory.cs",
+              "RelativeDocumentMoniker": "QuizUtil\\FileReaderFactory.cs",
+              "ToolTip": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\QuizUtil\\FileReaderFactory.cs",
+              "RelativeToolTip": "QuizUtil\\FileReaderFactory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-21T14:35:16.919Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\ExamenMeerKeuzeQuiz\\Program.cs",
               "RelativeDocumentMoniker": "ExamenMeerKeuzeQuiz\\Program.cs",
@@ -377,7 +369,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "XamlReader.cs",
               "DocumentMoniker": "C:\\Users\\matys\\AppData\\Local\\Temp\\.vsdbgsrc\\ba71154a7b44d057354e94bf9136ff00912660e0c8e1435d76b141387af3b90b\\XamlReader.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\ba71154a7b44d057354e94bf9136ff00912660e0c8e1435d76b141387af3b90b\\XamlReader.cs",
@@ -387,18 +379,6 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-26T08:49:15.505Z",
               "EditorCaption": " [Read Only]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "GegevenAntwoorden.cs",
-              "DocumentMoniker": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\MeerKeuzeBL\\Domein\\GegevenAntwoorden.cs",
-              "RelativeDocumentMoniker": "MeerKeuzeBL\\Domein\\GegevenAntwoorden.cs",
-              "ToolTip": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\MeerKeuzeBL\\Domein\\GegevenAntwoorden.cs",
-              "RelativeToolTip": "MeerKeuzeBL\\Domein\\GegevenAntwoorden.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-25T15:53:34.113Z"
             },
             {
               "$type": "Document",
@@ -549,11 +529,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 12,
               "Title": "QuizOpstellen.cs",
               "DocumentMoniker": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\MeerKeuzeBL\\Domein\\QuizOpstellen.cs",
               "RelativeDocumentMoniker": "MeerKeuzeBL\\Domein\\QuizOpstellen.cs",
@@ -566,7 +546,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "Vragen.cs",
               "DocumentMoniker": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\MeerKeuzeBL\\Domein\\Vragen.cs",
               "RelativeDocumentMoniker": "MeerKeuzeBL\\Domein\\Vragen.cs",
@@ -579,7 +559,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Antwoorden.cs",
               "DocumentMoniker": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\MeerKeuzeBL\\Domein\\Antwoorden.cs",
               "RelativeDocumentMoniker": "MeerKeuzeBL\\Domein\\Antwoorden.cs",
@@ -588,6 +568,19 @@
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAAYAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-07T13:33:37.963Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "GegevenAntwoorden.cs",
+              "DocumentMoniker": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\MeerKeuzeBL\\Domein\\GegevenAntwoorden.cs",
+              "RelativeDocumentMoniker": "MeerKeuzeBL\\Domein\\GegevenAntwoorden.cs",
+              "ToolTip": "C:\\Users\\matys\\source\\repos\\hogent 25-26 programeren basis\\programeren gevorderd\\Examen\\EindOpdrachtProgramerenG\\ExamenMeerKeuzeQuizSolution\\MeerKeuzeBL\\Domein\\GegevenAntwoorden.cs",
+              "RelativeToolTip": "MeerKeuzeBL\\Domein\\GegevenAntwoorden.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-25T15:53:34.113Z",
               "EditorCaption": ""
             }
           ]

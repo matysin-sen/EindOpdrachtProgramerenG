@@ -20,5 +20,6 @@ namespace MeerKeuzeBL.Interface
         List<Vragen> GeefVragenPerOnderwerp(int onderwerpID);
 
         public int BewaarQuiz(QuizOpstellen quiz);
+        public void BewaarAntwoorden(int quizId, Dictionary<Vragen, GegevenAntwoorden> antwoorden);
     }
 }
