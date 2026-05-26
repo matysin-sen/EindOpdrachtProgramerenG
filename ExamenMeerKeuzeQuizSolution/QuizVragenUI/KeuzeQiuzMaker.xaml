@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuizVragenUI"
         mc:Ignorable="d"
-        Title="KeuzeQuizMaker" Height="450" Width="800">
+        Title="KeuzeQuizMaker" Height="500" Width="800">
     <Grid>
         <Grid.RowDefinitions >
             <RowDefinition Height="*"/>
@@ -22,11 +22,12 @@
         </Grid.ColumnDefinitions>
        
         <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="50">Wat wil je doen?</TextBlock>
-        <Grid Grid.Column="1" Grid.Row="1" RowDefinitions="*,*,*,*">
+        <Grid Grid.Column="1" Grid.Row="1" RowDefinitions="*,*,*,*,*">
             <Button Grid.Row="0" FontSize="50" x:Name="btnNieuweVraag" Click="btnNieuweVraag_Click">Nieuwe Vraag Toevoegen</Button>
             <Button Grid.Row="1" FontSize="50" x:Name="btnQuizSpelen" Click="btnQuizSpelen_Click">Quiz Spelen</Button>
             <Button Grid.Row="2" FontSize="50" x:Name="btnScore" Click="btnScore_Click">Score Bekijken</Button>
             <Button Grid.Row="3" FontSize="50" x:Name="btnBestandenImporteren" Click="btnBestandenImporteren_Click">Bestanden Importeren</Button>
+            <Button Grid.Row="4" FontSize="50" x:Name="btnOnderwerpToevoegen" Click="btnOnderwerpToevoegen_Click">Onderwerp Toevoegen</Button>
         </Grid>
 
 

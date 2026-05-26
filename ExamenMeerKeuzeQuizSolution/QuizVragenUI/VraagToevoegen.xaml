@@ -3,10 +3,67 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:QuizVragenUI"
         mc:Ignorable="d"
-        Title="VraagToevoegen" Height="450" Width="800">
-    <Grid>
-        
+        Title="Vraag Toevoegen" Height="450" Width="500">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Onderwerp -->
+        <Label Grid.Row="0" Content="Onderwerp:"/>
+        <ComboBox Grid.Row="1" x:Name="cmbOnderwerp" Margin="0,0,0,10"/>
+
+        <!-- Vraag -->
+        <Label Grid.Row="2" Content="Vraagzin:"/>
+        <TextBox Grid.Row="3" x:Name="txtVraag" Margin="0,0,0,10"/>
+
+        <!-- Antwoorden -->
+        <Label Grid.Row="4" Content="Antwoorden (vink het juiste aan):"/>
+
+        <Grid Grid.Row="5" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- A -->
+            <RadioButton Grid.Row="0" Grid.Column="0" x:Name="rbCorrectA" VerticalAlignment="Center" GroupName="Correct"/>
+            <Label Grid.Row="0" Grid.Column="1" Content="A:" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="0" Grid.Column="2" x:Name="txtAntwoordA" Margin="0,2"/>
+
+            <!-- B -->
+            <RadioButton Grid.Row="1" Grid.Column="0" x:Name="rbCorrectB" VerticalAlignment="Center" GroupName="Correct"/>
+            <Label Grid.Row="1" Grid.Column="1" Content="B:" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="1" Grid.Column="2" x:Name="txtAntwoordB" Margin="0,2"/>
+
+            <!-- C -->
+            <RadioButton Grid.Row="2" Grid.Column="0" x:Name="rbCorrectC" VerticalAlignment="Center" GroupName="Correct"/>
+            <Label Grid.Row="2" Grid.Column="1" Content="C:" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="2" Grid.Column="2" x:Name="txtAntwoordC" Margin="0,2"/>
+
+            <!-- D -->
+            <RadioButton Grid.Row="3" Grid.Column="0" x:Name="rbCorrectD" VerticalAlignment="Center" GroupName="Correct"/>
+            <Label Grid.Row="3" Grid.Column="1" Content="D:" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="3" Grid.Column="2" x:Name="txtAntwoordD" Margin="0,2"/>
+        </Grid>
+
+        <!-- Opslaan knop -->
+        <Button Grid.Row="8" Content="Vraag Opslaan" x:Name="btnOpslaan" Click="btnOpslaan_Click" Height="35"/>
     </Grid>
 </Window>

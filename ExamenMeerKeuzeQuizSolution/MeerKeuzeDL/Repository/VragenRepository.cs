@@ -15,10 +15,7 @@ namespace MeerKeuzeDL.Repository
             {
                 _connectionString = connectionString;
             }
-         private SqlConnection GetConnection()
-         {
-             return new SqlConnection(_connectionString);
-          }
+         
 
         public void VoegVraagToe(Vragen vraag)
             {
@@ -161,10 +158,10 @@ namespace MeerKeuzeDL.Repository
             return onderwerpenLijst;
         }
 
-        public void voegUserToe(string naam,string achternaam)
+        public int voegUserToe(string naam,string achternaam)
         {
             // 1. Schrijf de SQL query (Pas 'GEBRUIKERS', 'Naam' en 'Achternaam' aan naar jouw echte tabel- en kolomnamen)
-            string query = "INSERT INTO USERS (Naam, Voornaam) VALUES (@Naam, @Voornaam)";
+            string query = "INSERT INTO USERS (Naam, Voornaam) OUTPUT INSERTED.IDUser VALUES (@Naam, @Voornaam)";
 
             // 2. Maak verbinding met de databank
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -182,7 +179,7 @@ namespace MeerKeuzeDL.Repository
                         conn.Open();
 
                         // ExecuteNonQuery gebruiken we voor INSERT, UPDATE of DELETE (als we geen ID terug hoeven)
-                        cmd.ExecuteNonQuery();
+                        return (int)cmd.ExecuteScalar(); // ← ID teruggeven
                     }
                     catch (Exception ex)
                     {
@@ -240,11 +237,11 @@ namespace MeerKeuzeDL.Repository
                         {
                             while (readerAntw.Read())
                             {
+                                int antwoordId = Convert.ToInt32(readerAntw["IDAntwoord"]); // ← toevoegen
                                 string antwZin = readerAntw["AntwoordZin"].ToString();
                                 bool isCorrect = Convert.ToBoolean(readerAntw["IsCorrect"]);
 
-                                // Voeg het antwoord toe aan de lijst van deze specifieke vraag
-                                vraag.Antwoorden.Add(new Antwoorden( isCorrect, antwZin));
+                                vraag.Antwoorden.Add(new Antwoorden(antwoordId, isCorrect, antwZin)); // ← constructor met ID
                             }
                         }
                     }
@@ -337,7 +334,7 @@ namespace MeerKeuzeDL.Repository
                 }
 
                 // 2. Sla de koppeling op in de tussentabel QUIZ_VRAGEN
-                string queryTussenTabel = "INSERT INTO TESTVRAGEN (TestID, VraagID) VALUES (@QuizId, @VraagId)";
+                string queryTussenTabel = "INSERT INTO TESTVRAGEN (TestID, VraagID,Volgnummer) VALUES (@QuizId, @VraagId, @Volgnummer)";
 
                 foreach (Vragen vraag in quiz.VragenLijst) // Let op: Gebruik hier VragenLijst (naam uit jouw klasse)
                 {
@@ -346,6 +343,7 @@ namespace MeerKeuzeDL.Repository
                         cmdTussen.Parameters.AddWithValue("@QuizId", nieuwQuizId);
                         // Zorg dat 'Id' overeenkomt met de property in Vragen.cs
                         cmdTussen.Parameters.AddWithValue("@VraagId", vraag.VraagID);
+                        cmdTussen.Parameters.AddWithValue("@Volgnummer", quiz.VragenLijst.IndexOf(vraag) + 1);
                         cmdTussen.ExecuteNonQuery();
                     }
                 }
@@ -355,48 +353,153 @@ namespace MeerKeuzeDL.Repository
         }
         public void BewaarAntwoorden(int quizId, Dictionary<Vragen, GegevenAntwoorden> antwoorden)
         {
-            // Queries
-            string selectQuery = "SELECT TestVraagId FROM TESTVRAGEN WHERE TestID = @TestId AND VraagId = @VraagId";
+            string selectQuery = "SELECT IDTestVraag FROM TESTVRAGEN WHERE TestID = @TestID AND VraagID = @VraagID";
+            string insertQuery = "INSERT INTO TESTANTWOORDEN (TestVraagID, AntwoordLetteroptie, AntwoordID) VALUES (@TestVraagID, @AntwoordLetteroptie, @AntwoordID)";
 
-            string insertQuery = @"INSERT INTO TESTANTWOORDEN (TestVraagID, AntwoordLetteroptie,AntwoordID) 
-                           VALUES (@TestVraagId, @AntwoordLetteroptie, @AntwoordID)";
-
-            // Gebruik een 'using' block voor de connectie om geheugenlekken te voorkomen
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 conn.Open();
 
                 foreach (var item in antwoorden)
                 {
+                    Vragen vraag = item.Key;
                     int testVraagId = 0;
 
-                    // 1. Haal het TestVraagId op
+                    // 1. Haal het TestVraagID op
                     using (SqlCommand cmdSelect = new SqlCommand(selectQuery, conn))
                     {
-                        cmdSelect.Parameters.AddWithValue("@TestId", quizId);
-                        cmdSelect.Parameters.AddWithValue("@VraagId", item.Key.VraagID);
+                        cmdSelect.Parameters.AddWithValue("@TestID", quizId);
+                        cmdSelect.Parameters.AddWithValue("@VraagID", vraag.VraagID);
 
                         object result = cmdSelect.ExecuteScalar();
                         if (result != null)
-                        {
                             testVraagId = (int)result;
-                        }
                     }
 
-                    // 2. Sla het antwoord op als we een geldig TestVraagId hebben gevonden
+                    // 2. Sla ALLE antwoorden van deze vraag op met hun letter (A, B, C, D)
                     if (testVraagId > 0)
+                    {
+                        char letter = 'A';
+                        foreach (var antwoord in vraag.Antwoorden) // alle 4 antwoorden
+                        {
+                            using (SqlCommand cmdInsert = new SqlCommand(insertQuery, conn))
+                            {
+                                cmdInsert.Parameters.AddWithValue("@TestVraagID", testVraagId);
+                                cmdInsert.Parameters.AddWithValue("@AntwoordLetteroptie", letter.ToString());
+                                cmdInsert.Parameters.AddWithValue("@AntwoordID", antwoord.AntwoordID);
+                                cmdInsert.ExecuteNonQuery();
+                            }
+                            letter++; // A → B → C → D
+                        }
+                    }
+                }
+            }
+        }
+        // Nieuwe methode toevoegen
+        public int BewaarGemaaktTest(int userId, int score)
+        {
+            string query = "INSERT INTO GEMAAKTETESTEN (UserID, DatumGemaakt, Score) OUTPUT INSERTED.IDGemaakteTest VALUES (@UserID, @DatumGemaakt, @Score)";
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@UserID", userId);
+                cmd.Parameters.AddWithValue("@DatumGemaakt", DateTime.Now);
+                cmd.Parameters.AddWithValue("@Score", score);
+                try
+                {
+                    conn.Open();
+                    return (int)cmd.ExecuteScalar(); // ← IDGemaakteTest teruggeven
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Fout bij het opslaan van gemaakte test: " + ex.Message);
+                }
+            }
+        }
+
+        public void BewaarUserTestAntwoorden(int gemaakteTestId, Dictionary<Vragen, GegevenAntwoorden> antwoorden, int quizId)
+        {
+            // Haal eerst alle TestVraagIDs op
+            string selectQuery = "SELECT IDTestVraag, VraagID FROM TESTVRAGEN WHERE TestID = @TestID";
+            string insertQuery = "INSERT INTO USERTESTANTWOORDEN (GemaakteTestID, TestVraagID, GekozenLetter) VALUES (@GemaakteTestID, @TestVraagID, @GekozenLetter)";
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+
+                // Bouw een dictionary op: VraagID → IDTestVraag
+                Dictionary<int, int> vraagNaarTestVraag = new Dictionary<int, int>();
+
+                using (SqlCommand cmdSelect = new SqlCommand(selectQuery, conn))
+                {
+                    cmdSelect.Parameters.AddWithValue("@TestID", quizId);
+                    using (SqlDataReader reader = cmdSelect.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int testVraagId = (int)reader["IDTestVraag"];
+                            int vraagId = (int)reader["VraagID"];
+                            vraagNaarTestVraag[vraagId] = testVraagId;
+                        }
+                    }
+                }
+
+                // Sla nu elk antwoord op
+                foreach (var item in antwoorden)
+                {
+                    int vraagId = item.Key.VraagID;
+
+                    if (vraagNaarTestVraag.ContainsKey(vraagId))
                     {
                         using (SqlCommand cmdInsert = new SqlCommand(insertQuery, conn))
                         {
-                            cmdInsert.Parameters.AddWithValue("@TestVraagId", testVraagId);
-                            cmdInsert.Parameters.AddWithValue("@AntwoordLetteroptie", item.Value.GekozenLetter);
-                            cmdInsert.Parameters.AddWithValue("@AntwoordID", item.Value.AntwoordenID);
-
+                            cmdInsert.Parameters.AddWithValue("@GemaakteTestID", gemaakteTestId);
+                            cmdInsert.Parameters.AddWithValue("@TestVraagID", vraagNaarTestVraag[vraagId]);
+                            cmdInsert.Parameters.AddWithValue("@GekozenLetter", item.Value.GekozenLetter);
                             cmdInsert.ExecuteNonQuery();
                         }
                     }
                 }
             }
+        }
+        public List<GemaakteTest> GeefScoresVoorUser(int userId)
+        {
+            List<GemaakteTest> scores = new List<GemaakteTest>();
+
+            string query = @"SELECT IDGemaakteTest, UserID, DatumGemaakt, Score 
+                     FROM GEMAAKTETESTEN 
+                     WHERE UserID = @UserID 
+                     ORDER BY DatumGemaakt DESC";
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@UserID", userId);
+                try
+                {
+                    conn.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            scores.Add(new GemaakteTest
+                            {
+                                IDGemaakteTest = (int)reader["IDGemaakteTest"],
+                                UserID = (int)reader["UserID"],
+                                DatumGemaakt = (DateTime)reader["DatumGemaakt"],
+                                Score = Convert.ToInt32(reader["Score"])
+                            });
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Fout bij ophalen scores: " + ex.Message);
+                }
+            }
+
+            return scores;
         }
     }
     

@@ -65,8 +65,8 @@ namespace QuizVragenUI
             string voornaam = naam.Split(' ')[0].Trim();   
             string achternaam = naam.Split(' ')[1].Trim();
 
-            manager.VoegUserToe(voornaam, achternaam);
-            KeuzeQuizMaker keuzeQuizMaker = new KeuzeQuizMaker(manager);
+            int userId = manager.VoegUserToe(voornaam, achternaam);
+            KeuzeQuizMaker keuzeQuizMaker = new KeuzeQuizMaker(manager, userId);
             keuzeQuizMaker.Show();
             this.Close();
 

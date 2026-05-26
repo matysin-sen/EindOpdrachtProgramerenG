@@ -25,10 +25,12 @@ namespace QuizVragenUI
     {
         private Manager manager;
         private ImportManager importManager;
-        public KeuzeQuizMaker(Manager manager)
+        private int _userID;
+        public KeuzeQuizMaker(Manager manager, int userID)
         {
             InitializeComponent();
             this.manager = manager;
+            this._userID = userID;
         }
 
         private void btnNieuweVraag_Click(object sender, RoutedEventArgs e)
@@ -41,13 +43,13 @@ namespace QuizVragenUI
         {
             
 
-            QuizOptiesxaml quizOptiesxaml = new QuizOptiesxaml(manager);
+            QuizOptiesxaml quizOptiesxaml = new QuizOptiesxaml(manager, _userID);
             quizOptiesxaml.Show();
         }
 
         private void btnScore_Click(object sender, RoutedEventArgs e)
         {
-            ScoreBekijken scoreBekijken = new ScoreBekijken(manager);
+            ScoreBekijken scoreBekijken = new ScoreBekijken(manager, _userID);
             scoreBekijken.Show();
         }
 
@@ -66,6 +68,12 @@ namespace QuizVragenUI
 
             OnderwerpenToevoegen onderwerpenToevoegen = new OnderwerpenToevoegen(importManager, manager);
             onderwerpenToevoegen.Show();
+        }
+
+        private void btnOnderwerpToevoegen_Click(object sender, RoutedEventArgs e)
+        {
+            ExtraOnderwerpenToevoegen extraOnderwerpenToevoegen = new ExtraOnderwerpenToevoegen(importManager, manager);
+            extraOnderwerpenToevoegen.Show();
         }
     }
 }

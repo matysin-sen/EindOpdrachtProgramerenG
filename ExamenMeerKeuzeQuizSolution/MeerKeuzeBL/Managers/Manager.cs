@@ -12,19 +12,22 @@ namespace MeerKeuzeBL.Managers
 
         public Manager(IVragenRepository repository)
         {
-            _repository = repository;   
+            _repository = repository;
         }
 
         public Manager()
         {
         }
 
-        public void VoegUserToe(string naam, string achternaam)
+        public int VoegUserToe(string naam, string achternaam)
         {
-            _repository.voegUserToe(naam, achternaam);
+            return _repository.voegUserToe(naam, achternaam);
+        }
+        public void VoegVraagToe(Vragen vraag)
+        {
+            _repository.VoegVraagToe(vraag);
         }
 
-      
         public List<Onderwerpen> GeefAlleOnderwerpen()
         {
             return _repository.GeefAlleOnderwerpen();
@@ -93,6 +96,34 @@ namespace MeerKeuzeBL.Managers
 
             // Sla op in de dictionary van de quiz
             quiz.IngevuldeAntwoorden[vraag] = resultaat;
+        }
+
+        public void SlaQuizEnAntwoordenOp(QuizOpstellen quiz, int userId)
+        {
+            // quiz.Id is al ingevuld door GenereerRandomQuiz, NIET opnieuw opslaan!
+            if (quiz.Id <= 0)
+                throw new Exception("Fout: Quiz heeft geen geldig ID.");
+
+            // 1. Bereken score
+            int score = quiz.IngevuldeAntwoorden.Values.Count(a => a.IsCorrect);
+            quiz.Score = score;
+            // 2. Sla alle antwoordopties op per testvraag (A, B, C, D)
+            _repository.BewaarAntwoorden(quiz.Id, quiz.IngevuldeAntwoorden);
+
+            // 2. Sla op in GEMAAKTETESTEN, krijg het nieuwe ID terug
+            int gemaakteTestId = _repository.BewaarGemaaktTest(userId, score);
+
+            // 3. Sla de gekozen letters op in USERTESTANTWOORDEN
+            _repository.BewaarUserTestAntwoorden(gemaakteTestId, quiz.IngevuldeAntwoorden, quiz.Id);
+        }
+        public List<GemaakteTest> GeefScoresVoorUser(int userId)
+        {
+            return _repository.GeefScoresVoorUser(userId);
+        }
+
+        public void voegOnderwerpToe(string onderwerpNaam)
+        {
+            _repository.VoegOnderwerpToe(onderwerpNaam);
         }
     }
 }

@@ -19,10 +19,20 @@ namespace QuizVragenUI
     public partial class ScoreBekijken : Window
     {
         private Manager Manager;
-        public ScoreBekijken(Manager manager)
+        private int userID;
+
+        public ScoreBekijken(Manager manager, int userID)
         {
             InitializeComponent();
             this.Manager = manager;
+            this.userID = userID;
+
+            LaadScores();
+        }
+
+        private void LaadScores()
+        {
+            dgScores.ItemsSource = Manager.GeefScoresVoorUser(userID);
         }
     }
 }

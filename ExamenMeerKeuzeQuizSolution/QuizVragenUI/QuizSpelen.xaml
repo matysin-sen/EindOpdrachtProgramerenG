@@ -17,7 +17,7 @@
             <TextBlock x:Name="txtVraag" Grid.Row="0" FontSize="24" FontWeight="Bold" 
                    TextWrapping="Wrap" Margin="0,0,0,30" Text="Hier komt de vraag..."/>
 
-        <StackPanel Grid.Row="1" VerticalAlignment="Top">
+        <StackPanel Grid.Row="1" VerticalAlignment="Top" >
             <RadioButton x:Name="rbOptieA" Tag="0" Content="Optie A" GroupName="Antwoorden" />
             <RadioButton x:Name="rbOptieB" Tag="1" Content="Optie B" GroupName="Antwoorden" />
             <RadioButton x:Name="rbOptieC" Tag="2" Content="Optie C" GroupName="Antwoorden" />

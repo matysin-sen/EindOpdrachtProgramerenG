@@ -23,11 +23,12 @@ namespace QuizVragenUI
     {
         public Manager manager;
         private IVragenRepository repository;
-        
-        public QuizOptiesxaml(Manager manager)
+        private int userID;
+        public QuizOptiesxaml(Manager manager, int userID)
         {
             InitializeComponent();
             this.manager = manager;
+            this.userID = userID;
             cmbBoxOnderwerp.ItemsSource = manager.GeefAlleOnderwerpen();
         }
 
@@ -57,7 +58,7 @@ namespace QuizVragenUI
                 QuizOpstellen aangemaakteQuiz = manager.GenereerRandomQuiz(gekozenOnderwerp, aantalVragen, omschrijving);
 
                 // 3. Open het speelscherm en geef de Vragen uit de quiz mee
-                QuizSpelen speelScherm = new QuizSpelen(manager, aangemaakteQuiz);
+                QuizSpelen speelScherm = new QuizSpelen(manager, aangemaakteQuiz, userID);
                 speelScherm.Show();
 
                 this.Close(); // Sluit het optie scherm
