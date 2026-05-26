@@ -1,7 +1,11 @@
 ﻿using MeerKeuzeBL.Domein;
+using MeerKeuzeBL.Interface;
 using MeerKeuzeBL.Managers;
+using MeerKeuzeDL.Repository;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,6 +24,7 @@ namespace QuizVragenUI
     public partial class KeuzeQuizMaker : Window
     {
         private Manager manager;
+        private ImportManager importManager;
         public KeuzeQuizMaker(Manager manager)
         {
             InitializeComponent();
@@ -44,6 +49,23 @@ namespace QuizVragenUI
         {
             ScoreBekijken scoreBekijken = new ScoreBekijken(manager);
             scoreBekijken.Show();
+        }
+
+        private void btnBestandenImporteren_Click(object sender, RoutedEventArgs e)
+        {
+            var builder = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+             .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+
+            var config = builder.Build();
+            string connectionString = config.GetConnectionString("SQLServerConnection");
+
+            IVragenRepository vragenRepository = new VragenRepository(connectionString);
+            importManager = new ImportManager(vragenRepository, null);
+            manager = new Manager(vragenRepository);
+
+            OnderwerpenToevoegen onderwerpenToevoegen = new OnderwerpenToevoegen(importManager, manager);
+            onderwerpenToevoegen.Show();
         }
     }
 }

@@ -5,6 +5,9 @@
     <Compile Update="KeuzeQiuzMaker.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="OnderwerpenToevoegen.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="QuizOptiesxaml.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -102,3 +102,5 @@ C:\Users\matys\source\repos\hogent 25-26 programeren basis\programeren gevorderd
 C:\Users\matys\source\repos\hogent 25-26 programeren basis\programeren gevorderd\Examen\EindOpdrachtProgramerenG\ExamenMeerKeuzeQuizSolution\QuizVragenUI\obj\Debug\net10.0-windows\ref\QuizVragenUI.dll
 C:\Users\matys\source\repos\hogent 25-26 programeren basis\programeren gevorderd\Examen\EindOpdrachtProgramerenG\ExamenMeerKeuzeQuizSolution\QuizVragenUI\obj\Debug\net10.0-windows\QuizSpelen.g.cs
 C:\Users\matys\source\repos\hogent 25-26 programeren basis\programeren gevorderd\Examen\EindOpdrachtProgramerenG\ExamenMeerKeuzeQuizSolution\QuizVragenUI\obj\Debug\net10.0-windows\QuizSpelen.baml
+C:\Users\matys\source\repos\hogent 25-26 programeren basis\programeren gevorderd\Examen\EindOpdrachtProgramerenG\ExamenMeerKeuzeQuizSolution\QuizVragenUI\obj\Debug\net10.0-windows\OnderwerpenToevoegen.g.cs
+C:\Users\matys\source\repos\hogent 25-26 programeren basis\programeren gevorderd\Examen\EindOpdrachtProgramerenG\ExamenMeerKeuzeQuizSolution\QuizVragenUI\obj\Debug\net10.0-windows\OnderwerpenToevoegen.baml

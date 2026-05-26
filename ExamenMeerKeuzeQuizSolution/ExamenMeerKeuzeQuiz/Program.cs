@@ -70,10 +70,6 @@ namespace ExamenMeerKeuzeQuiz
             importManagerSQL_Ex.ImporteerBestand(sourceFilePathSQL_Ex);
 
 
-            importManager.voegonderwerpToe("Alles");
-            importManager.voegonderwerpToe("Muziek - 80's");
-            importManager.voegonderwerpToe("Sql");
-            importManager.voegonderwerpToe("Geografie");
         }
         
     }

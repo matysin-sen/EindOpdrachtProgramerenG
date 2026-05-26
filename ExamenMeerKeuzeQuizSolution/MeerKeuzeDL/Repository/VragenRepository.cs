@@ -249,6 +249,105 @@ namespace MeerKeuzeDL.Repository
             // Geef de complete lijst (vragen mét antwoorden) terug aan je Manager
             return quizVragen;
         }
+
+        public List<Vragen> GeefVragenPerOnderwerp(int onderwerpId)
+        {
+            List<Vragen> vragen = new List<Vragen>();
+
+            // De SQL query die gebruik maakt van jouw tabelnamen
+            string query = @"
+        SELECT v.VraagID, v.VraagZin, 
+               a.IDAntwoord, a.AntwoordZin, a.IsCorrect
+        FROM VRAGEN v
+        INNER JOIN VRAGEN_ONDERWERPEN vo ON v.VraagID = vo.VraagID
+        LEFT JOIN ANTWOORDEN a ON v.VraagID = a.VraagID
+        WHERE vo.OnderwerpID = @OnderwerpID";
+
+            // Zorg dat 'connectionString' de naam is van de variabele die jouw connectiestring bevat
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@OnderwerpID", onderwerpId);
+                conn.Open();
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    // Dictionary om vragen te groeperen op hun VraagID
+                    Dictionary<int, Vragen> vraagDict = new Dictionary<int, Vragen>();
+
+                    while (reader.Read())
+                    {
+                        int vraagId = (int)reader["VraagID"];
+
+                        // 1. Nieuwe vraag aanmaken als we hem nog niet gezien hebben
+                        if (!vraagDict.ContainsKey(vraagId))
+                        {
+                            Vragen nieuweVraag = new Vragen
+                            {
+                                // Zorg dat deze property namen exact overeenkomen met Vragen.cs
+                                VraagID = vraagId,
+                                VraagTekst = reader["VraagZin"].ToString(),
+                                Antwoorden = new List<Antwoorden>()
+                            };
+                            vraagDict.Add(vraagId, nieuweVraag);
+                        }
+
+                        // 2. Antwoord toevoegen aan de lijst van de vraag (indien aanwezig)
+                        if (reader["IDAntwoord"] != DBNull.Value)
+                        {
+                            Antwoorden antwoord = new Antwoorden
+                            {
+                                // Zorg dat deze property namen exact overeenkomen met Antwoorden.cs
+                                AntwoordID = (int)reader["IDAntwoord"],
+                                AntwoordTekst = reader["AntwoordZin"].ToString(),
+                                IsCorrect = (bool)reader["IsCorrect"]
+                            };
+                            vraagDict[vraagId].Antwoorden.Add(antwoord);
+                        }
+                    }
+                    // Zet de dictionary waarden terug naar een lijst
+                    vragen = vraagDict.Values.ToList();
+                }
+            }
+            return vragen;
+        }
+
+        public int BewaarQuiz(QuizOpstellen quiz)
+        {
+            int nieuwQuizId = 0;
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+
+                // 1. Sla de hoofd-quiz op
+                // SQL-tabel is QUIZ, kolommen Omschrijving
+                string queryQuiz = "INSERT INTO TESTEN (TestOmschrijving) OUTPUT INSERTED.IDTest VALUES (@Omschrijving);";
+
+                using (SqlCommand cmd = new SqlCommand(queryQuiz, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Omschrijving", quiz.Omschrijving);
+                    // ExecuteScalar voert uit en geeft de waarde van de eerste kolom van de eerste rij terug (het nieuwe ID)
+                    nieuwQuizId = (int)cmd.ExecuteScalar();
+                }
+
+                // 2. Sla de koppeling op in de tussentabel QUIZ_VRAGEN
+                string queryTussenTabel = "INSERT INTO TESTVRAGEN (TestID, VraagID) VALUES (@QuizId, @VraagId)";
+
+                foreach (Vragen vraag in quiz.VragenLijst) // Let op: Gebruik hier VragenLijst (naam uit jouw klasse)
+                {
+                    using (SqlCommand cmdTussen = new SqlCommand(queryTussenTabel, conn))
+                    {
+                        cmdTussen.Parameters.AddWithValue("@QuizId", nieuwQuizId);
+                        // Zorg dat 'Id' overeenkomt met de property in Vragen.cs
+                        cmdTussen.Parameters.AddWithValue("@VraagId", vraag.VraagID);
+                        cmdTussen.ExecuteNonQuery();
+                    }
+                }
+            }
+
+            return nieuwQuizId;
+        }
     }
 }
 

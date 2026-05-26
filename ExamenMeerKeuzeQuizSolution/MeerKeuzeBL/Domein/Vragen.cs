@@ -27,6 +27,10 @@ namespace MeerKeuzeBL.Domein
             Antwoorden = antwoorden;
         }
 
+        public Vragen()
+        {
+        }
+
         public int VraagID { get; init; } // willen de vragen niet meer veranderen, dus init
         public string VraagTekst { get; set; }
         public List<Antwoorden> Antwoorden { get; set; }

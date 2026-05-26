@@ -52,6 +52,7 @@ namespace QuizVragenUI
             string TxtOnder = "TXT_ONDER";
             importManager = new ImportManager(new VragenRepository(connectionString), new FileReaderAntwoordOnder());
             manager = new Manager(new VragenRepository(connectionString));
+           
             InitializeerDatabase();
         }
 
@@ -117,16 +118,14 @@ namespace QuizVragenUI
             ImportManager importManagerSQL_Beg = new ImportManager(vragenRepository, fileReaderSQL_Beg);
             ImportManager importManagerSQL_Beg2 = new ImportManager(vragenRepository, fileReaderSQL_Beg2);
             ImportManager importManagerSQL_Ex = new ImportManager(vragenRepository, fileReaderSQL_Ex);
-            importManager.ImporteerBestand(sourceFilePathc_1);
-            importManagerGeo1.ImporteerBestand(sourceFilePathGeo1);
-            importManagerGeo2.ImporteerBestand(sourceFilePathGeo2);
-            importManagerMuziek1.ImporteerBestand(sourceFilePathMuziek1);
-            importManagerMuziek80s1.ImporteerBestand(sourceFilePathMuziek80s1);
-            importManagerMuziek80s2.ImporteerBestand(sourceFilePathMuziek80s2);
-            importManagerSQL_Beg.ImporteerBestand(sourceFilePathSQL_Beg);
-            importManagerSQL_Beg2.ImporteerBestand(sourceFilePathSQL_Beg2);
-            importManagerSQL_Ex.ImporteerBestand(sourceFilePathSQL_Ex);
-         
+           // importManager.voegonderwerpToe("Aardrijkskunde");
+           // importManager.voegonderwerpToe("Muziek");
+            //importManager.voegonderwerpToe("SQL");
+            //importManager.voegonderwerpToe("algemeen");
+  
+
+      
+
         }
     }
 }

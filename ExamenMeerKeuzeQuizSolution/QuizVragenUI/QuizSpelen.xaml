@@ -6,7 +6,27 @@
         xmlns:local="clr-namespace:QuizVragenUI"
         mc:Ignorable="d"
         Title="QuizSpelen" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    
+        <Grid Margin="30">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock x:Name="txtVraag" Grid.Row="0" FontSize="24" FontWeight="Bold" 
+                   TextWrapping="Wrap" Margin="0,0,0,30" Text="Hier komt de vraag..."/>
+
+            <StackPanel Grid.Row="1" VerticalAlignment="Top">
+                <RadioButton x:Name="rbOptieA" FontSize="18" Margin="0,10" Content="Optie A"/>
+                <RadioButton x:Name="rbOptieB" FontSize="18" Margin="0,10" Content="Optie B"/>
+                <RadioButton x:Name="rbOptieC" FontSize="18" Margin="0,10" Content="Optie C"/>
+                <RadioButton x:Name="rbOptieD" FontSize="18" Margin="0,10" Content="Optie D"/>
+            </StackPanel>
+
+            <Button x:Name="btnVolgende" Grid.Row="2" Content="Volgende Vraag" 
+                FontSize="16" Width="150" Height="40" HorizontalAlignment="Right" 
+                Click="btnVolgende_Click"/>
+
+        </Grid>
 </Window>

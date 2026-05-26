@@ -33,32 +33,41 @@ namespace QuizVragenUI
 
         private void btnStartQuiz_Click(object sender, RoutedEventArgs e)
         {
-            if (cmbBoxOnderwerp.SelectedItem == null)
+            try
             {
-                MessageBox.Show("Selecteer eerst een onderwerp.");
-                return;
+                // 1. Haal de gegevens op uit je scherm
+                if (cmbBoxOnderwerp.SelectedItem == null)
+                {
+                    MessageBox.Show("Kies een onderwerp!");
+                    return;
+                }
+                Onderwerpen gekozenOnderwerp = (Onderwerpen)cmbBoxOnderwerp.SelectedItem;
+
+                // Controleer of aantal een geldig getal is
+                if (!int.TryParse(AantalVragen.Text, out int aantalVragen))
+                {
+                    MessageBox.Show("Vul een geldig getal in voor het aantal vragen.");
+                    return;
+                }
+
+                string omschrijving = ""; // Zorg voor een TextBox in je XAML hiervoor
+                if (string.IsNullOrWhiteSpace(omschrijving)) omschrijving = $"Quiz {gekozenOnderwerp.OnderwerpNaam} - {DateTime.Now.ToShortDateString()}";
+
+                // 2. Roep de manager aan
+                QuizOpstellen aangemaakteQuiz = manager.GenereerRandomQuiz(gekozenOnderwerp, aantalVragen, omschrijving);
+
+                // 3. Open het speelscherm en geef de Vragen uit de quiz mee
+                QuizSpelen speelScherm = new QuizSpelen(manager, aangemaakteQuiz);
+                speelScherm.Show();
+
+                this.Close(); // Sluit het optie scherm
             }
-
-            // 2. Nu kunnen we het veilig omzetten (casten) naar een écht Onderwerpen object
-            Onderwerpen gekozenOnderwerp = (Onderwerpen)cmbBoxOnderwerp.SelectedItem;
-
-            // 3. Haal het aantal vragen op
-            int aantalvragen = AantalVragen.Value.HasValue ? (int)AantalVragen.Value.Value : 0;
-
-            if (aantalvragen <= 0)
+            catch (Exception ex)
             {
-                MessageBox.Show("Voer een geldig aantal vragen in (groter dan 0).");
-                return;
+                MessageBox.Show($"Er ging iets mis: {ex.Message}");
             }
-
-            // 4. Open het nieuwe scherm en geef het échte object door in plaats van een string
-            // Let op: pas de constructor in QuizSpelen.xaml.cs aan zodat hij een 'Onderwerpen' object verwacht!
-            QuizSpelen quizSpelen = new QuizSpelen(manager, gekozenOnderwerp, aantalvragen);
-            quizSpelen.Show();
-
-            // Optioneel: sluit dit huidige keuzescherm af
-            this.Close();
         }
+        
 
         private void cmbBoxOnderwerp_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

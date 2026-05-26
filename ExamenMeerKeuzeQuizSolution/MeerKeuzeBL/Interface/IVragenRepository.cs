@@ -17,5 +17,8 @@ namespace MeerKeuzeBL.Interface
         public void voegUserToe(string naam, string achternaam);
        
         List<Vragen> GeefRandomVragenVoorOnderwerp(int onderwerpId, int aantalVragen);
+        List<Vragen> GeefVragenPerOnderwerp(int onderwerpID);
+
+        public int BewaarQuiz(QuizOpstellen quiz);
     }
 }
