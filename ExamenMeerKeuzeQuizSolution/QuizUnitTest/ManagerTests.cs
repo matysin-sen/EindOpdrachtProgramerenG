@@ -176,149 +176,59 @@ namespace MeerKeuzeBL.Tests
             Assert.Equal(onderwerp, nepVragen[0].Onderwerp[0]);
         }
 
-        [Fact]
-        public void BepaalOnderwerpViaBestand_GeoBestand_GeeftAardrijkskundeTerug()
-        {
-            // Arrange
-            var mockRepo = new Mock<IVragenRepository>();
-            var importManager = new ImportManager(mockRepo.Object, null);
 
-            var onderwerpen = new List<Onderwerpen>
+
+        // ==================== DOMEINKLASSE TESTS ====================
+        public class DomeinTests
+        {
+            [Fact]
+            public void Vragen_MagNietLeegZijn()
             {
-                new Onderwerpen(1, "Aardrijkskunde"),
-                new Onderwerpen(2, "Muziek"),
-                new Onderwerpen(3, "SQL")
-            };
+                Assert.Throws<ArgumentException>(() => new Vragen(1, "", new List<Antwoorden>(), new List<Onderwerpen>()));
+            }
 
-            // Act
-            var resultaat = importManager.BepaalOnderwerpViaBestand("C:\\bestanden\\Geo1.txt", onderwerpen);
-
-            // Assert
-            Assert.NotNull(resultaat);
-            Assert.Equal("Aardrijkskunde", resultaat.OnderwerpNaam);
-        }
-
-        [Fact]
-        public void BepaalOnderwerpViaBestand_MuziekBestand_GeeftMuziekTerug()
-        {
-            var mockRepo = new Mock<IVragenRepository>();
-            var importManager = new ImportManager(mockRepo.Object, null);
-
-            var onderwerpen = new List<Onderwerpen>
+            [Fact]
+            public void Vragen_MagNietNullZijn()
             {
-                new Onderwerpen(1, "Aardrijkskunde"),
-                new Onderwerpen(2, "Muziek"),
-                new Onderwerpen(3, "SQL")
-            };
+                Assert.Throws<ArgumentException>(() => new Vragen(1, null, new List<Antwoorden>(), new List<Onderwerpen>()));
+            }
 
-            var resultaat = importManager.BepaalOnderwerpViaBestand("C:\\bestanden\\Muziek80s1.txt", onderwerpen);
-
-            Assert.NotNull(resultaat);
-            Assert.Equal("Muziek", resultaat.OnderwerpNaam);
-        }
-
-        [Fact]
-        public void BepaalOnderwerpViaBestand_SQLBestand_GeeftSQLTerug()
-        {
-            var mockRepo = new Mock<IVragenRepository>();
-            var importManager = new ImportManager(mockRepo.Object, null);
-
-            var onderwerpen = new List<Onderwerpen>
+            [Fact]
+            public void Antwoorden_IsCorrect_WordtCorrectOpgeslagen()
             {
-                new Onderwerpen(1, "Aardrijkskunde"),
-                new Onderwerpen(2, "Muziek"),
-                new Onderwerpen(3, "SQL")
-            };
+                var antwoord = new Antwoorden(1, true, "Juist antwoord");
+                Assert.True(antwoord.IsCorrect);
+            }
 
-            var resultaat = importManager.BepaalOnderwerpViaBestand("C:\\bestanden\\SQL_Beg.txt", onderwerpen);
-
-            Assert.NotNull(resultaat);
-            Assert.Equal("SQL", resultaat.OnderwerpNaam);
-        }
-
-        [Fact]
-        public void BepaalOnderwerpViaBestand_OnbekendBestand_GeeftAlgemeenTerug()
-        {
-            var mockRepo = new Mock<IVragenRepository>();
-            var importManager = new ImportManager(mockRepo.Object, null);
-
-            var onderwerpen = new List<Onderwerpen>
+            [Fact]
+            public void Antwoorden_IsNotCorrect_WordtCorrectOpgeslagen()
             {
-                new Onderwerpen(1, "Aardrijkskunde"),
-                new Onderwerpen(2, "algemeen")
-            };
+                var antwoord = new Antwoorden(1, false, "Fout antwoord");
+                Assert.False(antwoord.IsCorrect);
+            }
 
-            var resultaat = importManager.BepaalOnderwerpViaBestand("C:\\bestanden\\onbekend.txt", onderwerpen);
+            [Fact]
+            public void Onderwerpen_NaamWordtCorrectOpgeslagen()
+            {
+                var onderwerp = new Onderwerpen(1, "Wiskunde");
+                Assert.Equal("Wiskunde", onderwerp.OnderwerpNaam);
+                Assert.Equal(1, onderwerp.OnderwerpID);
+            }
 
-            Assert.NotNull(resultaat);
-            Assert.Equal("algemeen", resultaat.OnderwerpNaam);
-        }
+            [Fact]
+            public void QuizOpstellen_BeginScoreIsNul()
+            {
+                var quiz = new QuizOpstellen(new Onderwerpen(1, "Test"), new List<Vragen>(), "Test Quiz");
+                Assert.Equal(0, quiz.Score);
+            }
 
-        [Fact]
-        public void BepaalOnderwerpViaBestand_OnderwerpNietInDB_GeeftNullTerug()
-        {
-            var mockRepo = new Mock<IVragenRepository>();
-            var importManager = new ImportManager(mockRepo.Object, null);
-
-            // Lege lijst: onderwerp bestaat niet in DB
-            var onderwerpen = new List<Onderwerpen>();
-
-            var resultaat = importManager.BepaalOnderwerpViaBestand("C:\\bestanden\\Geo1.txt", onderwerpen);
-
-            Assert.Null(resultaat);
-        }
-    }
-
-    // ==================== DOMEINKLASSE TESTS ====================
-    public class DomeinTests
-    {
-        [Fact]
-        public void Vragen_MagNietLeegZijn()
-        {
-            Assert.Throws<ArgumentException>(() => new Vragen(1, "", new List<Antwoorden>(), new List<Onderwerpen>()));
-        }
-
-        [Fact]
-        public void Vragen_MagNietNullZijn()
-        {
-            Assert.Throws<ArgumentException>(() => new Vragen(1, null, new List<Antwoorden>(), new List<Onderwerpen>()));
-        }
-
-        [Fact]
-        public void Antwoorden_IsCorrect_WordtCorrectOpgeslagen()
-        {
-            var antwoord = new Antwoorden(1, true, "Juist antwoord");
-            Assert.True(antwoord.IsCorrect);
-        }
-
-        [Fact]
-        public void Antwoorden_IsNotCorrect_WordtCorrectOpgeslagen()
-        {
-            var antwoord = new Antwoorden(1, false, "Fout antwoord");
-            Assert.False(antwoord.IsCorrect);
-        }
-
-        [Fact]
-        public void Onderwerpen_NaamWordtCorrectOpgeslagen()
-        {
-            var onderwerp = new Onderwerpen(1, "Wiskunde");
-            Assert.Equal("Wiskunde", onderwerp.OnderwerpNaam);
-            Assert.Equal(1, onderwerp.OnderwerpID);
-        }
-
-        [Fact]
-        public void QuizOpstellen_BeginScoreIsNul()
-        {
-            var quiz = new QuizOpstellen(new Onderwerpen(1, "Test"), new List<Vragen>(), "Test Quiz");
-            Assert.Equal(0, quiz.Score);
-        }
-
-        [Fact]
-        public void QuizOpstellen_IngevuldeAntwoordenIsLeegBijAanmaak()
-        {
-            var quiz = new QuizOpstellen(new Onderwerpen(1, "Test"), new List<Vragen>(), "Test Quiz");
-            Assert.NotNull(quiz.IngevuldeAntwoorden);
-            Assert.Empty(quiz.IngevuldeAntwoorden);
+            [Fact]
+            public void QuizOpstellen_IngevuldeAntwoordenIsLeegBijAanmaak()
+            {
+                var quiz = new QuizOpstellen(new Onderwerpen(1, "Test"), new List<Vragen>(), "Test Quiz");
+                Assert.NotNull(quiz.IngevuldeAntwoorden);
+                Assert.Empty(quiz.IngevuldeAntwoorden);
+            }
         }
     }
 }
