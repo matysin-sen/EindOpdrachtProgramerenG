@@ -140,7 +140,7 @@ namespace QuizVragenUI {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/QuizVragenUI;component/vraagtoevoegen.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/QuizVragenUI;V1.0.0.0;component/vraagtoevoegen.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\VraagToevoegen.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

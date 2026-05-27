@@ -7,10 +7,17 @@ CREATE TABLE ONDERWERPEN (
 -- 2. VRAGEN
 CREATE TABLE VRAGEN (
     IDVraag INT PRIMARY KEY IDENTITY(1,1) ,
-    OnderwerpID INT,
     Vraagzin TEXT,
     MoeilijkheidsCategorie VARCHAR(50),
-    FOREIGN KEY (OnderwerpID) REFERENCES ONDERWERPEN(IDOnderwerp)
+    
+);
+-- vragenonderwerpen
+create table VRAGEN_ONDERWERPEN(
+ID int PRIMARY KEY IDENTITY(1,1),
+VraagID int,
+OnderwerpID int
+FOREIGN KEY (VraagID) REFERENCES VRAGEN(IDVraag),
+FOREIGN KEY (OnderwerpID) REFERENCES ONDERWERPEN(IDOnderwerp)
 );
 
 -- 3. ANTWOORDEN

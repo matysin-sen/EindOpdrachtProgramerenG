@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("QuizVragenUI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0c113c036ca91a7a9af9681447903a133300034d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e6bd74f5c442d18ad542dc4c0d3f7b32b0933ee4")]
 [assembly: System.Reflection.AssemblyProductAttribute("QuizVragenUI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("QuizVragenUI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

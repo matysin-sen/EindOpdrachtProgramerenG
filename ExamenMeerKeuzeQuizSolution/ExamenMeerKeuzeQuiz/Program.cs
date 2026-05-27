@@ -13,6 +13,7 @@ namespace ExamenMeerKeuzeQuiz
     {
         static void Main(string[] args)
         {
+            /*
             Console.WriteLine("Hello, World!");
 
             var builder = new ConfigurationBuilder()
@@ -60,7 +61,7 @@ namespace ExamenMeerKeuzeQuiz
             ImportManager importManagerSQL_Beg2 = new ImportManager(vragenRepository, fileReaderSQL_Beg2);
             ImportManager importManagerSQL_Ex = new ImportManager(vragenRepository, fileReaderSQL_Ex);
          
-
+            */
 
         }
         
