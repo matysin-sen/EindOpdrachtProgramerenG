@@ -101,7 +101,7 @@ namespace QuizVragenUI {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/QuizVragenUI;V1.0.0.0;component/quizspelen.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/QuizVragenUI;component/quizspelen.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\QuizSpelen.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -9,7 +9,7 @@ namespace MeerKeuzeBL.Domein
     {
         public int Id { get; set; } 
         public string Omschrijving { get; set; }
-        public Onderwerpen QuizOnderwerp { get;  set; }
+        public Onderwerp QuizOnderwerp { get;  set; }
         public List<Vraag> VragenLijst { get;  set; }
 
         // Een Dictionary die bijhoudt welke Vraag is beantwoord met welk Antwoord (+ letter)
@@ -18,7 +18,7 @@ namespace MeerKeuzeBL.Domein
         public int Score { get;  set; }
 
         // Constructor
-        public QuizOpstellen(Onderwerpen onderwerp, List<Vraag> vragen , string omschrijving)
+        public QuizOpstellen(Onderwerp onderwerp, List<Vraag> vragen , string omschrijving)
         {
             QuizOnderwerp = onderwerp;
             VragenLijst = vragen;

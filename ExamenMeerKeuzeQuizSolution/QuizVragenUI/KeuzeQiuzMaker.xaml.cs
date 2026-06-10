@@ -61,13 +61,13 @@ namespace QuizVragenUI
 
             var config = builder.Build();
             string connectionString = config.GetConnectionString("SQLServerConnection");
-
-            IVraagRepository vragenRepository = new VraagRepository(connectionString);
+            VraagRepository VraagRepository = new VraagRepository(connectionString);
+            IVraagRepository vragenRepository = VraagRepository;
             importManager = new ImportManager(vragenRepository, null);
             manager = new Manager(vragenRepository);
 
-            OnderwerpenToevoegen onderwerpenToevoegen = new OnderwerpenToevoegen(importManager, manager);
-            onderwerpenToevoegen.Show();
+            QuizVragenImporteren quizVragenImporteren = new QuizVragenImporteren(importManager, manager,VraagRepository);
+            quizVragenImporteren.Show();
         }
 
         private void btnOnderwerpToevoegen_Click(object sender, RoutedEventArgs e)

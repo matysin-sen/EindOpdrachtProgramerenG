@@ -53,14 +53,14 @@ namespace QuizVragenUI
             };
 
             // 3. Onderwerp ophalen
-            Onderwerpen gekozenOnderwerp = (Onderwerpen)cmbOnderwerp.SelectedItem;
+            Onderwerp gekozenOnderwerp = (Onderwerp)cmbOnderwerp.SelectedItem;
 
             // 4. Vraag aanmaken
             Vraag nieuweVraag = new Vraag
             {
                 VraagTekst = txtVraag.Text,
                 Antwoorden = antwoorden,
-                Onderwerp = new List<Onderwerpen> { gekozenOnderwerp }
+                Onderwerp = new List<Onderwerp> { gekozenOnderwerp }
             };
 
             // 5. Opslaan via manager

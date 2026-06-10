@@ -28,14 +28,14 @@ namespace MeerKeuzeBL.Managers
             _repository.VoegVraagToe(vraag);
         }
 
-        public List<Onderwerpen> GeefAlleOnderwerpen()
+        public List<Onderwerp> GeefAlleOnderwerpen()
         {
             return _repository.GeefAlleOnderwerpen();
         }
        
 
 
-        public QuizOpstellen GenereerRandomQuiz(Onderwerpen gekozenOnderwerp, int aantalVragen, string omschrijving)
+        public QuizOpstellen GenereerRandomQuiz(Onderwerp gekozenOnderwerp, int aantalVragen, string omschrijving)
         {
             // 1. Haal alle vragen op van dit specifieke onderwerp.
             // Zorg dat je een methode in je repository hebt die dit doet!
@@ -112,5 +112,8 @@ namespace MeerKeuzeBL.Managers
         {
             _repository.VoegOnderwerpToe(onderwerpNaam);
         }
+
+        
+
     }
 }

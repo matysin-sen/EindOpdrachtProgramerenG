@@ -17,7 +17,7 @@ namespace MeerKeuzeBL.Managers
         }
 
      
-        public void ImporteerBestand(string pad,IFileReader reader, Onderwerpen gekozenOnderwerp)
+        public void ImporteerBestand(string pad,IFileReader reader, Onderwerp gekozenOnderwerp)
         {
             // 1. Maak de juiste reader aan via de factory
             // We sturen de benodigde parameters mee die je in FileReaderFactory.cs hebt gedefinieerd
@@ -27,7 +27,7 @@ namespace MeerKeuzeBL.Managers
             foreach (Vraag vraag in ingelezenVragen)
             {
                 // Koppel direct het object dat de gebruiker in de UI heeft gekozen
-                vraag.Onderwerp = new List<Onderwerpen> { gekozenOnderwerp };
+                vraag.Onderwerp = new List<Onderwerp> { gekozenOnderwerp };
                 _repository.VoegVraagToe(vraag);
             }
         }

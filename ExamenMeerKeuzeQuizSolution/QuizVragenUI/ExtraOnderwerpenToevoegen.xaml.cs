@@ -26,6 +26,7 @@ namespace QuizVragenUI
             _importManager = importManager;
             _manager = manager;
         }
+        // todo:chekken voor dubbele onderwerpen, als er al een onderwerp is met dezelfde naam, dan mag je die niet toevoegen
         private void btnOpslaan_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtOnderwerpNaam.Text))
@@ -33,10 +34,18 @@ namespace QuizVragenUI
                 MessageBox.Show("Vul een onderwerpnaam in!");
                 return;
             }
+            try
+            {
+                _manager.voegOnderwerpToe(txtOnderwerpNaam.Text.Trim());
+                MessageBox.Show($"Onderwerp '{txtOnderwerpNaam.Text.Trim()}' succesvol toegevoegd!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Fout bij het toevoegen van onderwerp:\n{ex.Message}");
+            }
 
-            _manager.voegOnderwerpToe(txtOnderwerpNaam.Text.Trim());
 
-            MessageBox.Show($"Onderwerp '{txtOnderwerpNaam.Text.Trim()}' succesvol toegevoegd!");
+
             txtOnderwerpNaam.Clear();
         }
     }

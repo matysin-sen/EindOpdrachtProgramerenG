@@ -30,7 +30,7 @@ namespace QuizIntegratieTest
         public void VoegOnderwerpToe_MoetOnderwerpOpslaanEnIDTeruggeven()
         {
             // Act
-            Onderwerpen resultaat = _repository.VoegOnderwerpToe("TestOnderwerp_" + Guid.NewGuid());
+            Onderwerp resultaat = _repository.VoegOnderwerpToe("TestOnderwerp_" + Guid.NewGuid());
             _aangemaakteOnderwerpIds.Add(resultaat.OnderwerpID);
 
             // Assert
@@ -45,7 +45,7 @@ namespace QuizIntegratieTest
             string uniekNaam = "TestOnderwerp_" + Guid.NewGuid();
 
             // Act
-            Onderwerpen resultaat = _repository.VoegOnderwerpToe(uniekNaam);
+            Onderwerp resultaat = _repository.VoegOnderwerpToe(uniekNaam);
             _aangemaakteOnderwerpIds.Add(resultaat.OnderwerpID);
 
             // Assert
@@ -82,7 +82,7 @@ namespace QuizIntegratieTest
         {
             // Arrange
             string uniekNaam = "TestOnderwerp_" + Guid.NewGuid();
-            Onderwerpen nieuw = _repository.VoegOnderwerpToe(uniekNaam);
+            Onderwerp nieuw = _repository.VoegOnderwerpToe(uniekNaam);
             _aangemaakteOnderwerpIds.Add(nieuw.OnderwerpID);
 
             // Act
@@ -124,7 +124,7 @@ namespace QuizIntegratieTest
         public void VoegVraagToe_MoetVraagMetAntwoordenOpslaanInDB()
         {
             // Arrange
-            Onderwerpen onderwerp = _repository.VoegOnderwerpToe("TestOnderwerp_" + Guid.NewGuid());
+            Onderwerp onderwerp = _repository.VoegOnderwerpToe("TestOnderwerp_" + Guid.NewGuid());
             _aangemaakteOnderwerpIds.Add(onderwerp.OnderwerpID);
 
             var antwoorden = new List<Antwoord>
@@ -139,7 +139,7 @@ namespace QuizIntegratieTest
             {
                 VraagTekst = "TestVraag_" + Guid.NewGuid(),
                 Antwoorden = antwoorden,
-                Onderwerp = new List<Onderwerpen> { onderwerp }
+                Onderwerp = new List<Onderwerp> { onderwerp }
             };
 
             // Act — geen exception = geslaagd

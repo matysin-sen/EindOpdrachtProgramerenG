@@ -42,7 +42,7 @@ namespace QuizVragenUI
                     MessageBox.Show("Kies een onderwerp!");
                     return;
                 }
-                Onderwerpen gekozenOnderwerp = (Onderwerpen)cmbBoxOnderwerp.SelectedItem;
+                Onderwerp gekozenOnderwerp = (Onderwerp)cmbBoxOnderwerp.SelectedItem;
 
                 // Controleer of aantal een geldig getal is
                 if (!int.TryParse(AantalVragen.Text, out int aantalVragen))

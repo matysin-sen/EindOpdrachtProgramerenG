@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET10_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NET9_0_OR_GREATER;NET10_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 C:\Users\matys\source\repos\hogent 25-26 programeren basis\programeren gevorderd\Examen\EindOpdrachtProgramerenG\ExamenMeerKeuzeQuizSolution\QuizVragenUI\App.xaml
-8-550150961
+8589106622
 
-13107623979
+13-1776922097
 2361510720610
-ExtraOnderwerpenToevoegen.xaml;KeuzeQiuzMaker.xaml;MainWindow.xaml;OnderwerpenToevoegen.xaml;QuizOptiesxaml.xaml;QuizSpelen.xaml;ScoreBekijken.xaml;VraagToevoegen.xaml;
+ExtraOnderwerpenToevoegen.xaml;KeuzeQiuzMaker.xaml;MainWindow.xaml;QuizOptiesxaml.xaml;QuizSpelen.xaml;QuizVragenImporteren.xaml;ScoreBekijken.xaml;VraagToevoegen.xaml;
 
 False
 

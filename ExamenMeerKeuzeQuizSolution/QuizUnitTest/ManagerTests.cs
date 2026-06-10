@@ -28,9 +28,9 @@ namespace MeerKeuzeBL.Tests
 
             return new List<Vraag>
             {
-                new Vraag(1, "Wat is 1+1?", antwoorden1, new List<Onderwerpen>()),
-                new Vraag(2, "Wat is de hoofdstad van België?", antwoorden2, new List<Onderwerpen>()),
-                new Vraag(3, "Extra Vraag", antwoorden1, new List<Onderwerpen>())
+                new Vraag(1, "Wat is 1+1?", antwoorden1, new List<Onderwerp>()),
+                new Vraag(2, "Wat is de hoofdstad van België?", antwoorden2, new List<Onderwerp>()),
+                new Vraag(3, "Extra Vraag", antwoorden1, new List<Onderwerp>())
             };
         }
 
@@ -38,7 +38,7 @@ namespace MeerKeuzeBL.Tests
         public void GenereerRandomQuiz_MoetJuistAantalVragenBevatten()
         {
             var mockRepo = new Mock<IVraagRepository>();
-            var onderwerp = new Onderwerpen(1, "Algemeen");
+            var onderwerp = new Onderwerp(1, "Algemeen");
 
             mockRepo.Setup(r => r.GeefRandomVragenVoorOnderwerp(1, 2))
                     .Returns(MaakTestVragenLijst().Take(2).ToList());
@@ -62,11 +62,11 @@ namespace MeerKeuzeBL.Tests
             mockRepo.Setup(r => r.GeefRandomVragenVoorOnderwerp(It.IsAny<int>(), It.IsAny<int>()))
                     .Returns(new List<Vraag>
                     {
-                        new Vraag(1, "Vraag 1", new List<Antwoord>(), new List<Onderwerpen>())
+                        new Vraag(1, "Vraag 1", new List<Antwoord>(), new List<Onderwerp>())
                     });
 
             var manager = new Manager(mockRepo.Object);
-            var onderwerp = new Onderwerpen(1, "Wiskunde");
+            var onderwerp = new Onderwerp(1, "Wiskunde");
 
             Assert.Throws<Exception>(() => manager.GenereerRandomQuiz(onderwerp, 5, "Test Quiz"));
         }
@@ -78,7 +78,7 @@ namespace MeerKeuzeBL.Tests
             var manager = new Manager(mockRepo.Object);
 
             var vraag = MaakTestVragenLijst().First();
-            var quiz = new QuizOpstellen(new Onderwerpen(1, "Test"), new List<Vraag> { vraag }, "Test");
+            var quiz = new QuizOpstellen(new Onderwerp(1, "Test"), new List<Vraag> { vraag }, "Test");
 
             manager.BeantwoordVraag(quiz, vraag, "B", 2); // ID 2 = juist antwoord
 
@@ -94,7 +94,7 @@ namespace MeerKeuzeBL.Tests
             var manager = new Manager(mockRepo.Object);
 
             var vraag = MaakTestVragenLijst().First();
-            var quiz = new QuizOpstellen(new Onderwerpen(1, "Test"), new List<Vraag> { vraag }, "Test");
+            var quiz = new QuizOpstellen(new Onderwerp(1, "Test"), new List<Vraag> { vraag }, "Test");
 
             manager.BeantwoordVraag(quiz, vraag, "A", 1); // ID 1 = fout antwoord
 
@@ -107,10 +107,10 @@ namespace MeerKeuzeBL.Tests
         public void GeefAlleOnderwerpen_RoeptRepositoryAan()
         {
             var mockRepo = new Mock<IVraagRepository>();
-            var verwachteOnderwerpen = new List<Onderwerpen>
+            var verwachteOnderwerpen = new List<Onderwerp>
             {
-                new Onderwerpen(1, "C#"),
-                new Onderwerpen(2, "SQL")
+                new Onderwerp(1, "C#"),
+                new Onderwerp(2, "SQL")
             };
 
             mockRepo.Setup(r => r.GeefAlleOnderwerpen()).Returns(verwachteOnderwerpen);
@@ -133,12 +133,12 @@ namespace MeerKeuzeBL.Tests
             // Arrange
             var mockRepo = new Mock<IVraagRepository>();
             var mockReader = new Mock<IFileReader>();
-            var onderwerp = new Onderwerpen(1, "SQL");
+            var onderwerp = new Onderwerp(1, "SQL");
 
             var nepVragen = new List<Vraag>
             {
-                new Vraag(0, "Vraag 1", new List<Antwoord>(), new List<Onderwerpen>()),
-                new Vraag(0, "Vraag 2", new List<Antwoord>(), new List<Onderwerpen>())
+                new Vraag(0, "Vraag 1", new List<Antwoord>(), new List<Onderwerp>()),
+                new Vraag(0, "Vraag 2", new List<Antwoord>(), new List<Onderwerp>())
             };
 
             mockReader.Setup(r => r.Read(It.IsAny<string>())).Returns(nepVragen);
@@ -158,11 +158,11 @@ namespace MeerKeuzeBL.Tests
             // Arrange
             var mockRepo = new Mock<IVraagRepository>();
             var mockReader = new Mock<IFileReader>();
-            var onderwerp = new Onderwerpen(1, "SQL");
+            var onderwerp = new Onderwerp(1, "SQL");
 
             var nepVragen = new List<Vraag>
             {
-                new Vraag(0, "Vraag 1", new List<Antwoord>(), new List<Onderwerpen>())
+                new Vraag(0, "Vraag 1", new List<Antwoord>(), new List<Onderwerp>())
             };
 
             mockReader.Setup(r => r.Read(It.IsAny<string>())).Returns(nepVragen);
@@ -184,13 +184,13 @@ namespace MeerKeuzeBL.Tests
             [Fact]
             public void Vragen_MagNietLeegZijn()
             {
-                Assert.Throws<ArgumentException>(() => new Vraag(1, "", new List<Antwoord>(), new List<Onderwerpen>()));
+                Assert.Throws<ArgumentException>(() => new Vraag(1, "", new List<Antwoord>(), new List<Onderwerp>()));
             }
 
             [Fact]
             public void Vragen_MagNietNullZijn()
             {
-                Assert.Throws<ArgumentException>(() => new Vraag(1, null, new List<Antwoord>(), new List<Onderwerpen>()));
+                Assert.Throws<ArgumentException>(() => new Vraag(1, null, new List<Antwoord>(), new List<Onderwerp>()));
             }
 
             [Fact]
@@ -210,7 +210,7 @@ namespace MeerKeuzeBL.Tests
             [Fact]
             public void Onderwerpen_NaamWordtCorrectOpgeslagen()
             {
-                var onderwerp = new Onderwerpen(1, "Wiskunde");
+                var onderwerp = new Onderwerp(1, "Wiskunde");
                 Assert.Equal("Wiskunde", onderwerp.OnderwerpNaam);
                 Assert.Equal(1, onderwerp.OnderwerpID);
             }
@@ -218,14 +218,14 @@ namespace MeerKeuzeBL.Tests
             [Fact]
             public void QuizOpstellen_BeginScoreIsNul()
             {
-                var quiz = new QuizOpstellen(new Onderwerpen(1, "Test"), new List<Vraag>(), "Test Quiz");
+                var quiz = new QuizOpstellen(new Onderwerp(1, "Test"), new List<Vraag>(), "Test Quiz");
                 Assert.Equal(0, quiz.Score);
             }
 
             [Fact]
             public void QuizOpstellen_IngevuldeAntwoordenIsLeegBijAanmaak()
             {
-                var quiz = new QuizOpstellen(new Onderwerpen(1, "Test"), new List<Vraag>(), "Test Quiz");
+                var quiz = new QuizOpstellen(new Onderwerp(1, "Test"), new List<Vraag>(), "Test Quiz");
                 Assert.NotNull(quiz.IngevuldeAntwoorden);
                 Assert.Empty(quiz.IngevuldeAntwoorden);
             }

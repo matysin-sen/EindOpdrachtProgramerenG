@@ -8,7 +8,7 @@
     <Compile Update="KeuzeQiuzMaker.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="OnderwerpenToevoegen.xaml.cs">
+    <Compile Update="QuizVragenImporteren.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="QuizOptiesxaml.xaml.cs">

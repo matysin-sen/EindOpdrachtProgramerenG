@@ -4,6 +4,7 @@ using Microsoft.Data.SqlClient;
 using System.Data;
 using System.Data.Common;
 using System.Diagnostics.Metrics;
+using System.Transactions;
 
 namespace MeerKeuzeDL.Repository
 {
@@ -18,7 +19,7 @@ namespace MeerKeuzeDL.Repository
                 _connectionString = connectionString;
             }
 
-
+        /*
         public void voegvraagtoe(List<Vraag> vragen)
         {
             // OUTPUT INSERTED.VraagID geeft meteen het nieuwe ID terug dat de database heeft verzonnen
@@ -78,7 +79,7 @@ namespace MeerKeuzeDL.Repository
                                         Antwoordcmd.ExecuteNonQuery();
                                     }
 
-                                    foreach (Onderwerpen onderwerp in vraag.Onderwerp)
+                                    foreach (Onderwerp onderwerp in vraag.Onderwerp)
                                     {
                                         Tussentabelcmd.Parameters.AddWithValue("@VraagID", nieuwVraagID);
                                         Tussentabelcmd.Parameters.AddWithValue("@OnderwerpID", onderwerp.OnderwerpID);
@@ -98,121 +99,243 @@ namespace MeerKeuzeDL.Repository
                 }
             }
         }
-
+        */
+        public int dubbels;
         public void VoegVraagToe(Vraag vraag)
-            {
+        {
             // OUTPUT INSERTED.VraagID geeft meteen het nieuwe ID terug dat de database heeft verzonnen
             string sqlVraag = "INSERT INTO VRAGEN (Vraagzin) OUTPUT INSERTED.IDVraag VALUES (@Vraagzin)";
             string sqlAntwoord = "INSERT INTO ANTWOORDEN (VraagID, AntwoordZin, IsCorrect) VALUES (@VraagID, @Antwoordzin, @IsCorrect)";
             // --- NIEUW: Query voor de tussentabel ---
             string sqlTussentabel = "INSERT INTO VRAGEN_ONDERWERPEN (VraagID, OnderwerpID) VALUES (@VraagID, @OnderwerpID)";
 
-
-
-
-
+            string sqlDubbelVraag = "select * from VRAGEN where Vraagzin = @Vraagzin";
+            string sqlDubbelVragenOnderwerp = "select * from VRAGEN_ONDERWERPEN where VraagID = @VraagID and OnderwerpID = @OnderwerpID";
+            //string sqlDubbelAntwoorden = "select * from VRAGEN where lower(Vraagzin) = lower(@Vraagzin)";
+            int idvraag;
+            // Onderwerp onderwerp = null;
+            
+            int onderwerpId;
             using (SqlConnection conn = new SqlConnection(_connectionString))
-                {
-                    conn.Open();
+            using (SqlCommand cmd = conn.CreateCommand())
+            using (SqlCommand cmdVragenOnderwerp = conn.CreateCommand())
+            {
+                cmd.CommandText = sqlDubbelVraag;
+                cmd.Parameters.AddWithValue("@Vraagzin", vraag.VraagTekst);
 
-                    // Start een transactie
-                    using (SqlTransaction transaction = conn.BeginTransaction())
+
+                cmdVragenOnderwerp.CommandText = sqlDubbelVragenOnderwerp;
+
+
+                conn.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {        
+                    if (reader.HasRows)
                     {
-                        try
+                        reader.Read();
+                        idvraag = (int)reader["IDVraag"];
+                        reader.Close();
+                        foreach (var onderwerp in vraag.Onderwerp)
                         {
-                            int nieuwVraagID;
+                            onderwerpId = onderwerp.OnderwerpID;
+                            cmdVragenOnderwerp.Parameters.AddWithValue("@OnderwerpID", onderwerpId);
+                        }
 
-                            // 1. Sla de vraag op
-                            using (SqlCommand cmdVraag = new SqlCommand(sqlVraag, conn, transaction))
+                            cmdVragenOnderwerp.Parameters.AddWithValue("@VraagID", idvraag);
+                        // dit zorgt voor dat er geen dubbele vragen_onderwerpen worden geladen
+                        using (SqlDataReader readerVragenOnderwerp = cmdVragenOnderwerp.ExecuteReader())
+                        {
+                            if (readerVragenOnderwerp.HasRows)
                             {
-                                cmdVraag.Parameters.AddWithValue("@Vraagzin", vraag.VraagTekst);
-                                
+                                dubbels++;
+                                return;
 
-                                // ExecuteScalar voert de query uit en geeft het resultaat van OUTPUT INSERTED.VraagID terug
-                                nieuwVraagID = (int)cmdVraag.ExecuteScalar();
                             }
-
-
-
-
-                            // 2. Sla de antwoorden op
-                            if (vraag.Antwoorden != null)
+                            else
                             {
-                                foreach (var antwoord in vraag.Antwoorden)
+                                readerVragenOnderwerp.Close();
+                                using (SqlTransaction transaction = conn.BeginTransaction())
                                 {
-                                    using (SqlCommand cmdAntwoord = new SqlCommand(sqlAntwoord, conn, transaction))
+                                    try
                                     {
-                                  
-                                    // Koppel het zojuist gekregen VraagID aan het antwoord
-                                    cmdAntwoord.Parameters.AddWithValue("@VraagID", nieuwVraagID);
-                                        cmdAntwoord.Parameters.AddWithValue("@AntwoordZin", antwoord.AntwoordTekst);
-                                        cmdAntwoord.Parameters.AddWithValue("@IsCorrect", antwoord.IsCorrect);
 
-                                        cmdAntwoord.ExecuteNonQuery();
+
+                                        foreach (var onderwerp in vraag.Onderwerp)
+                                        {
+                                            using (SqlCommand cmdTussen = new SqlCommand(sqlTussentabel, conn, transaction))
+                                            {
+                                                cmdTussen.Parameters.AddWithValue("@VraagID", idvraag);
+                                                cmdTussen.Parameters.AddWithValue("@OnderwerpID", onderwerp.OnderwerpID); // Zorg dat dit klopt met de property naam in je klasse Onderwerpen!
+
+                                                cmdTussen.ExecuteNonQuery();
+                                            }
+                                        }
+
+                                    } catch (Exception ex)
+                                    {
+                                        transaction.Rollback();
+                                        throw new Exception("Er is een fout opgetreden bij het toevoegen van de vraag aan het onderwerp: " + ex.Message);
+                                    }
+                                    // Alles is goed gegaan, sla de wijzigingen definitief op in de databank
+                                    transaction.Commit();
+                                }
+                                
+                            }
+                        }
+                       
+                       
+                    }
+                    else
+                    {
+                        reader.Close();
+
+
+
+                        // Start een transactie
+                        using (SqlTransaction transaction = conn.BeginTransaction())
+                        {
+                            try
+                            {
+                                int nieuwVraagID;
+
+
+                                // 1. Sla de vraag op
+                                using (SqlCommand cmdVraag = new SqlCommand(sqlVraag, conn, transaction))
+                                {
+                                    cmdVraag.Parameters.AddWithValue("@Vraagzin", vraag.VraagTekst);
+
+
+                                    // ExecuteScalar voert de query uit en geeft het resultaat van OUTPUT INSERTED.VraagID terug
+                                    nieuwVraagID = (int)cmdVraag.ExecuteScalar();
+                                }
+
+
+
+
+                                // 2. Sla de antwoorden op
+                                if (vraag.Antwoorden != null)
+                                {
+                                    foreach (var antwoord in vraag.Antwoorden)
+                                    {
+                                        using (SqlCommand cmdAntwoord = new SqlCommand(sqlAntwoord, conn, transaction))
+                                        {
+
+                                            // Koppel het zojuist gekregen VraagID aan het antwoord
+                                            cmdAntwoord.Parameters.AddWithValue("@VraagID", nieuwVraagID);
+                                            cmdAntwoord.Parameters.AddWithValue("@AntwoordZin", antwoord.AntwoordTekst);
+                                            cmdAntwoord.Parameters.AddWithValue("@IsCorrect", antwoord.IsCorrect);
+
+                                            cmdAntwoord.ExecuteNonQuery();
+                                        }
                                     }
                                 }
-                            }
-                        // --- 3. NIEUW: Sla de koppeling met onderwerpen op in de tussentabel ---
-                        if (vraag.Onderwerp != null)
-                        {
-                            foreach (var onderwerp in vraag.Onderwerp)
-                            {
-                                using (SqlCommand cmdTussen = new SqlCommand(sqlTussentabel, conn, transaction))
+                                // --- 3. NIEUW: Sla de koppeling met onderwerpen op in de tussentabel ---
+                                if (vraag.Onderwerp != null)
                                 {
-                                    cmdTussen.Parameters.AddWithValue("@VraagID", nieuwVraagID);
-                                    cmdTussen.Parameters.AddWithValue("@OnderwerpID", onderwerp.OnderwerpID); // Zorg dat dit klopt met de property naam in je klasse Onderwerpen!
+                                    foreach (var onderwerp in vraag.Onderwerp)
+                                    {
+                                        using (SqlCommand cmdTussen = new SqlCommand(sqlTussentabel, conn, transaction))
+                                        {
+                                            cmdTussen.Parameters.AddWithValue("@VraagID", nieuwVraagID);
+                                            cmdTussen.Parameters.AddWithValue("@OnderwerpID", onderwerp.OnderwerpID); // Zorg dat dit klopt met de property naam in je klasse Onderwerpen!
 
-                                    cmdTussen.ExecuteNonQuery();
+                                            cmdTussen.ExecuteNonQuery();
+                                        }
+                                    }
                                 }
+                                // Alles is goed gegaan, sla de wijzigingen definitief op in de databank
+                                transaction.Commit();
                             }
-                        }
-                        // Alles is goed gegaan, sla de wijzigingen definitief op in de databank
-                        transaction.Commit();
-                        }
-                        catch (Exception ex)
-                        {
-                            // Er is iets misgegaan, draai alle aanpassingen van deze methode terug
-                            transaction.Rollback();
-                            throw new Exception("Fout bij het wegschrijven naar de databank: " + ex.Message);
+                            catch (Exception ex)
+                            {
+                                // Er is iets misgegaan, draai alle aanpassingen van deze methode terug
+                                transaction.Rollback();
+                                throw new Exception("Fout bij het wegschrijven naar de databank: " + ex.Message);
+                            }
                         }
                     }
                 }
             }
-        public Onderwerpen VoegOnderwerpToe(string onderwerpNaam)
+        }
+        public Onderwerp VoegOnderwerpToe(string onderwerpNaam)
         {
             int id;
-            Onderwerpen onderwerp = null;
-
+            Onderwerp onderwerp = null;
+            const string DubbelCheck = "select * from ONDERWERPEN where  Lower(OnderwerpNaam) = lower(@OnderwerpNaam)";
             // De query is aangepast naar jouw tabelnaam en kolomnamen uit SQLQueryQuizMaken.sql
-            const string query = "INSERT INTO ONDERWERPEN (Onderwerpnaam) OUTPUT INSERTED.IDOnderwerp VALUES (@Onderwerpnaam)";
+            const string Insertqry = "INSERT INTO ONDERWERPEN (Onderwerpnaam) OUTPUT INSERTED.IDOnderwerp VALUES (@Onderwerpnaam)";
 
             using (SqlConnection conn = new SqlConnection(_connectionString))
             using (SqlCommand cmd = conn.CreateCommand())
             {
-                cmd.CommandText = query;
-                cmd.Parameters.AddWithValue("@Onderwerpnaam", onderwerpNaam);
-
-                conn.Open();
-                try
+                using (SqlCommand cmdSelect = new SqlCommand(DubbelCheck, conn))
                 {
-                    // ExecuteScalar voert de INSERT uit en pakt de OUTPUT INSERTED.IDOnderwerp direct vast
-                    id = (int)cmd.ExecuteScalar();
+                    cmdSelect.CommandText = DubbelCheck;
 
-                    // We maken een nieuw object van jouw Domeinklasse
-                    onderwerp = new Onderwerpen(id, onderwerpNaam);
+                   
+                    cmdSelect.Parameters.AddWithValue("@OnderwerpNaam", onderwerpNaam);
+                    conn.Open();
+                    using (SqlDataReader reader = cmdSelect.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            // Er is al een onderwerp met deze naam, we maken een Onderwerp object aan en vullen het ID
+                            throw new Exception("Er bestaat al een onderwerp met deze naam. Kies een andere naam.");
+                            
+                        }
+                        else
+                        {
+                            reader.Close();
+                            // Er is nog geen onderwerp met deze naam, we voegen het toe
+                            using (SqlCommand cmdInsert = new SqlCommand(Insertqry, conn))
+                            {
+                                cmdInsert.CommandText = Insertqry;
+                                cmdInsert.Parameters.AddWithValue("@Onderwerpnaam", onderwerpNaam);
+                                try
+                                {
+                                    // ExecuteScalar voert de INSERT uit en pakt de OUTPUT INSERTED.IDOnderwerp direct vast
+                                    id = (int)cmdInsert.ExecuteScalar();
+
+                                    // We maken een nieuw object van jouw Domeinklasse
+                                    onderwerp = new Onderwerp(id, onderwerpNaam);
+                                }
+                                catch (Exception ex)
+                                {
+                                    // Fouten netjes opvangen en doorgeven naar de UI zodat je weet wát er misging
+                                    throw new Exception("Fout bij het toevoegen van het onderwerp: " + ex.Message);
+                                }
+                                
+                            }
+                        }
+                    }
                 }
-                catch (Exception ex)
-                {
-                    // Fouten netjes opvangen en doorgeven naar de UI zodat je weet wát er misging
-                    throw new Exception("Fout bij het toevoegen van het onderwerp: " + ex.Message);
-                }
+
+
+
+                //    cmd.Parameters.AddWithValue("@Onderwerpnaam", onderwerpNaam);
+
+                //    conn.Open();
+                //    try
+                //    {
+                //        // ExecuteScalar voert de INSERT uit en pakt de OUTPUT INSERTED.IDOnderwerp direct vast
+                //        id = (int)cmd.ExecuteScalar();
+
+                //        // We maken een nieuw object van jouw Domeinklasse
+                //        onderwerp = new Onderwerp(id, onderwerpNaam);
+                //    }
+                //    catch (Exception ex)
+                //    {
+                //        // Fouten netjes opvangen en doorgeven naar de UI zodat je weet wát er misging
+                //        throw new Exception("Fout bij het toevoegen van het onderwerp: " + ex.Message);
+                //    }
+                //}
+
+                return onderwerp;
             }
-
-            return onderwerp;
         }
-        public List<Onderwerpen> GeefAlleOnderwerpen()
+        public List<Onderwerp> GeefAlleOnderwerpen()
         {
-            List<Onderwerpen> onderwerpenLijst = new List<Onderwerpen>();
+            List<Onderwerp> onderwerpenLijst = new List<Onderwerp>();
 
             // We selecteren beide kolommen uit de tabel en sorteren ze alfabetisch
             string query = "SELECT IDOnderwerp, Onderwerpnaam FROM ONDERWERPEN ORDER BY Onderwerpnaam ASC";
@@ -235,7 +358,7 @@ namespace MeerKeuzeDL.Repository
                                 string naam = reader["Onderwerpnaam"].ToString();
 
                                 // Maak een nieuw C# object aan en voeg toe aan de lijst
-                                Onderwerpen onderwerp = new Onderwerpen(id, naam);
+                                Onderwerp onderwerp = new Onderwerp(id, naam);
                                 onderwerpenLijst.Add(onderwerp);
                             }
                         }
@@ -311,7 +434,7 @@ namespace MeerKeuzeDL.Repository
                             string vraagZin = reader["Vraagzin"].ToString();
 
                             // Maak de vraag alvast aan
-                            Vraag vraag = new Vraag(vraagId, vraagZin, new List<Antwoord>(), new List<Onderwerpen>());
+                            Vraag vraag = new Vraag(vraagId, vraagZin, new List<Antwoord>(), new List<Onderwerp>());
                             quizVragen.Add(vraag);
                         }
                     }

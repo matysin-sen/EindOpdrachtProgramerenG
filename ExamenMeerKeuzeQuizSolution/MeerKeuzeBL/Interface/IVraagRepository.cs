@@ -9,8 +9,8 @@ namespace MeerKeuzeBL.Interface
     {
         public void VoegVraagToe(Vraag vraag);
 
-        public List<Onderwerpen> GeefAlleOnderwerpen();
-        public Onderwerpen VoegOnderwerpToe(string onderwerpNaam);
+        public List<Onderwerp> GeefAlleOnderwerpen();
+        public Onderwerp VoegOnderwerpToe(string onderwerpNaam);
 
        
 
