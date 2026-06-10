@@ -44,19 +44,19 @@ namespace QuizVragenUI
             }
 
             // 2. Antwoorden aanmaken
-            List<Antwoorden> antwoorden = new List<Antwoorden>
+            List<Antwoord> antwoorden = new List<Antwoord>
             {
-                new Antwoorden(rbCorrectA.IsChecked == true, txtAntwoordA.Text),
-                new Antwoorden(rbCorrectB.IsChecked == true, txtAntwoordB.Text),
-                new Antwoorden(rbCorrectC.IsChecked == true, txtAntwoordC.Text),
-                new Antwoorden(rbCorrectD.IsChecked == true, txtAntwoordD.Text)
+                new Antwoord(rbCorrectA.IsChecked == true, txtAntwoordA.Text),
+                new Antwoord(rbCorrectB.IsChecked == true, txtAntwoordB.Text),
+                new Antwoord(rbCorrectC.IsChecked == true, txtAntwoordC.Text),
+                new Antwoord(rbCorrectD.IsChecked == true, txtAntwoordD.Text)
             };
 
             // 3. Onderwerp ophalen
             Onderwerpen gekozenOnderwerp = (Onderwerpen)cmbOnderwerp.SelectedItem;
 
             // 4. Vraag aanmaken
-            Vragen nieuweVraag = new Vragen
+            Vraag nieuweVraag = new Vraag
             {
                 VraagTekst = txtVraag.Text,
                 Antwoorden = antwoorden,

@@ -22,7 +22,7 @@ namespace QuizVragenUI
     public partial class QuizOptiesxaml : Window
     {
         public Manager manager;
-        private IVragenRepository repository;
+        private IVraagRepository repository;
         private int userID;
         public QuizOptiesxaml(Manager manager, int userID)
         {

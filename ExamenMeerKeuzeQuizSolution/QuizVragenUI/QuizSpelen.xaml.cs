@@ -26,7 +26,7 @@ namespace QuizVragenUI
         private QuizOpstellen _actieveQuiz;
 
         private int _huidigeVraagIndex = 0;
-        private Vragen huidigeVraag;
+        private Vraag huidigeVraag;
 
         // Constructor krijgt nu het QuizOpstellen object binnen
         public QuizSpelen(Manager manager, QuizOpstellen actieveQuiz , int userID)
@@ -63,7 +63,7 @@ namespace QuizVragenUI
 
             // Toon de vraag (pas aan naar jouw property naam, bv. VraagStelling)
             txtVraag.Text = $"Vraag {_huidigeVraagIndex + 1}: {huidigeVraag.VraagTekst}";
-
+           
             // Toon antwoorden in de RadioButtons (pas 'Tekst' aan indien nodig)
             if (huidigeVraag.Antwoorden.Count >= 4)
             {
@@ -78,6 +78,58 @@ namespace QuizVragenUI
 
                 rbOptieD.Content = "D. " + huidigeVraag.Antwoorden[3].AntwoordTekst;
                 rbOptieD.Tag = huidigeVraag.Antwoorden[3].AntwoordID;
+            }
+            if(rbOptieA.Content.Equals(rbOptieD))
+            {
+                throw new Exception("kan niet 2 keer hetzelfde antwoord hebben");
+            }
+            if (rbOptieB.Content.Equals(rbOptieD))
+            {
+                throw new Exception("kan niet 2 keer hetzelfde antwoord hebben");
+            }
+            if (rbOptieC.Content.Equals(rbOptieD))
+            {
+                throw new Exception("kan niet 2 keer hetzelfde antwoord hebben");
+            }
+            if (rbOptieA.Content.Equals(rbOptieC))
+            {
+                throw new Exception("kan niet 2 keer hetzelfde antwoord hebben");
+            }
+            if (rbOptieA.Content.Equals(rbOptieB))
+            {
+                throw new Exception("kan niet 2 keer hetzelfde antwoord hebben");
+            }
+            if (rbOptieB.Content.Equals(rbOptieC))
+            {
+                throw new Exception("kan niet 2 keer hetzelfde antwoord hebben");
+            }
+            if (rbOptieB.Content.Equals(rbOptieA))
+            {
+                throw new Exception("kan niet 2 keer hetzelfde antwoord hebben");
+            }
+            if (rbOptieC.Content.Equals(rbOptieA))
+            {
+                throw new Exception("kan niet 2 keer hetzelfde antwoord hebben");
+            }
+            if(rbOptieC.Content.Equals(rbOptieB))
+            {
+                throw new Exception("kan niet 2 keer hetzelfde antwoord hebben");
+            }
+            if (rbOptieC.Content.Equals(rbOptieD))
+            {
+                throw new Exception("kan niet 2 keer hetzelfde antwoord hebben");
+            }
+            if (rbOptieD.Content.Equals(rbOptieA))
+            {
+                throw new Exception("kan niet 2 keer hetzelfde antwoord hebben");
+            }
+            if (rbOptieD.Content.Equals(rbOptieB))
+            {
+                throw new Exception("kan niet 2 keer hetzelfde antwoord hebben");
+            }
+            if (rbOptieD.Content.Equals(rbOptieC))
+            {
+                throw new Exception("kan niet 2 keer hetzelfde antwoord hebben");
             }
         }
 

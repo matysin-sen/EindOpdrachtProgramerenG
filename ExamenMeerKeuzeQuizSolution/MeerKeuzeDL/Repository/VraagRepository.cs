@@ -1,29 +1,116 @@
 ﻿using MeerKeuzeBL.Domein;
 using MeerKeuzeBL.Interface;
 using Microsoft.Data.SqlClient;
+using System.Data;
 using System.Data.Common;
+using System.Diagnostics.Metrics;
 
 namespace MeerKeuzeDL.Repository
 {
 
-        public class VragenRepository : IVragenRepository
+        public class VraagRepository : IVraagRepository
     {
             private  string _connectionString;
 
             // Geef de connection string mee via de constructor
-            public VragenRepository(string connectionString)
+            public VraagRepository(string connectionString)
             {
                 _connectionString = connectionString;
             }
-         
 
-        public void VoegVraagToe(Vragen vraag)
+
+        public void voegvraagtoe(List<Vraag> vragen)
+        {
+            // OUTPUT INSERTED.VraagID geeft meteen het nieuwe ID terug dat de database heeft verzonnen
+            string sqlVraag = "INSERT INTO VRAGEN (Vraagzin) OUTPUT INSERTED.IDVraag VALUES (@Vraagzin)";
+            string sqlAntwoord = "INSERT INTO ANTWOORDEN (VraagID, AntwoordZin, IsCorrect) VALUES (@VraagID, @Antwoordzin, @IsCorrect)";
+            // --- NIEUW: Query voor de tussentabel ---
+            string sqlTussentabel = "INSERT INTO VRAGEN_ONDERWERPEN (VraagID, OnderwerpID) VALUES (@VraagID, @OnderwerpID)";
+
+            // Start een SqlConnection op
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                foreach (Vraag vraag in vragen)
+                {
+                    // Maak de twee commands aan via je connectie
+                    using (SqlCommand Vraagcmd = connection.CreateCommand())
+                    {
+                        using (SqlCommand Antwoordcmd = connection.CreateCommand())
+                        {
+                            using (SqlCommand Tussentabelcmd = connection.CreateCommand())
+                            {
+
+
+
+                                // Link de queries aan de juiste commands
+                                Vraagcmd.CommandText = sqlVraag;
+                                Antwoordcmd.CommandText = sqlAntwoord;
+                                Tussentabelcmd.CommandText = sqlTussentabel;
+
+                                // Start een transactie en link ze aan de commands.
+                                // We gebruiken een transactie omdat we in twee tabellen tegelijkertijd moeten schrijven
+                                SqlTransaction transaction = connection.BeginTransaction();
+                                Vraagcmd.Transaction = transaction;
+                                Antwoordcmd.Transaction = transaction;
+                                Tussentabelcmd.Transaction = transaction;
+
+                                try
+                                {
+                                    // Maak de parameters aan.
+                                    // We hebben telkens maar één loopsessie nodig, dus kunnen we de parameters direct instellen.
+                                    Vraagcmd.Parameters.AddWithValue("@Vraagzin", vraag.VraagTekst);
+
+
+                                    // We voeren deze command uit en slaan telkens de waarde in de eerste kolom (= het id van de sessie) op
+                                    int nieuwVraagID = (int)Vraagcmd.ExecuteScalar();
+
+
+                                    Antwoordcmd.Parameters.AddWithValue("@VraagID", nieuwVraagID);
+                                    Antwoordcmd.Parameters.Add("@Antwoordzin", SqlDbType.VarChar, 255);
+                                    Antwoordcmd.Parameters.Add("@IsCorrect", SqlDbType.Bit);
+                                    foreach (Antwoord antwoord in vraag.Antwoorden)
+                                    {
+                                        Antwoordcmd.Parameters["@Antwoordzin"].Value = antwoord.AntwoordTekst;
+                                        Antwoordcmd.Parameters["@IsCorrect"].Value = antwoord.IsCorrect;
+
+                                        Antwoordcmd.ExecuteNonQuery();
+                                    }
+
+                                    foreach (Onderwerpen onderwerp in vraag.Onderwerp)
+                                    {
+                                        Tussentabelcmd.Parameters.AddWithValue("@VraagID", nieuwVraagID);
+                                        Tussentabelcmd.Parameters.AddWithValue("@OnderwerpID", onderwerp.OnderwerpID);
+                                        Tussentabelcmd.ExecuteNonQuery();
+                                    }
+                                    transaction.Commit();
+
+                                }
+                                catch (Exception ex)
+                                {
+                                    transaction.Rollback();
+                                    throw ex;
+                                }
+                            }
+                        }
+                    }  
+                }
+            }
+        }
+
+        public void VoegVraagToe(Vraag vraag)
             {
             // OUTPUT INSERTED.VraagID geeft meteen het nieuwe ID terug dat de database heeft verzonnen
             string sqlVraag = "INSERT INTO VRAGEN (Vraagzin) OUTPUT INSERTED.IDVraag VALUES (@Vraagzin)";
             string sqlAntwoord = "INSERT INTO ANTWOORDEN (VraagID, AntwoordZin, IsCorrect) VALUES (@VraagID, @Antwoordzin, @IsCorrect)";
             // --- NIEUW: Query voor de tussentabel ---
             string sqlTussentabel = "INSERT INTO VRAGEN_ONDERWERPEN (VraagID, OnderwerpID) VALUES (@VraagID, @OnderwerpID)";
+
+
+
+
+
             using (SqlConnection conn = new SqlConnection(_connectionString))
                 {
                     conn.Open();
@@ -39,10 +126,14 @@ namespace MeerKeuzeDL.Repository
                             using (SqlCommand cmdVraag = new SqlCommand(sqlVraag, conn, transaction))
                             {
                                 cmdVraag.Parameters.AddWithValue("@Vraagzin", vraag.VraagTekst);
+                                
 
                                 // ExecuteScalar voert de query uit en geeft het resultaat van OUTPUT INSERTED.VraagID terug
                                 nieuwVraagID = (int)cmdVraag.ExecuteScalar();
                             }
+
+
+
 
                             // 2. Sla de antwoorden op
                             if (vraag.Antwoorden != null)
@@ -51,8 +142,9 @@ namespace MeerKeuzeDL.Repository
                                 {
                                     using (SqlCommand cmdAntwoord = new SqlCommand(sqlAntwoord, conn, transaction))
                                     {
-                                        // Koppel het zojuist gekregen VraagID aan het antwoord
-                                        cmdAntwoord.Parameters.AddWithValue("@VraagID", nieuwVraagID);
+                                  
+                                    // Koppel het zojuist gekregen VraagID aan het antwoord
+                                    cmdAntwoord.Parameters.AddWithValue("@VraagID", nieuwVraagID);
                                         cmdAntwoord.Parameters.AddWithValue("@AntwoordZin", antwoord.AntwoordTekst);
                                         cmdAntwoord.Parameters.AddWithValue("@IsCorrect", antwoord.IsCorrect);
 
@@ -190,9 +282,9 @@ namespace MeerKeuzeDL.Repository
             }
         }
 
-        public List<Vragen> GeefRandomVragenVoorOnderwerp(int onderwerpId, int aantalVragen)
+        public List<Vraag> GeefRandomVragenVoorOnderwerp(int onderwerpId, int aantalVragen)
         {
-            List<Vragen> quizVragen = new List<Vragen>();
+            List<Vraag> quizVragen = new List<Vraag>();
 
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
@@ -219,7 +311,7 @@ namespace MeerKeuzeDL.Repository
                             string vraagZin = reader["Vraagzin"].ToString();
 
                             // Maak de vraag alvast aan
-                            Vragen vraag = new Vragen(vraagId, vraagZin, new List<Antwoorden>(), new List<Onderwerpen>());
+                            Vraag vraag = new Vraag(vraagId, vraagZin, new List<Antwoord>(), new List<Onderwerpen>());
                             quizVragen.Add(vraag);
                         }
                     }
@@ -241,7 +333,7 @@ namespace MeerKeuzeDL.Repository
                                 string antwZin = readerAntw["AntwoordZin"].ToString();
                                 bool isCorrect = Convert.ToBoolean(readerAntw["IsCorrect"]);
 
-                                vraag.Antwoorden.Add(new Antwoorden(antwoordId, isCorrect, antwZin)); // ← constructor met ID
+                                vraag.Antwoorden.Add(new Antwoord(antwoordId, isCorrect, antwZin)); // ← constructor met ID
                             }
                         }
                     }
@@ -252,9 +344,9 @@ namespace MeerKeuzeDL.Repository
             return quizVragen;
         }
 
-        public List<Vragen> GeefVragenPerOnderwerp(int onderwerpId)
+        public List<Vraag> GeefVragenPerOnderwerp(int onderwerpId)
         {
-            List<Vragen> vragen = new List<Vragen>();
+            List<Vraag> vragen = new List<Vraag>();
 
             // De SQL query die gebruik maakt van jouw tabelnamen
             string query = @"
@@ -275,7 +367,7 @@ namespace MeerKeuzeDL.Repository
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     // Dictionary om vragen te groeperen op hun VraagID
-                    Dictionary<int, Vragen> vraagDict = new Dictionary<int, Vragen>();
+                    Dictionary<int, Vraag> vraagDict = new Dictionary<int, Vraag>();
 
                     while (reader.Read())
                     {
@@ -284,12 +376,12 @@ namespace MeerKeuzeDL.Repository
                         // 1. Nieuwe vraag aanmaken als we hem nog niet gezien hebben
                         if (!vraagDict.ContainsKey(vraagId))
                         {
-                            Vragen nieuweVraag = new Vragen
+                            Vraag nieuweVraag = new Vraag
                             {
                                 // Zorg dat deze property namen exact overeenkomen met Vragen.cs
                                 VraagID = vraagId,
                                 VraagTekst = reader["VraagZin"].ToString(),
-                                Antwoorden = new List<Antwoorden>()
+                                Antwoorden = new List<Antwoord>()
                             };
                             vraagDict.Add(vraagId, nieuweVraag);
                         }
@@ -297,7 +389,7 @@ namespace MeerKeuzeDL.Repository
                         // 2. Antwoord toevoegen aan de lijst van de vraag (indien aanwezig)
                         if (reader["IDAntwoord"] != DBNull.Value)
                         {
-                            Antwoorden antwoord = new Antwoorden
+                            Antwoord antwoord = new Antwoord
                             {
                                 // Zorg dat deze property namen exact overeenkomen met Antwoorden.cs
                                 AntwoordID = (int)reader["IDAntwoord"],
@@ -336,7 +428,7 @@ namespace MeerKeuzeDL.Repository
                 // 2. Sla de koppeling op in de tussentabel QUIZ_VRAGEN
                 string queryTussenTabel = "INSERT INTO TESTVRAGEN (TestID, VraagID,Volgnummer) VALUES (@QuizId, @VraagId, @Volgnummer)";
 
-                foreach (Vragen vraag in quiz.VragenLijst) // Let op: Gebruik hier VragenLijst (naam uit jouw klasse)
+                foreach (Vraag vraag in quiz.VragenLijst) // Let op: Gebruik hier VragenLijst (naam uit jouw klasse)
                 {
                     using (SqlCommand cmdTussen = new SqlCommand(queryTussenTabel, conn))
                     {
@@ -351,7 +443,7 @@ namespace MeerKeuzeDL.Repository
 
             return nieuwQuizId;
         }
-        public void BewaarAntwoorden(int quizId, Dictionary<Vragen, GegevenAntwoorden> antwoorden)
+        public void BewaarAntwoorden(int quizId, Dictionary<Vraag, GegevenAntwoord> antwoorden)
         {
             string selectQuery = "SELECT IDTestVraag FROM TESTVRAGEN WHERE TestID = @TestID AND VraagID = @VraagID";
             string insertQuery = "INSERT INTO TESTANTWOORDEN (TestVraagID, AntwoordLetteroptie, AntwoordID) VALUES (@TestVraagID, @AntwoordLetteroptie, @AntwoordID)";
@@ -362,7 +454,7 @@ namespace MeerKeuzeDL.Repository
 
                 foreach (var item in antwoorden)
                 {
-                    Vragen vraag = item.Key;
+                    Vraag vraag = item.Key;
                     int testVraagId = 0;
 
                     // 1. Haal het TestVraagID op
@@ -418,7 +510,7 @@ namespace MeerKeuzeDL.Repository
             }
         }
 
-        public void BewaarUserTestAntwoorden(int gemaakteTestId, Dictionary<Vragen, GegevenAntwoorden> antwoorden, int quizId)
+        public void BewaarUserTestAntwoorden(int gemaakteTestId, Dictionary<Vraag, GegevenAntwoord> antwoorden, int quizId)
         {
             // Haal eerst alle TestVraagIDs op
             string selectQuery = "SELECT IDTestVraag, VraagID FROM TESTVRAGEN WHERE TestID = @TestID";

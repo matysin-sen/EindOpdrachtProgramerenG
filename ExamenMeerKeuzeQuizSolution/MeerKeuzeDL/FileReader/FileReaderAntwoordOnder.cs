@@ -8,14 +8,14 @@ namespace MeerKeuzeDL.FileReader
 {
     public class FileReaderAntwoordOnder : IFileReader
     {
-        public List<Vragen> Read(string pad)
+        public List<Vraag> Read(string pad)
         {
            
             bool aanAntwoord = false;
             int CurrentLijn = 0;
             int lettersCount = 0;
-            List<Vragen> vragen = new List<Vragen>();
-            Vragen huidigeVraag = null;
+            List<Vraag> vragen = new List<Vraag>();
+            Vraag huidigeVraag = null;
 
             using (StreamReader sr = new StreamReader(pad))
             {
@@ -47,7 +47,7 @@ namespace MeerKeuzeDL.FileReader
                             vraagText = "";
                         }
 
-                        huidigeVraag = new Vragen(vraagText, new List<Antwoorden>());
+                        huidigeVraag = new Vraag(vraagText, new List<Antwoord>());
                         vragen.Add(huidigeVraag);
                         CurrentLijn++;
                     }
@@ -91,7 +91,7 @@ namespace MeerKeuzeDL.FileReader
                         // Zorg dat we een vraag hebben om het antwoord aan toe te voegen
                         if (huidigeVraag != null)
                         {
-                            huidigeVraag.Antwoorden.Add(new Antwoorden(false, antwoordText, letter));
+                            huidigeVraag.Antwoorden.Add(new Antwoord(false, antwoordText, letter));
                         }
                     }
                     // 5. ZWEVENDE TEKST OPVANGEN (De vraag zelf of titels)

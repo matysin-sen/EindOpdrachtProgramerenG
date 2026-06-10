@@ -8,9 +8,9 @@ namespace MeerKeuzeBL.Managers
 {
     public class Manager
     {
-        IVragenRepository _repository;
+        IVraagRepository _repository;
 
-        public Manager(IVragenRepository repository)
+        public Manager(IVraagRepository repository)
         {
             _repository = repository;
         }
@@ -23,7 +23,7 @@ namespace MeerKeuzeBL.Managers
         {
             return _repository.voegUserToe(naam, achternaam);
         }
-        public void VoegVraagToe(Vragen vraag)
+        public void VoegVraagToe(Vraag vraag)
         {
             _repository.VoegVraagToe(vraag);
         }
@@ -39,7 +39,7 @@ namespace MeerKeuzeBL.Managers
         {
             // 1. Haal alle vragen op van dit specifieke onderwerp.
             // Zorg dat je een methode in je repository hebt die dit doet!
-            List<Vragen> alleVragenVoorOnderwerp = _repository.GeefRandomVragenVoorOnderwerp(gekozenOnderwerp.OnderwerpID, aantalVragen);
+            List<Vraag> alleVragenVoorOnderwerp = _repository.GeefRandomVragenVoorOnderwerp(gekozenOnderwerp.OnderwerpID, aantalVragen);
 
             // 2. Controleer of we wel genoeg vragen in de database hebben
             if (alleVragenVoorOnderwerp.Count < aantalVragen)
@@ -49,7 +49,7 @@ namespace MeerKeuzeBL.Managers
 
             // 3. De magie: Schud de lijst willekeurig door elkaar en pak de eerste 'aantalVragen'
             Random rnd = new Random();
-            List<Vragen> randomSelectie = alleVragenVoorOnderwerp.OrderBy(x => rnd.Next()).Take(aantalVragen).ToList();
+            List<Vraag> randomSelectie = alleVragenVoorOnderwerp.OrderBy(x => rnd.Next()).Take(aantalVragen).ToList();
 
             // 4. Maak je Quiz-object aan (ik ga er vanuit dat je klasse 'QuizOpstellen' heet)
             QuizOpstellen nieuweQuiz = new QuizOpstellen()
@@ -68,13 +68,13 @@ namespace MeerKeuzeBL.Managers
             return nieuweQuiz;
         }
 
-        public void BeantwoordVraag(QuizOpstellen quiz, Vragen vraag, string gekozenLetter, int antwoordId)
+        public void BeantwoordVraag(QuizOpstellen quiz, Vraag vraag, string gekozenLetter, int antwoordId)
         {
             // Zoek het antwoord object op
             var antwoordObj = vraag.Antwoorden.FirstOrDefault(a => a.AntwoordID == antwoordId);
 
             // Maak het resultaat object
-            GegevenAntwoorden resultaat = new GegevenAntwoorden
+            GegevenAntwoord resultaat = new GegevenAntwoord
             {
                 AntwoordenID = antwoordId,
                 GekozenLetter = gekozenLetter,

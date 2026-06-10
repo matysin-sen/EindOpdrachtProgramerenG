@@ -4,14 +4,16 @@ using System.Text;
 
 namespace MeerKeuzeBL.Domein
 {
-    public class GegevenAntwoorden
+    public class GegevenAntwoord
     {
-        public Antwoorden AntwoordObject { get; set; }
+        public Antwoord AntwoordObject { get; set; }
         public int AntwoordenID { get; set; } 
         public string Letter { get; set; }
         public string GekozenLetter { get; set; } // Bijv. "A"
         public bool IsCorrect { get; set; }
-        public GegevenAntwoorden(Antwoorden antwoordObject, string letter)
+        
+
+        public GegevenAntwoord(Antwoord antwoordObject, string letter)
         {
             AntwoordObject = antwoordObject;
             Letter = letter;
@@ -19,7 +21,7 @@ namespace MeerKeuzeBL.Domein
             IsCorrect = antwoordObject.IsCorrect;
         }
 
-        public GegevenAntwoorden()
+        public GegevenAntwoord()
         {
         }
     }

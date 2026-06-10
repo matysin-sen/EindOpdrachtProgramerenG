@@ -11,7 +11,7 @@ namespace QuizIntegratieTest
     public class VragenRepositoryTests : IDisposable
     {
         private readonly string _connectionString = "Data Source=DESKTOP-TM1M5LB\\SQLEXPRESS;Initial Catalog=Quiz;Integrated Security=True;Trust Server Certificate=True";
-        private readonly VragenRepository _repository;
+        private readonly VraagRepository _repository;
 
         private readonly List<int> _aangemaakteVraagIds = new List<int>();
         private readonly List<int> _aangemaakteOnderwerpIds = new List<int>();
@@ -21,7 +21,7 @@ namespace QuizIntegratieTest
 
         public VragenRepositoryTests()
         {
-            _repository = new VragenRepository(_connectionString);
+            _repository = new VraagRepository(_connectionString);
         }
 
         // ==================== ONDERWERP TESTS ====================
@@ -127,15 +127,15 @@ namespace QuizIntegratieTest
             Onderwerpen onderwerp = _repository.VoegOnderwerpToe("TestOnderwerp_" + Guid.NewGuid());
             _aangemaakteOnderwerpIds.Add(onderwerp.OnderwerpID);
 
-            var antwoorden = new List<Antwoorden>
+            var antwoorden = new List<Antwoord>
             {
-                new Antwoorden(false, "Fout 1"),
-                new Antwoorden(true,  "Juist"),
-                new Antwoorden(false, "Fout 2"),
-                new Antwoorden(false, "Fout 3")
+                new Antwoord(false, "Fout 1"),
+                new Antwoord(true,  "Juist"),
+                new Antwoord(false, "Fout 2"),
+                new Antwoord(false, "Fout 3")
             };
 
-            var vraag = new Vragen
+            var vraag = new Vraag
             {
                 VraagTekst = "TestVraag_" + Guid.NewGuid(),
                 Antwoorden = antwoorden,

@@ -8,12 +8,12 @@ namespace MeerKeuzeDL.FileReader
 {
     public class FileReaderAntwoordAchterVraag : IFileReader
     {
-        public List<Vragen> Read(string pad)
+        public List<Vraag> Read(string pad)
         {
             
             int CurrentLijn = 0;
-            List<Vragen> vragen = new List<Vragen>();
-            Vragen huidigeVraag = null;
+            List<Vraag> vragen = new List<Vraag>();
+            Vraag huidigeVraag = null;
 
             using (StreamReader sr = new StreamReader(pad)) {
                 string vraagText;
@@ -29,7 +29,7 @@ namespace MeerKeuzeDL.FileReader
                     if(char.IsDigit(Lijn[0]) && (Lijn[1] == '.' || char.IsDigit(Lijn[1])))//leest maar tot 99 vragen niet meer
                     {
                         vraagText = Lijn.Substring(3);
-                        huidigeVraag = new Vragen (vraagText, new List<Antwoorden>());
+                        huidigeVraag = new Vraag (vraagText, new List<Antwoord>());
                         vragen.Add(huidigeVraag);
 						
                         CurrentLijn++;
@@ -38,7 +38,7 @@ namespace MeerKeuzeDL.FileReader
                     {
                       string antwoordText = Lijn.Substring(2).Trim();
                       string letter = Lijn[0].ToString().ToUpper();
-                      huidigeVraag.Antwoorden.Add(new Antwoorden (false , antwoordText, letter));
+                      huidigeVraag.Antwoorden.Add(new Antwoord (false , antwoordText, letter));
 					}
 					else if (Lijn.StartsWith("Correct:"))
                     {

@@ -10,34 +10,34 @@ namespace MeerKeuzeBL.Tests
     // ==================== MANAGER TESTS ====================
     public class ManagerTests
     {
-        private List<Vragen> MaakTestVragenLijst()
+        private List<Vraag> MaakTestVragenLijst()
         {
-            var antwoorden1 = new List<Antwoorden>
+            var antwoorden1 = new List<Antwoord>
             {
-                new Antwoorden(1, false, "Fout Antwoord 1"),
-                new Antwoorden(2, true,  "Juist Antwoord"),
-                new Antwoorden(3, false, "Fout Antwoord 2"),
-                new Antwoorden(4, false, "Fout Antwoord 3")
+                new Antwoord(1, false, "Fout Antwoord 1"),
+                new Antwoord(2, true,  "Juist Antwoord"),
+                new Antwoord(3, false, "Fout Antwoord 2"),
+                new Antwoord(4, false, "Fout Antwoord 3")
             };
 
-            var antwoorden2 = new List<Antwoorden>
+            var antwoorden2 = new List<Antwoord>
             {
-                new Antwoorden(5, true,  "Juist Antwoord 2"),
-                new Antwoorden(6, false, "Fout Antwoord")
+                new Antwoord(5, true,  "Juist Antwoord 2"),
+                new Antwoord(6, false, "Fout Antwoord")
             };
 
-            return new List<Vragen>
+            return new List<Vraag>
             {
-                new Vragen(1, "Wat is 1+1?", antwoorden1, new List<Onderwerpen>()),
-                new Vragen(2, "Wat is de hoofdstad van België?", antwoorden2, new List<Onderwerpen>()),
-                new Vragen(3, "Extra Vraag", antwoorden1, new List<Onderwerpen>())
+                new Vraag(1, "Wat is 1+1?", antwoorden1, new List<Onderwerpen>()),
+                new Vraag(2, "Wat is de hoofdstad van België?", antwoorden2, new List<Onderwerpen>()),
+                new Vraag(3, "Extra Vraag", antwoorden1, new List<Onderwerpen>())
             };
         }
 
         [Fact]
         public void GenereerRandomQuiz_MoetJuistAantalVragenBevatten()
         {
-            var mockRepo = new Mock<IVragenRepository>();
+            var mockRepo = new Mock<IVraagRepository>();
             var onderwerp = new Onderwerpen(1, "Algemeen");
 
             mockRepo.Setup(r => r.GeefRandomVragenVoorOnderwerp(1, 2))
@@ -57,12 +57,12 @@ namespace MeerKeuzeBL.Tests
         [Fact]
         public void GenereerRandomQuiz_MoetExceptionGooienAlsNietGenoegVragen()
         {
-            var mockRepo = new Mock<IVragenRepository>();
+            var mockRepo = new Mock<IVraagRepository>();
 
             mockRepo.Setup(r => r.GeefRandomVragenVoorOnderwerp(It.IsAny<int>(), It.IsAny<int>()))
-                    .Returns(new List<Vragen>
+                    .Returns(new List<Vraag>
                     {
-                        new Vragen(1, "Vraag 1", new List<Antwoorden>(), new List<Onderwerpen>())
+                        new Vraag(1, "Vraag 1", new List<Antwoord>(), new List<Onderwerpen>())
                     });
 
             var manager = new Manager(mockRepo.Object);
@@ -74,11 +74,11 @@ namespace MeerKeuzeBL.Tests
         [Fact]
         public void BeantwoordVraag_JuistAntwoord_IsCorrectIsTrue()
         {
-            var mockRepo = new Mock<IVragenRepository>();
+            var mockRepo = new Mock<IVraagRepository>();
             var manager = new Manager(mockRepo.Object);
 
             var vraag = MaakTestVragenLijst().First();
-            var quiz = new QuizOpstellen(new Onderwerpen(1, "Test"), new List<Vragen> { vraag }, "Test");
+            var quiz = new QuizOpstellen(new Onderwerpen(1, "Test"), new List<Vraag> { vraag }, "Test");
 
             manager.BeantwoordVraag(quiz, vraag, "B", 2); // ID 2 = juist antwoord
 
@@ -90,11 +90,11 @@ namespace MeerKeuzeBL.Tests
         [Fact]
         public void BeantwoordVraag_FoutAntwoord_IsCorrectIsFalse()
         {
-            var mockRepo = new Mock<IVragenRepository>();
+            var mockRepo = new Mock<IVraagRepository>();
             var manager = new Manager(mockRepo.Object);
 
             var vraag = MaakTestVragenLijst().First();
-            var quiz = new QuizOpstellen(new Onderwerpen(1, "Test"), new List<Vragen> { vraag }, "Test");
+            var quiz = new QuizOpstellen(new Onderwerpen(1, "Test"), new List<Vraag> { vraag }, "Test");
 
             manager.BeantwoordVraag(quiz, vraag, "A", 1); // ID 1 = fout antwoord
 
@@ -106,7 +106,7 @@ namespace MeerKeuzeBL.Tests
         [Fact]
         public void GeefAlleOnderwerpen_RoeptRepositoryAan()
         {
-            var mockRepo = new Mock<IVragenRepository>();
+            var mockRepo = new Mock<IVraagRepository>();
             var verwachteOnderwerpen = new List<Onderwerpen>
             {
                 new Onderwerpen(1, "C#"),
@@ -131,14 +131,14 @@ namespace MeerKeuzeBL.Tests
         public void ImporteerBestand_RoeptVoegVraagToeAanVoorElkeVraag()
         {
             // Arrange
-            var mockRepo = new Mock<IVragenRepository>();
+            var mockRepo = new Mock<IVraagRepository>();
             var mockReader = new Mock<IFileReader>();
             var onderwerp = new Onderwerpen(1, "SQL");
 
-            var nepVragen = new List<Vragen>
+            var nepVragen = new List<Vraag>
             {
-                new Vragen(0, "Vraag 1", new List<Antwoorden>(), new List<Onderwerpen>()),
-                new Vragen(0, "Vraag 2", new List<Antwoorden>(), new List<Onderwerpen>())
+                new Vraag(0, "Vraag 1", new List<Antwoord>(), new List<Onderwerpen>()),
+                new Vraag(0, "Vraag 2", new List<Antwoord>(), new List<Onderwerpen>())
             };
 
             mockReader.Setup(r => r.Read(It.IsAny<string>())).Returns(nepVragen);
@@ -149,20 +149,20 @@ namespace MeerKeuzeBL.Tests
             importManager.ImporteerBestand("test.txt", mockReader.Object, onderwerp);
 
             // Assert: VoegVraagToe moet 2x aangeroepen zijn
-            mockRepo.Verify(r => r.VoegVraagToe(It.IsAny<Vragen>()), Times.Exactly(2));
+            mockRepo.Verify(r => r.VoegVraagToe(It.IsAny<Vraag>()), Times.Exactly(2));
         }
 
         [Fact]
         public void ImporteerBestand_KoppeltOnderwerpAanElkeVraag()
         {
             // Arrange
-            var mockRepo = new Mock<IVragenRepository>();
+            var mockRepo = new Mock<IVraagRepository>();
             var mockReader = new Mock<IFileReader>();
             var onderwerp = new Onderwerpen(1, "SQL");
 
-            var nepVragen = new List<Vragen>
+            var nepVragen = new List<Vraag>
             {
-                new Vragen(0, "Vraag 1", new List<Antwoorden>(), new List<Onderwerpen>())
+                new Vraag(0, "Vraag 1", new List<Antwoord>(), new List<Onderwerpen>())
             };
 
             mockReader.Setup(r => r.Read(It.IsAny<string>())).Returns(nepVragen);
@@ -184,26 +184,26 @@ namespace MeerKeuzeBL.Tests
             [Fact]
             public void Vragen_MagNietLeegZijn()
             {
-                Assert.Throws<ArgumentException>(() => new Vragen(1, "", new List<Antwoorden>(), new List<Onderwerpen>()));
+                Assert.Throws<ArgumentException>(() => new Vraag(1, "", new List<Antwoord>(), new List<Onderwerpen>()));
             }
 
             [Fact]
             public void Vragen_MagNietNullZijn()
             {
-                Assert.Throws<ArgumentException>(() => new Vragen(1, null, new List<Antwoorden>(), new List<Onderwerpen>()));
+                Assert.Throws<ArgumentException>(() => new Vraag(1, null, new List<Antwoord>(), new List<Onderwerpen>()));
             }
 
             [Fact]
             public void Antwoorden_IsCorrect_WordtCorrectOpgeslagen()
             {
-                var antwoord = new Antwoorden(1, true, "Juist antwoord");
+                var antwoord = new Antwoord(1, true, "Juist antwoord");
                 Assert.True(antwoord.IsCorrect);
             }
 
             [Fact]
             public void Antwoorden_IsNotCorrect_WordtCorrectOpgeslagen()
             {
-                var antwoord = new Antwoorden(1, false, "Fout antwoord");
+                var antwoord = new Antwoord(1, false, "Fout antwoord");
                 Assert.False(antwoord.IsCorrect);
             }
 
@@ -218,14 +218,14 @@ namespace MeerKeuzeBL.Tests
             [Fact]
             public void QuizOpstellen_BeginScoreIsNul()
             {
-                var quiz = new QuizOpstellen(new Onderwerpen(1, "Test"), new List<Vragen>(), "Test Quiz");
+                var quiz = new QuizOpstellen(new Onderwerpen(1, "Test"), new List<Vraag>(), "Test Quiz");
                 Assert.Equal(0, quiz.Score);
             }
 
             [Fact]
             public void QuizOpstellen_IngevuldeAntwoordenIsLeegBijAanmaak()
             {
-                var quiz = new QuizOpstellen(new Onderwerpen(1, "Test"), new List<Vragen>(), "Test Quiz");
+                var quiz = new QuizOpstellen(new Onderwerpen(1, "Test"), new List<Vraag>(), "Test Quiz");
                 Assert.NotNull(quiz.IngevuldeAntwoorden);
                 Assert.Empty(quiz.IngevuldeAntwoorden);
             }

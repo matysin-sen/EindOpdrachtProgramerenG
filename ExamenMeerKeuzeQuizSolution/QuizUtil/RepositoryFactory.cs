@@ -13,12 +13,12 @@ namespace QuizUtil
 
        
             // We gaan ervanuit dat je repository de connection string nodig heeft
-            public static IVragenRepository CreateVragenRepository(string databaseType, string connectionString)
+            public static IVraagRepository CreateVragenRepository(string databaseType, string connectionString)
             {
                 switch (databaseType.Trim().ToUpper())
                 {
                     case "SQL":
-                        return new VragenRepository(connectionString);
+                        return new VraagRepository(connectionString);
 
                     // Optioneel voor later:
                     // case "MOCK":

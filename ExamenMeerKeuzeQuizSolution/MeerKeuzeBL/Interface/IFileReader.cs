@@ -7,7 +7,7 @@ namespace MeerKeuzeBL.Interface
 {
     public interface IFileReader
     {
-                List<Vragen> Read(string pad);
+                List<Vraag> Read(string pad);
               
     }
 }

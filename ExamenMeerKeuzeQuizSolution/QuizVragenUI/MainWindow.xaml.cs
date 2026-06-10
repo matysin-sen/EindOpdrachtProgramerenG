@@ -50,8 +50,8 @@ namespace QuizVragenUI
             string databaseType = config.GetSection("FileSettings")["databaseType"];
             string TxtAchter = "TXT_ACHTER";
             string TxtOnder = "TXT_ONDER";
-            importManager = new ImportManager(new VragenRepository(connectionString), new FileReaderAntwoordOnder());
-            manager = new Manager(new VragenRepository(connectionString));
+            importManager = new ImportManager(new VraagRepository(connectionString), new FileReaderAntwoordOnder());
+            manager = new Manager(new VraagRepository(connectionString));
            
             InitializeerDatabase();
         }
@@ -60,23 +60,31 @@ namespace QuizVragenUI
 
         private void btnLogIn_Click(object sender, RoutedEventArgs e)
         {
-            string naam = txtBoxNaam.Text;
-            
-            string voornaam = naam.Split(' ')[0].Trim();   
-            string achternaam = naam.Split(' ')[1].Trim();
+            try
+            {
+                string naam = txtBoxNaam.Text;
 
-            int userId = manager.VoegUserToe(voornaam, achternaam);
-            KeuzeQuizMaker keuzeQuizMaker = new KeuzeQuizMaker(manager, userId);
-            keuzeQuizMaker.Show();
-            this.Close();
+                string voornaam = naam.Split(' ')[0].Trim();
+                string achternaam = naam.Split(' ')[1].Trim();
+
+                int userId = manager.VoegUserToe(voornaam, achternaam);
+                KeuzeQuizMaker keuzeQuizMaker = new KeuzeQuizMaker(manager, userId);
+                keuzeQuizMaker.Show();
+                this.Close();
+            }
+            catch (Exception ex) 
+            { 
+                MessageBox.Show("Er is een fout opgetreden: " + ex.Message);
+            }
+          
 
         }
 
         private void InitializeerDatabase()
         {
             var builder = new ConfigurationBuilder()
-  .SetBasePath(Directory.GetCurrentDirectory())
-  .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
             var config = builder.Build();
             string connectionString = config.GetConnectionString("SQLServerConnection");
@@ -97,7 +105,7 @@ namespace QuizVragenUI
 
 
             var databaseConnection = new SqlConnection(connectionString);
-            IVragenRepository vragenRepository = RepositoryFactory.CreateVragenRepository(databaseType, connectionString);
+            IVraagRepository vragenRepository = RepositoryFactory.CreateVragenRepository(databaseType, connectionString);
 
             IFileReader fileReader = FileReaderFactory.CreateFileReader(sourceFilePathc_1, TxtAchter, errorLogPath);
             IFileReader fileReaderGeo1 = FileReaderFactory.CreateFileReader(sourceFilePathGeo1, TxtOnder, errorLogPath);

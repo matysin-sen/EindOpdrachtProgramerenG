@@ -62,7 +62,7 @@ namespace QuizVragenUI
             var config = builder.Build();
             string connectionString = config.GetConnectionString("SQLServerConnection");
 
-            IVragenRepository vragenRepository = new VragenRepository(connectionString);
+            IVraagRepository vragenRepository = new VraagRepository(connectionString);
             importManager = new ImportManager(vragenRepository, null);
             manager = new Manager(vragenRepository);
 

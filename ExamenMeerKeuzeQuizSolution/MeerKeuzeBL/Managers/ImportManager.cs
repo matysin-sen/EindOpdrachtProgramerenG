@@ -6,11 +6,11 @@ namespace MeerKeuzeBL.Managers
 {
     public class ImportManager
     {
-        private readonly IVragenRepository _repository;
+        private readonly IVraagRepository _repository;
         private  IFileReader _fileReader;
        
         // Constructor: we geven de repository interface mee
-        public ImportManager(IVragenRepository repository, IFileReader fileReader)
+        public ImportManager(IVraagRepository repository, IFileReader fileReader)
         {
             _repository = repository;
             _fileReader = fileReader;
@@ -22,9 +22,9 @@ namespace MeerKeuzeBL.Managers
             // 1. Maak de juiste reader aan via de factory
             // We sturen de benodigde parameters mee die je in FileReaderFactory.cs hebt gedefinieerd
             
-            List<Vragen> ingelezenVragen = reader.Read(pad);
+            List<Vraag> ingelezenVragen = reader.Read(pad);
 
-            foreach (Vragen vraag in ingelezenVragen)
+            foreach (Vraag vraag in ingelezenVragen)
             {
                 // Koppel direct het object dat de gebruiker in de UI heeft gekozen
                 vraag.Onderwerp = new List<Onderwerpen> { gekozenOnderwerp };
