@@ -58,7 +58,7 @@ namespace QuizVragenUI
             // 4. Vraag aanmaken
             Vraag nieuweVraag = new Vraag
             {
-                VraagTekst = txtVraag.Text,
+                _vraagTekst = txtVraag.Text,
                 Antwoorden = antwoorden,
                 Onderwerp = new List<Onderwerp> { gekozenOnderwerp }
             };

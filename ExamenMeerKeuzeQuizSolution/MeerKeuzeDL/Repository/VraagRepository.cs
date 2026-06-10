@@ -121,7 +121,7 @@ namespace MeerKeuzeDL.Repository
             using (SqlCommand cmdVragenOnderwerp = conn.CreateCommand())
             {
                 cmd.CommandText = sqlDubbelVraag;
-                cmd.Parameters.AddWithValue("@Vraagzin", vraag.VraagTekst);
+                cmd.Parameters.AddWithValue("@Vraagzin", vraag._vraagTekst);
 
 
                 cmdVragenOnderwerp.CommandText = sqlDubbelVragenOnderwerp;
@@ -202,7 +202,7 @@ namespace MeerKeuzeDL.Repository
                                 // 1. Sla de vraag op
                                 using (SqlCommand cmdVraag = new SqlCommand(sqlVraag, conn, transaction))
                                 {
-                                    cmdVraag.Parameters.AddWithValue("@Vraagzin", vraag.VraagTekst);
+                                    cmdVraag.Parameters.AddWithValue("@Vraagzin", vraag._vraagTekst);
 
 
                                     // ExecuteScalar voert de query uit en geeft het resultaat van OUTPUT INSERTED.VraagID terug
@@ -503,7 +503,7 @@ namespace MeerKeuzeDL.Repository
                             {
                                 // Zorg dat deze property namen exact overeenkomen met Vragen.cs
                                 VraagID = vraagId,
-                                VraagTekst = reader["VraagZin"].ToString(),
+                                _vraagTekst = reader["VraagZin"].ToString(),
                                 Antwoorden = new List<Antwoord>()
                             };
                             vraagDict.Add(vraagId, nieuweVraag);

@@ -101,8 +101,8 @@ namespace MeerKeuzeDL.FileReader
                         if (!Lijn.ToLower().Contains("raad de artiest") && !Lijn.ToLower().Contains("quiz"))
                         {
                             // Plak deze tekst vast aan de vraag die we momenteel aan het inlezen zijn
-                            huidigeVraag.VraagTekst += " " + Lijn.Trim();
-                            huidigeVraag.VraagTekst = huidigeVraag.VraagTekst.Trim(); // Zorg dat er geen spatie teveel vooraan staat
+                            huidigeVraag._vraagTekst += " " + Lijn.Trim();
+                            huidigeVraag._vraagTekst = huidigeVraag._vraagTekst.Trim(); // Zorg dat er geen spatie teveel vooraan staat
                         }
                     }
                 }

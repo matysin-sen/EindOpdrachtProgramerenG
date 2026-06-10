@@ -42,7 +42,7 @@ namespace MeerKeuzeBL.Managers
             List<Vraag> alleVragenVoorOnderwerp = _repository.GeefRandomVragenVoorOnderwerp(gekozenOnderwerp.OnderwerpID, aantalVragen);
 
             // 2. Controleer of we wel genoeg vragen in de database hebben
-            if (alleVragenVoorOnderwerp.Count < aantalVragen)
+            if (alleVragenVoorOnderwerp.Count < aantalVragen || alleVragenVoorOnderwerp == null)
             {
                 throw new Exception($"Je vraagt om {aantalVragen} vragen, maar er zitten er maar {alleVragenVoorOnderwerp.Count} in de database voor dit onderwerp.");
             }

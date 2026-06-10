@@ -62,7 +62,7 @@ namespace QuizVragenUI
             huidigeVraag = _actieveQuiz.VragenLijst[_huidigeVraagIndex];
 
             // Toon de vraag (pas aan naar jouw property naam, bv. VraagStelling)
-            txtVraag.Text = $"Vraag {_huidigeVraagIndex + 1}: {huidigeVraag.VraagTekst}";
+            txtVraag.Text = $"Vraag {_huidigeVraagIndex + 1}: {huidigeVraag._vraagTekst}";
            
             // Toon antwoorden in de RadioButtons (pas 'Tekst' aan indien nodig)
             if (huidigeVraag.Antwoorden.Count >= 4)

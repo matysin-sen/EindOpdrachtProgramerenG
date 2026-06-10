@@ -137,7 +137,7 @@ namespace QuizIntegratieTest
 
             var vraag = new Vraag
             {
-                VraagTekst = "TestVraag_" + Guid.NewGuid(),
+                _vraagTekst = "TestVraag_" + Guid.NewGuid(),
                 Antwoorden = antwoorden,
                 Onderwerp = new List<Onderwerp> { onderwerp }
             };

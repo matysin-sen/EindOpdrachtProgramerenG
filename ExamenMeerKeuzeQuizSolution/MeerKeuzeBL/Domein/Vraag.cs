@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace MeerKeuzeBL.Domein
 {
@@ -32,11 +33,25 @@ namespace MeerKeuzeBL.Domein
         }
 
         public int VraagID { get; init; } // willen de vragen niet meer veranderen, dus init
-        public string VraagTekst { get; set; }
+        
         public List<Antwoord> Antwoorden { get; set; } = new List<Antwoord>();
-        public List<Onderwerp> Onderwerp { get; set; }//voor als we meerdere onderwerpen per vraag willen
+        public List<Onderwerp> Onderwerp { get; set; } //voor als we meerdere onderwerpen per vraag willen
+        public string _vraagTekst;
 
+        public string VraagTekst
+        {
+            get { return _vraagTekst; }
+             set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("Vraagtekst mag niet leeg zijn.");
+                }
+                _vraagTekst = value;
+            }
+        }
 
+        
         public override bool Equals(object? obj)
         {
             return base.Equals(obj as Vraag);
