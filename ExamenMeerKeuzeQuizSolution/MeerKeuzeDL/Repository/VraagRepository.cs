@@ -372,38 +372,96 @@ namespace MeerKeuzeDL.Repository
 
             return onderwerpenLijst;
         }
-
-        public int voegUserToe(string naam,string achternaam)
+        int userID;
+        public int voegUserToe(string naam, string achternaam)
         {
             // 1. Schrijf de SQL query (Pas 'GEBRUIKERS', 'Naam' en 'Achternaam' aan naar jouw echte tabel- en kolomnamen)
             string query = "INSERT INTO USERS (Naam, Voornaam) OUTPUT INSERTED.IDUser VALUES (@Naam, @Voornaam)";
-
+            string selectQuery = "SELECT * FROM USERS WHERE LOWER(Naam) = LOWER(@Naam) AND LOWER(Voornaam) = LOWER(@Voornaam)";
             // 2. Maak verbinding met de databank
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
+                conn.Open();
                 // 3. Maak het SQL commando klaar
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                using (SqlCommand cmdSelect = new SqlCommand(selectQuery, conn))
                 {
-                    // 4. Koppel de parameters aan de veilige @-variabelen om SQL-injectie te voorkomen
-                    cmd.Parameters.AddWithValue("@Naam", achternaam);
-                    cmd.Parameters.AddWithValue("@Voornaam", naam);
-
-                    try
+                    cmdSelect.Parameters.AddWithValue("@Naam", naam);
+                    cmdSelect.Parameters.AddWithValue("@Voornaam", achternaam);
+                    // 4. Controleer of de gebruiker al bestaat
+                    using (SqlDataReader reader = cmdSelect.ExecuteReader())
                     {
-                        // 5. Open de verbinding en voer de query uit
-                        conn.Open();
+                        if (reader.Read())
+                        {
+                            // De gebruiker bestaat al, we kunnen het ID teruggeven of een foutmelding geven
+                            return userID = (int)reader["IDUser"];
 
-                        // ExecuteNonQuery gebruiken we voor INSERT, UPDATE of DELETE (als we geen ID terug hoeven)
-                        return (int)cmd.ExecuteScalar(); // ← ID teruggeven
-                    }
-                    catch (Exception ex)
-                    {
-                        // Fouten opvangen en duidelijk doorgeven
-                        throw new Exception("Fout bij het toevoegen van de user: " + ex.Message);
+                        }
+                        else
+                        {
+                            reader.Close();
+                            // De gebruiker bestaat nog niet, we voegen hem toe
+                            using (SqlCommand cmdInsert = new SqlCommand(query, conn))
+                            {
+                                cmdInsert.Parameters.AddWithValue("@Naam", naam);
+                                cmdInsert.Parameters.AddWithValue("@Voornaam", achternaam);
+                                try
+                                {
+                                    // ExecuteScalar voert de INSERT uit en pakt de OUTPUT INSERTED.IDUser direct vast
+                                    userID = (int)cmdInsert.ExecuteScalar();
+                                    return userID;
+                                }
+                                catch (Exception ex)
+                                {
+                                    throw new Exception("Fout bij het toevoegen van de gebruiker: " + ex.Message);
+                                }
+                            }
+                        }
                     }
                 }
+                /*
+                using (SqlCommand cmdUser = new SqlCommand(selectQuery, conn))
+                {
+                    cmdUser.CommandText = selectQuery;
+                    cmdUser.Parameters.AddWithValue("@Naam", achternaam);
+                    cmdUser.Parameters.AddWithValue("@Voornaam", naam);
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+
+                        if (reader.HasRows)
+                        {
+                            reader.Read();
+                            userID = (int)reader["IDUser"];
+                            reader.Close();
+                            return userID;
+                        }
+                        else
+                        {
+                            reader.Close();
+                            cmd.CommandText = query;
+                            // 4. Koppel de parameters aan de veilige @-variabelen om SQL-injectie te voorkomen
+                            cmd.Parameters.AddWithValue("@Naam", achternaam);
+                            cmd.Parameters.AddWithValue("@Voornaam", naam);
+
+                            try
+                            {
+
+
+                                // ExecuteNonQuery gebruiken we voor INSERT, UPDATE of DELETE (als we geen ID terug hoeven)
+                                return (int)cmd.ExecuteScalar(); // ← ID teruggeven
+                            }
+                            catch (Exception ex)
+                            {
+                                // Fouten opvangen en duidelijk doorgeven
+                                throw new Exception("Fout bij het toevoegen van de user: " + ex.Message);
+                            }
+                        }
+                    }*/
+
             }
-        }
+        
+            }
+        
 
         public List<Vraag> GeefRandomVragenVoorOnderwerp(int onderwerpId, int aantalVragen)
         {
